@@ -13,6 +13,7 @@ import Model.SinhVien;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -201,8 +202,10 @@ public class DangKyTinChiFrm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                 new TrangChuSinhVienFrm(SV).setVisible(true);
-                 this.dispose();        
+        if(JOptionPane.showConfirmDialog(this, "Xác nhận kết thúc việc đăng ký?", "", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+            new TrangChuSinhVienFrm(SV).setVisible(true);
+            this.dispose();     
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -214,8 +217,18 @@ public class DangKyTinChiFrm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        ArrayList<PhieuDangKy> ListPDK=new ArrayList<>();
+        for(LopHocPhan lhp:ListDK){
+            PhieuDangKy pdk=new PhieuDangKy();
+            pdk.setHocPhi(435000);
+            pdk.setTblLopHocPhanId(lhp.getLopHocPhanId());
+            pdk.setTblSinhVienId(SV.getSinhVienId());
+            java.util.Date Date=new java.util.Date();
+            pdk.setThoiGian(Date.toString());
+            ListPDK.add(pdk);
+        }
         PhieuDangKyDAO pdkDAO=new PhieuDangKyDAO();
-        pdkDAO.LuuDanhSachPDK(SV, ListDK);
+        pdkDAO.LuuDanhSachPDK(ListPDK);
         jLabel8.setText("Trạng thái: Đã xóa PDK cũ->Đã lưu PDK mới vào CSDL!");
         jButton2.setEnabled(false);
     }//GEN-LAST:event_jButton2ActionPerformed

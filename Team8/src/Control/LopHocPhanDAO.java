@@ -8,6 +8,7 @@ package Control;
 import static Control.DAO.con;
 import Model.LopHocPhan;
 import Model.MonHoc;
+import Model.PhieuDangKy;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -46,9 +47,9 @@ public class LopHocPhanDAO extends DAO{
         }
         return ListLHP;
     }
-    public void TangSoLuongSinhVien(ArrayList<LopHocPhan> ListDK){
-        for(LopHocPhan i : ListDK){            
-            String sql="UPDATE tbllophocphan SET daChon = daChon+1 WHERE id = '"+i.getLopHocPhanId()+"'";
+    public void TangSoLuongSinhVien(ArrayList<PhieuDangKy> ListPDK){
+        for(PhieuDangKy i : ListPDK){            
+            String sql="UPDATE tbllophocphan SET daChon = daChon+1 WHERE id = '"+i.getTblLopHocPhanId()+"'";
             try {
                 PreparedStatement ps=con.prepareStatement(sql);
                 ps.executeUpdate();
@@ -57,8 +58,8 @@ public class LopHocPhanDAO extends DAO{
             }
         }
     }
-    public void GiamSoLuongSinhVien(LopHocPhan lhp){        
-            String sql="UPDATE tbllophocphan SET daChon = daChon-1 WHERE id = '"+lhp.getLopHocPhanId()+"'";
+    public void GiamSoLuongSinhVien(int idLHP){        
+            String sql="UPDATE tbllophocphan SET daChon = daChon-1 WHERE id = '"+idLHP+"'";
             try {
                 PreparedStatement ps=con.prepareStatement(sql);
                 ps.executeUpdate();

@@ -171,7 +171,7 @@ CREATE TABLE `tbllophocphan` (
 
 LOCK TABLES `tbllophocphan` WRITE;
 /*!40000 ALTER TABLE `tbllophocphan` DISABLE KEYS */;
-INSERT INTO `tbllophocphan` VALUES (1,'aaa','XLA 01','1',59,4,33),(2,'bbb','XLA 02','1',59,4,59),(3,'ccc','XLA 03','1',59,4,1),(4,'def','XLA 04','1',59,4,46),(5,'fed','XLA 05','1',59,4,27),(6,'hihi','KTDH 01','1',39,3,1),(7,'haha','KTDH 02','1',39,3,33),(8,'agag','CNPM 01','1',69,1,50);
+INSERT INTO `tbllophocphan` VALUES (1,'aaa','XLA 01','1',59,4,33),(2,'bbb','XLA 02','1',59,4,59),(3,'ccc','XLA 03','1',59,4,3),(4,'def','XLA 04','1',59,4,46),(5,'fed','XLA 05','1',59,4,27),(6,'hihi','KTDH 01','1',39,3,3),(7,'haha','KTDH 02','1',39,3,33),(8,'agag','CNPM 01','1',69,1,50);
 /*!40000 ALTER TABLE `tbllophocphan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +260,7 @@ CREATE TABLE `tblphieudangky` (
   KEY `khoa_ngoai_sinh_vien_phieu_dang_ky` (`tblSinhVientblNguoiDungId`),
   CONSTRAINT `khoa_ngoai_lop_hoc_phan_phieu_dang_ki` FOREIGN KEY (`tblLopHocPhanId`) REFERENCES `tbllophocphan` (`id`) ON DELETE SET NULL,
   CONSTRAINT `khoa_ngoai_sinh_vien_phieu_dang_ky` FOREIGN KEY (`tblSinhVientblNguoiDungId`) REFERENCES `tblsinhvien` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,7 +269,7 @@ CREATE TABLE `tblphieudangky` (
 
 LOCK TABLES `tblphieudangky` WRITE;
 /*!40000 ALTER TABLE `tblphieudangky` DISABLE KEYS */;
-INSERT INTO `tblphieudangky` VALUES (11,'Tue Apr 30 10:39:04 ICT 2019',435000,3,4),(12,'Tue Apr 30 10:39:04 ICT 2019',435000,6,4),(19,'Tue Apr 30 10:44:01 ICT 2019',435000,6,2),(20,'Tue Apr 30 10:44:01 ICT 2019',435000,3,2),(35,'Tue Apr 30 18:20:07 ICT 2019',435000,6,3),(36,'Tue Apr 30 18:20:07 ICT 2019',435000,3,3);
+INSERT INTO `tblphieudangky` VALUES (11,'Tue Apr 30 10:39:04 ICT 2019',435000,3,4),(12,'Tue Apr 30 10:39:04 ICT 2019',435000,6,4),(19,'Tue Apr 30 10:44:01 ICT 2019',435000,6,2),(20,'Tue Apr 30 10:44:01 ICT 2019',435000,3,2),(39,'Tue Apr 30 23:06:13 ICT 2019',435000,6,5),(40,'Tue Apr 30 23:06:13 ICT 2019',435000,3,5),(43,'Tue Apr 30 23:21:48 ICT 2019',435000,6,3),(44,'Tue Apr 30 23:21:48 ICT 2019',435000,3,3);
 /*!40000 ALTER TABLE `tblphieudangky` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,7 +331,7 @@ CREATE TABLE `tblsinhvien` (
 
 LOCK TABLES `tblsinhvien` WRITE;
 /*!40000 ALTER TABLE `tblsinhvien` DISABLE KEYS */;
-INSERT INTO `tblsinhvien` VALUES (1,1,'CNTT','CNTT',NULL,NULL,NULL,''),(2,2,'CNTT','CNTT',NULL,NULL,NULL,NULL),(3,3,'CNTT','CNTT',NULL,NULL,NULL,NULL),(4,4,'CNTT','CNTT',NULL,NULL,NULL,NULL),(5,5,'CNTT','CNTT',NULL,NULL,NULL,NULL),(6,13,'CNTT','ATTT',NULL,NULL,NULL,NULL),(7,14,'CNTT','CNTT',NULL,NULL,NULL,NULL),(8,15,'VT','ĐTVT',NULL,NULL,NULL,'VT6');
+INSERT INTO `tblsinhvien` VALUES (1,1,'CNTT','CNTT',NULL,NULL,NULL,'CN1'),(2,2,'CNTT','CNTT',NULL,NULL,NULL,'CN2'),(3,3,'CNTT','CNTT',NULL,NULL,NULL,'CN3'),(4,4,'CNTT','CNTT',NULL,NULL,NULL,'CN4'),(5,5,'CNTT','CNTT',NULL,NULL,NULL,'CN5'),(6,13,'CNTT','ATTT',NULL,NULL,NULL,'CN6'),(7,14,'CNTT','CNTT',NULL,NULL,NULL,'CN7'),(8,15,'VT','ĐTVT',NULL,NULL,NULL,'VT6');
 /*!40000 ALTER TABLE `tblsinhvien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,4 +371,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-30 18:27:13
+-- Dump completed on 2019-04-30 23:26:59
