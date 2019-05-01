@@ -83,11 +83,11 @@ public class DanhSachThongKeFrm extends javax.swing.JFrame implements ActionList
                 .addGap(0, 32, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack)
-                .addGap(309, 309, 309))
             .addComponent(jlbHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(306, 306, 306)
+                .addComponent(btnBack)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,9 +96,9 @@ public class DanhSachThongKeFrm extends javax.swing.JFrame implements ActionList
                 .addComponent(jlbHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(btnBack)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,9 +157,9 @@ public class DanhSachThongKeFrm extends javax.swing.JFrame implements ActionList
         TableColumn col = tblDanhSach.getColumnModel().getColumn(0);
         col.setPreferredWidth(30);
         col = tblDanhSach.getColumnModel().getColumn(2);
-        col.setPreferredWidth(120);
+        col.setPreferredWidth(115);
         col = tblDanhSach.getColumnModel().getColumn(1);
-        col.setPreferredWidth(80);
+        col.setPreferredWidth(75);
         for(int i = 0; i < 5; i++){
             TableColumnModel columnModel = tblDanhSach.getColumnModel();
             TableColumn column = columnModel.getColumn(i); 
@@ -172,7 +172,7 @@ public class DanhSachThongKeFrm extends javax.swing.JFrame implements ActionList
 
     private void btnBackClick(){
         this.parent.setVisible(true);
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        this.dispose();
     }
 
     private void btnDetailClick(int i){

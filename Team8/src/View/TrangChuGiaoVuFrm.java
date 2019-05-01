@@ -6,14 +6,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class TrangChuGiaoVuFrm extends javax.swing.JFrame implements ActionListener{
-
-
+    private int x = 0;
     public TrangChuGiaoVuFrm() {
         initComponents();
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         btnLich.addActionListener(this);
         btnThongKe.addActionListener(this);
-        this.setLocation(300,150);
+        this.setLocation(450,250);
     }
 
     @SuppressWarnings("unchecked")
@@ -47,7 +46,7 @@ public class TrangChuGiaoVuFrm extends javax.swing.JFrame implements ActionListe
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnLich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnThongKe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
@@ -57,9 +56,9 @@ public class TrangChuGiaoVuFrm extends javax.swing.JFrame implements ActionListe
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addComponent(btnLich)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(btnThongKe)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
