@@ -52,7 +52,7 @@ public class ThongKeCacLopHocPhanFrm extends javax.swing.JFrame implements Actio
         jLabel12.setText(tkmh.getTongSoSinhVien().toString());
         btnQuayLai.addActionListener(this);
         ThongKeLopHocPhanDAO tk=new ThongKeLopHocPhanDAO();
-        ltk=tk.layThongKeLopHocPhan(kyBD, kyKT, tkmh.getMonID().toString());
+        ltk=tk.layThongKeLopHocPhan(kyBD, kyKT, tkmh.getMonID());
         tblResult.setModel(new ResultTableModel());
         TableCellRenderer buttonRenderer = new JTableButtonRenderer();
         tblResult.getColumn("Chi tiết").setCellRenderer(buttonRenderer);

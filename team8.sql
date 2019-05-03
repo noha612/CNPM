@@ -47,7 +47,7 @@ CREATE TABLE `tbldiem` (
 
 LOCK TABLES `tbldiem` WRITE;
 /*!40000 ALTER TABLE `tbldiem` DISABLE KEYS */;
-INSERT INTO `tbldiem` VALUES (1,10,10,10,10,10,'20171','B16DCCN319',1,5),(2,8,8,8,8,8,'20171','B16DCCN239',1,4),(3,5,5,5,5,5,'20171','B16DCCN148',1,1),(4,9,9,9,9,9,'20171','B16DCCN159',1,3),(5,9.5,9.5,9,9,9.5,'20171','B16DCCN151',1,2);
+INSERT INTO `tbldiem` VALUES (1,10,10,10,10,10,'20171','B16DCCN319',1,5),(3,5,5,5,5,5,'20171','B16DCCN148',1,1),(4,9,9,9,9,9,'20171','B16DCCN159',2,3),(5,9.5,9.5,9,9,9.5,'20171','B16DCCN151',1,2);
 /*!40000 ALTER TABLE `tbldiem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +131,7 @@ CREATE TABLE `tbllichgiangday` (
   CONSTRAINT `khoa_ngoai_kip_hoc` FOREIGN KEY (`tblKipHocId`) REFERENCES `tblkiphoc` (`id`),
   CONSTRAINT `khoa_ngoai_lop_hoc_phan` FOREIGN KEY (`tblLopHocPhanId`) REFERENCES `tbllophocphan` (`id`),
   CONSTRAINT `khoa_ngoai_phong_hoc` FOREIGN KEY (`tblPhongHocId`) REFERENCES `tblphonghoc` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +140,7 @@ CREATE TABLE `tbllichgiangday` (
 
 LOCK TABLES `tbllichgiangday` WRITE;
 /*!40000 ALTER TABLE `tbllichgiangday` DISABLE KEYS */;
-INSERT INTO `tbllichgiangday` VALUES (1,11,34,13,3,3,3),(2,11,23,15,5,3,4),(3,11,34,1,1,6,1),(4,6,22,13,3,8,3);
+INSERT INTO `tbllichgiangday` VALUES (1,11,34,13,3,3,3),(2,11,23,15,5,3,4),(3,11,34,1,1,6,1),(4,6,22,13,3,8,3),(5,11,34,4,1,1,3),(6,11,34,2,2,11,2);
 /*!40000 ALTER TABLE `tbllichgiangday` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +161,7 @@ CREATE TABLE `tbllophocphan` (
   PRIMARY KEY (`id`),
   KEY `khoa_ngoai_mon_hoc` (`tblMonHocId`),
   CONSTRAINT `khoa_ngoai_mon_hoc` FOREIGN KEY (`tblMonHocId`) REFERENCES `tblmonhoc` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +170,7 @@ CREATE TABLE `tbllophocphan` (
 
 LOCK TABLES `tbllophocphan` WRITE;
 /*!40000 ALTER TABLE `tbllophocphan` DISABLE KEYS */;
-INSERT INTO `tbllophocphan` VALUES (1,'D16-01','Xử lý ảnh 01','20171',4,4),(2,'D16-02','Xử lý ảnh 02','20171',4,4),(3,'D16-03','Xử lý ảnh 03','20171',4,4),(4,'D16-04','Xử lý ảnh 04','20171',4,4),(5,'D16-05','Xử lý ảnh 05','20171',4,4),(6,'D16-11','Kỹ thuật đồ họa 01','20171',4,3),(7,'D16-12','Kỹ thuật đồ họa 02','20171',4,3),(8,'D16-21','Công nghệ phần mềm 01','20171',4,1),(9,'D16-22','Công nghệ phần mềm 02','20171',4,1),(10,'D16-99','13 Tín chỉ','20691',100,7);
+INSERT INTO `tbllophocphan` VALUES (1,'D16-01','Xử lý ảnh 01','20171',4,4),(2,'D16-02','Xử lý ảnh 02','20171',4,4),(3,'D16-03','Xử lý ảnh 03','20171',4,4),(4,'D16-04','Xử lý ảnh 04','20171',4,4),(5,'D16-05','Xử lý ảnh 05','20171',4,4),(6,'D16-11','Kỹ thuật đồ họa 01','20171',4,3),(7,'D16-12','Kỹ thuật đồ họa 02','20171',4,3),(8,'D16-21','NM Công nghệ phần mềm 01','20171',4,1),(9,'D16-22','NM Công nghệ phần mềm 02','20171',4,1),(10,'D16-99','13 Tín chỉ','20691',100,7),(11,'D16-30','NM Trí tuệ nhân tạo 01','20171',4,2);
 /*!40000 ALTER TABLE `tbllophocphan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +268,7 @@ CREATE TABLE `tblphieudangky` (
 
 LOCK TABLES `tblphieudangky` WRITE;
 /*!40000 ALTER TABLE `tblphieudangky` DISABLE KEYS */;
-INSERT INTO `tblphieudangky` VALUES (86,'Fri May 03 21:38:19 ICT 2019',435000,3,1),(87,'Fri May 03 21:38:19 ICT 2019',435000,10,1),(88,'Fri May 03 21:38:56 ICT 2019',435000,3,2),(89,'Fri May 03 21:38:56 ICT 2019',435000,10,2),(90,'Fri May 03 22:47:48 ICT 2019',435000,1,5),(91,'Fri May 03 22:47:48 ICT 2019',435000,10,5),(96,'Fri May 03 23:40:35 ICT 2019',435000,3,3),(97,'Fri May 03 23:40:35 ICT 2019',435000,10,3),(98,'Fri May 03 23:41:26 ICT 2019',435000,6,7),(99,'Fri May 03 23:41:26 ICT 2019',435000,3,7),(100,'Fri May 03 23:41:26 ICT 2019',435000,10,7);
+INSERT INTO `tblphieudangky` VALUES (86,'Fri May 03 21:38:19 ICT 2019',435000,8,1),(87,'Fri May 03 21:38:19 ICT 2019',435000,2,1),(88,'Fri May 03 21:38:56 ICT 2019',435000,8,2),(89,'Fri May 03 21:38:56 ICT 2019',435000,2,2),(90,'Fri May 03 22:47:48 ICT 2019',435000,8,5),(91,'Fri May 03 22:47:48 ICT 2019',435000,10,5),(96,'Fri May 03 23:40:35 ICT 2019',435000,1,3),(97,'Fri May 03 23:40:35 ICT 2019',435000,4,3),(98,'Fri May 03 23:41:26 ICT 2019',435000,2,7),(99,'Fri May 03 23:41:26 ICT 2019',435000,3,7),(100,'Fri May 03 23:41:26 ICT 2019',435000,4,7);
 /*!40000 ALTER TABLE `tblphieudangky` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,4 +370,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-03 23:42:48
+-- Dump completed on 2019-05-04  0:40:38
