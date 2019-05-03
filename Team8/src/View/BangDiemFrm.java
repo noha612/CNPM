@@ -84,19 +84,22 @@ public class BangDiemFrm extends javax.swing.JFrame{
                 .addGap(306, 306, 306)
                 .addComponent(jlbTongKet, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(213, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(tt, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(177, 177, 177))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(341, 341, 341))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(290, 290, 290))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(213, Short.MAX_VALUE)
-                .addComponent(tt, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(177, 177, 177))
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(349, 349, 349)
-                .addComponent(btnBack)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +133,7 @@ public class BangDiemFrm extends javax.swing.JFrame{
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.parent.setVisible(true);
-        this.dispose();
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_btnBackActionPerformed
 
 
@@ -145,15 +148,15 @@ public class BangDiemFrm extends javax.swing.JFrame{
     // End of variables declaration//GEN-END:variables
 
     private void fillTable(){
-        String head[] = {"STT", "Mon Hoc", "So Tin Chi", "DiemCC", "DiemKT", "DiemBTL", "DiemTH", "DiemCK", "TongKet"};
+        String head[] = {"STT", "Mon", "So Tin Chi", "DiemCC", "DiemKT", "DiemBTL", "DiemTH", "DiemCK", "TongKet"};
         DefaultTableModel tb = new DefaultTableModel(head, 0);
         bangDiem.setModel(tb);
         int tt = 1;
-        bangDiem.setRowHeight(30);
+        bangDiem.setRowHeight(25);
         TableColumn col = bangDiem.getColumnModel().getColumn(0);
-        col.setPreferredWidth(35);
+        col.setPreferredWidth(30);
         col = bangDiem.getColumnModel().getColumn(1);
-        col.setPreferredWidth(230);
+        col.setPreferredWidth(250);
         for(int i = 0; i < 9; i++){
             TableColumnModel columnModel = bangDiem.getColumnModel();
             TableColumn column = columnModel.getColumn(i); 

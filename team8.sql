@@ -162,7 +162,7 @@ CREATE TABLE `tbllophocphan` (
   PRIMARY KEY (`id`),
   KEY `khoa_ngoai_mon_hoc` (`tblMonHocId`),
   CONSTRAINT `khoa_ngoai_mon_hoc` FOREIGN KEY (`tblMonHocId`) REFERENCES `tblmonhoc` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +171,7 @@ CREATE TABLE `tbllophocphan` (
 
 LOCK TABLES `tbllophocphan` WRITE;
 /*!40000 ALTER TABLE `tbllophocphan` DISABLE KEYS */;
-INSERT INTO `tbllophocphan` VALUES (1,'aaa','XLA 01','1',59,4,33),(2,'bbb','XLA 02','1',59,4,59),(3,'ccc','XLA 03','1',59,4,3),(4,'def','XLA 04','1',59,4,46),(5,'fed','XLA 05','1',59,4,27),(6,'hihi','KTDH 01','1',39,3,3),(7,'haha','KTDH 02','1',39,3,33),(8,'agag','CNPM 01','1',69,1,50);
+INSERT INTO `tbllophocphan` VALUES (1,'D16-01','Xử lý ảnh 01','20171',4,4,0),(2,'D16-02','Xử lý ảnh 02','20171',4,4,0),(3,'D16-03','Xử lý ảnh 03','20171',4,4,4),(4,'D16-04','Xử lý ảnh 04','20171',4,4,0),(5,'D16-05','Xử lý ảnh 05','20171',4,4,0),(6,'D16-11','Kỹ thuật đồ họa 01','20171',4,3,0),(7,'D16-12','Kỹ thuật đồ họa 02','20171',4,3,0),(8,'D16-21','Công nghệ phần mềm 01','20171',4,1,0),(9,'D16-22','Công nghệ phần mềm 02','20171',4,1,1),(10,'D16-99','13 Tín chỉ','20691',100,7,4);
 /*!40000 ALTER TABLE `tbllophocphan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,9 +197,9 @@ CREATE TABLE `tblmonhoc` (
   `hsCuoiKy` double DEFAULT NULL,
   `monDK` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `boMon` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `khoa` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `khoa` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -208,7 +208,7 @@ CREATE TABLE `tblmonhoc` (
 
 LOCK TABLES `tblmonhoc` WRITE;
 /*!40000 ALTER TABLE `tblmonhoc` DISABLE KEYS */;
-INSERT INTO `tblmonhoc` VALUES (1,'a1','Nhập môn Công nghệ phần mềm',3,45,0,0,0.1,0.1,0,0.2,0.6,NULL,'CNPM','CNTT'),(2,'b2','Nhập môn Trí tuệ nhân tạo',3,40,5,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(3,'c3','Kỹ thuật đồ họa',2,45,0,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(4,'a2','Xử lý ảnh',13,45,0,0,0.1,0.1,0,0,0.7,NULL,NULL,'CNTT'),(5,'b3','Xử lý tín hiệu số',2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ĐTVT');
+INSERT INTO `tblmonhoc` VALUES (1,'INT1340','Nhập môn Công nghệ phần mềm',3,45,0,0,0.1,0.1,0,0.2,0.6,NULL,'CNPM','CNTT'),(2,'INT1341','Nhập môn Trí tuệ nhân tạo',3,40,5,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(3,'INT1328','Kỹ thuật đồ họa',2,45,0,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(4,'INT1362','Xử lý ảnh',2,45,0,0,0.1,0.1,0,0,0.7,NULL,NULL,'CNTT'),(5,'ELE1330','Xử lý tín hiệu số',2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ĐTVT'),(6,'INT1303','An toàn bảo mật HTTT',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,'TST1111','13 Tín Chỉ',13,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,'INT1336','Mạng máy tính',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,'BAS1141','Tiếng Anh A11',4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,'BAS1142','Tiếng Anh A12',4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,'BAS1143','Tiếng Anh A21',4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(12,'BAS1144','Tiếng Anh A22',4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `tblmonhoc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +229,7 @@ CREATE TABLE `tblnguoidung` (
   `vaiTro` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `tenDangNhap_UNIQUE` (`tenDangNhap`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,7 +238,7 @@ CREATE TABLE `tblnguoidung` (
 
 LOCK TABLES `tblnguoidung` WRITE;
 /*!40000 ALTER TABLE `tblnguoidung` DISABLE KEYS */;
-INSERT INTO `tblnguoidung` VALUES (1,'B16DCCN148','148','Tạ Duy Hiếu','a','Nam','SV'),(2,'B16DCCN151','tranhailinh','Lê Thị Hoa','a','Nữ','SV'),(3,'B16DCCN159','159','Phạm Ngọc Hoàng','06/12/1998','Nam','SV'),(4,'B16DCCN239','239','Nguyễn Văn Nam','a','Nam','SV'),(5,'B16DCCN319','319','Nguyễn Đình Thắng','a','Nam','SV'),(6,'GV001','4','Nguyễn Mạnh Hùng','a','Nam','GV'),(7,'GV002','5','Ngô Xuân Bách','a','Nam','GV'),(8,'GV003','6','Ngô Quốc Tạo','a','Nam','GV'),(9,'GV004','7','Trịnh Thị Vân Anh','b','Nữ','GV'),(10,'QL001','8','Ngô Xuân Thành','b','Nam','GVU'),(11,'QL002','9','Chu Phương Hiền','b','Nữ','GVU'),(12,'GV005','abc','Vũ Hữu Tiến','b','Nam','GV'),(13,'B18DCAT137','137','Nguyễn Thùy Linh','???','Nữ','SV'),(14,'B15DCQT107','qt107','Trần Hải Linh',NULL,NULL,'SV'),(15,'B16DCVT022','chianh','Phạm Thị Ngọc Ánh',NULL,NULL,'SV');
+INSERT INTO `tblnguoidung` VALUES (1,'B16DCCN148','148','Tạ Duy Hiếu','01/02/1998','Nam','SV'),(2,'B16DCCN151','tranhailinh','Lê Thị Hoa','28/11/1998','Nữ','SV'),(3,'B16DCCN159','159','Phạm Ngọc Hoàng','06/12/1998','Nam','SV'),(4,'B16DCCN239','239','Nguyễn Văn Nam','18/02/1998','Nam','SV'),(5,'B16DCCN319','319','Nguyễn Đình Thắng','20/10/1993','Nam','SV'),(6,'GV001','1','Nguyễn Mạnh Hùng','?','Nam','GV'),(7,'GV002','1','Ngô Xuân Bách','?','Nam','GV'),(8,'GV003','1','Ngô Quốc Tạo','19/08/1960','Nam','GV'),(9,'GV004','1','Trịnh Thị Vân Anh','?','Nữ','GV'),(10,'QL001','1','Ngô Xuân Thành','?','Nam','GVU'),(11,'QL002','1','Chu Phương Hiền','?','Nữ','GVU'),(12,'GV005','1','Vũ Hữu Tiến','?','Nam','GV'),(13,'B18DCAT137','1','Nguyễn Thùy Linh','01/02/1998','Nữ','SV'),(14,'B15DCQT107','1','Trần Hải Linh','01/02/1998','Nam','SV'),(15,'B16DCVT022','1','Phạm Thị Ngọc Ánh','01/02/1998','Nữ','SV'),(16,'admin','admin','admin','admin','admin','admin');
 /*!40000 ALTER TABLE `tblnguoidung` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +260,7 @@ CREATE TABLE `tblphieudangky` (
   KEY `khoa_ngoai_sinh_vien_phieu_dang_ky` (`tblSinhVientblNguoiDungId`),
   CONSTRAINT `khoa_ngoai_lop_hoc_phan_phieu_dang_ki` FOREIGN KEY (`tblLopHocPhanId`) REFERENCES `tbllophocphan` (`id`) ON DELETE SET NULL,
   CONSTRAINT `khoa_ngoai_sinh_vien_phieu_dang_ky` FOREIGN KEY (`tblSinhVientblNguoiDungId`) REFERENCES `tblsinhvien` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,7 +269,7 @@ CREATE TABLE `tblphieudangky` (
 
 LOCK TABLES `tblphieudangky` WRITE;
 /*!40000 ALTER TABLE `tblphieudangky` DISABLE KEYS */;
-INSERT INTO `tblphieudangky` VALUES (11,'Tue Apr 30 10:39:04 ICT 2019',435000,3,4),(12,'Tue Apr 30 10:39:04 ICT 2019',435000,6,4),(19,'Tue Apr 30 10:44:01 ICT 2019',435000,6,2),(20,'Tue Apr 30 10:44:01 ICT 2019',435000,3,2),(39,'Tue Apr 30 23:06:13 ICT 2019',435000,6,5),(40,'Tue Apr 30 23:06:13 ICT 2019',435000,3,5),(43,'Tue Apr 30 23:21:48 ICT 2019',435000,6,3),(44,'Tue Apr 30 23:21:48 ICT 2019',435000,3,3);
+INSERT INTO `tblphieudangky` VALUES (57,'Fri May 03 18:17:33 ICT 2019',435000,3,5),(58,'Fri May 03 18:17:33 ICT 2019',435000,10,5),(83,'Fri May 03 19:51:08 ICT 2019',435000,10,3),(84,'Fri May 03 19:51:08 ICT 2019',435000,3,3),(85,'Fri May 03 19:51:08 ICT 2019',435000,9,3),(86,'Fri May 03 21:38:19 ICT 2019',435000,3,1),(87,'Fri May 03 21:38:19 ICT 2019',435000,10,1),(88,'Fri May 03 21:38:56 ICT 2019',435000,3,2),(89,'Fri May 03 21:38:56 ICT 2019',435000,10,2);
 /*!40000 ALTER TABLE `tblphieudangky` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,4 +371,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-30 23:26:59
+-- Dump completed on 2019-05-03 21:42:26

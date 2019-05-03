@@ -24,25 +24,31 @@ public class PhieuDangKyDAO extends DAO{
     
     public void LuuDanhSachPDK(ArrayList<PhieuDangKy> ListPDK){
         LopHocPhanDAO lhpDAO=new LopHocPhanDAO();
-        for(PhieuDangKy i:ListPDK){
-            String sql="SELECT * FROM  tblphieudangky";           
-            try {
-                PreparedStatement ps=con.prepareStatement(sql);
-                ResultSet rs=ps.executeQuery();
-                while(rs.next()){
-                    if(i.getTblSinhVienId()==rs.getInt("tblSinhVientblNguoiDungId")&&i.getTblLopHocPhanId()==rs.getInt("tblLopHocPhanId")){
-                        lhpDAO.GiamSoLuongSinhVien(i.getTblLopHocPhanId());
-                    }
-                }       
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        PhieuDangKy pdk=ListPDK.get(0);
+        String sql="SELECT * FROM  tblphieudangky WHERE tblSinhVientblNguoiDungId = ?";           
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, pdk.getTblSinhVienId());
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                lhpDAO.GiamSoLuongSinhVien(rs.getInt("tblLopHocPhanId"));
+            }      
+        } catch (Exception e) {
+            e.printStackTrace();
+        }    
         
-        XoaPDKCu(ListPDK);
+        int idSV=ListPDK.get(0).getTblSinhVienId();
+        sql="DELETE FROM tblphieudangky WHERE tblSinhVientblNguoiDungId = ?";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, idSV);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
        
         for(PhieuDangKy i:ListPDK){          
-            String sql="INSERT INTO tblphieudangky(thoiGian,hocPhi,tblLopHocPhanId,tblSinhVientblNguoiDungId) VALUES (?,?,?,?)";
+            sql="INSERT INTO tblphieudangky(thoiGian,hocPhi,tblLopHocPhanId,tblSinhVientblNguoiDungId) VALUES (?,?,?,?)";
             try {
                 PreparedStatement ps=con.prepareStatement(sql);
                 ps.setInt(2, i.getHocPhi());
@@ -54,16 +60,9 @@ public class PhieuDangKyDAO extends DAO{
                 e.printStackTrace();
             }
         }  
+        
         lhpDAO.TangSoLuongSinhVien(ListPDK);
     }
-    public void XoaPDKCu(ArrayList<PhieuDangKy> ListPDK){
-        int idSV=ListPDK.get(0).getTblSinhVienId();
-        String sql="DELETE FROM tblphieudangky WHERE tblSinhVientblNguoiDungId = '"+idSV+"'";
-        try {
-            PreparedStatement ps=con.prepareStatement(sql);
-            ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    
+
 }

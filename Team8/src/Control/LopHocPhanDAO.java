@@ -50,9 +50,10 @@ public class LopHocPhanDAO extends DAO{
     }
     public void TangSoLuongSinhVien(ArrayList<PhieuDangKy> ListPDK){
         for(PhieuDangKy i : ListPDK){            
-            String sql="UPDATE tbllophocphan SET daChon = daChon+1 WHERE id = '"+i.getTblLopHocPhanId()+"'";
+            String sql="UPDATE tbllophocphan SET daChon = daChon+1 WHERE id = ?";
             try {
                 PreparedStatement ps=con.prepareStatement(sql);
+                ps.setInt(1, i.getTblLopHocPhanId());
                 ps.executeUpdate();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -60,9 +61,10 @@ public class LopHocPhanDAO extends DAO{
         }
     }
     public void GiamSoLuongSinhVien(int idLHP){        
-            String sql="UPDATE tbllophocphan SET daChon = daChon-1 WHERE id = '"+idLHP+"'";
+            String sql="UPDATE tbllophocphan SET daChon = daChon-1 WHERE id = ?";
             try {
                 PreparedStatement ps=con.prepareStatement(sql);
+                ps.setInt(1, idLHP);
                 ps.executeUpdate();
             } catch (Exception e) {
                 e.printStackTrace();

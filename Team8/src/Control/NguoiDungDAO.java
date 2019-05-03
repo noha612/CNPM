@@ -44,9 +44,10 @@ public class NguoiDungDAO extends DAO {
         return null;
     }public NguoiDung TimNguoiDungTheoId(int id){
         NguoiDung nd=new NguoiDung();
-        String sql="Select * FROM tblnguoidung WHERE id ='" + id + "'";
+        String sql="Select * FROM tblnguoidung WHERE id =?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
                 rs.absolute(1);
                 nd.setNguoiDungId(rs.getInt("id"));

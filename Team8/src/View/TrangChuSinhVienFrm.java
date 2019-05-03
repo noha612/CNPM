@@ -91,7 +91,7 @@ public class TrangChuSinhVienFrm extends javax.swing.JFrame implements ActionLis
                 .addComponent(lblHoTen)
                 .addGap(18, 18, 18)
                 .addComponent(btnDangKyTinChi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btnDangXuat)
                 .addContainerGap())
         );

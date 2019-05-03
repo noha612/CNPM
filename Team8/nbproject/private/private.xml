@@ -3,21 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/Control/NguoiDungDAO.java</file>
-            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/Control/GiangVienDAO.java</file>
-            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/Control/SinhVienDAO.java</file>
-            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/Control/LopHocPhanDAO.java</file>
-            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/Control/PhongHocDAO.java</file>
-            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/View/TimLopFrm.java</file>
-            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/Control/LichGiangDayDAO.java</file>
-            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/Control/KipHocDAO.java</file>
-            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/Control/MonHocDAO.java</file>
-            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/Control/PhieuDangKyDAO.java</file>
-=======
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/team8/Team8/src/View/DangNhapFrm.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/team8/Team8/src/View/ThongKeFrm.java</file>
->>>>>>> e23e342ff00ba5878b9f65e57460e43d5811a45e
+            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/View/TrangChuGiaoVuFrm.java</file>
+            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/View/TrangChuSinhVienFrm.java</file>
+            <file>file:/C:/Users/ntnhu/Desktop/Project/Java/Team8/src/View/ThongKeTheoMonHocFrm.java</file>
         </group>
     </open-files>
 </project-private>
