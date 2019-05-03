@@ -154,9 +154,9 @@ public class BangDiemFrm extends javax.swing.JFrame{
         int tt = 1;
         bangDiem.setRowHeight(25);
         TableColumn col = bangDiem.getColumnModel().getColumn(0);
-        col.setPreferredWidth(30);
+        col.setPreferredWidth(35);
         col = bangDiem.getColumnModel().getColumn(1);
-        col.setPreferredWidth(250);
+        col.setPreferredWidth(210);
         for(int i = 0; i < 9; i++){
             TableColumnModel columnModel = bangDiem.getColumnModel();
             TableColumn column = columnModel.getColumn(i); 

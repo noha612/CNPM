@@ -157,9 +157,9 @@ public class DanhSachThongKeFrm extends javax.swing.JFrame implements ActionList
         TableColumn col = tblDanhSach.getColumnModel().getColumn(0);
         col.setPreferredWidth(30);
         col = tblDanhSach.getColumnModel().getColumn(2);
-        col.setPreferredWidth(120);
+        col.setPreferredWidth(115);
         col = tblDanhSach.getColumnModel().getColumn(1);
-        col.setPreferredWidth(80);
+        col.setPreferredWidth(75);
         for(int i = 0; i < 5; i++){
             TableColumnModel columnModel = tblDanhSach.getColumnModel();
             TableColumn column = columnModel.getColumn(i); 
