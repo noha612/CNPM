@@ -23,22 +23,9 @@ public class PhieuDangKyDAO extends DAO{
     }
     
     public void LuuDanhSachPDK(ArrayList<PhieuDangKy> ListPDK){
-        LopHocPhanDAO lhpDAO=new LopHocPhanDAO();
-        PhieuDangKy pdk=ListPDK.get(0);
-        String sql="SELECT * FROM  tblphieudangky WHERE tblSinhVientblNguoiDungId = ?";           
-        try {
-            PreparedStatement ps=con.prepareStatement(sql);
-            ps.setInt(1, pdk.getTblSinhVienId());
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-                lhpDAO.GiamSoLuongSinhVien(rs.getInt("tblLopHocPhanId"));
-            }      
-        } catch (Exception e) {
-            e.printStackTrace();
-        }    
-        
+        PhieuDangKy pdk=ListPDK.get(0);  
         int idSV=ListPDK.get(0).getTblSinhVienId();
-        sql="DELETE FROM tblphieudangky WHERE tblSinhVientblNguoiDungId = ?";
+        String sql="DELETE FROM tblphieudangky WHERE tblSinhVientblNguoiDungId = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, idSV);
@@ -60,9 +47,20 @@ public class PhieuDangKyDAO extends DAO{
                 e.printStackTrace();
             }
         }  
-        
-        lhpDAO.TangSoLuongSinhVien(ListPDK);
+
     }
     
-
+    public int DemSoSVCuaLHP(int idLHP){
+        int daChon=0;
+        String sql="SELECT tblLopHocPhanId,COUNT(id) AS daChon FROM  tblphieudangky GROUP BY tblLopHocPhanId";  
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                if(idLHP==rs.getInt("tblLopHocPhanId"))daChon=rs.getInt("daChon");
+            }
+        } catch (Exception e) {
+        }
+        return daChon;
+    }
 }

@@ -39,7 +39,8 @@ public class LopHocPhanDAO extends DAO{
                 lhp.setMaLop(rs.getString("maLop"));
                 lhp.setTen(rs.getString("ten"));
                 lhp.setSiSo(rs.getInt("siSo"));
-                lhp.setDaChon(rs.getInt("daChon"));
+                PhieuDangKyDAO pdkDAO=new PhieuDangKyDAO();
+                lhp.setDaChon(pdkDAO.DemSoSVCuaLHP(rs.getInt("id")));
                 ListLHP.add(lhp);
            }
             //con.close();
@@ -48,26 +49,5 @@ public class LopHocPhanDAO extends DAO{
         }
         return ListLHP;
     }
-    public void TangSoLuongSinhVien(ArrayList<PhieuDangKy> ListPDK){
-        for(PhieuDangKy i : ListPDK){            
-            String sql="UPDATE tbllophocphan SET daChon = daChon+1 WHERE id = ?";
-            try {
-                PreparedStatement ps=con.prepareStatement(sql);
-                ps.setInt(1, i.getTblLopHocPhanId());
-                ps.executeUpdate();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    public void GiamSoLuongSinhVien(int idLHP){        
-            String sql="UPDATE tbllophocphan SET daChon = daChon-1 WHERE id = ?";
-            try {
-                PreparedStatement ps=con.prepareStatement(sql);
-                ps.setInt(1, idLHP);
-                ps.executeUpdate();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+
 }
