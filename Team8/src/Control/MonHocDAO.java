@@ -23,7 +23,7 @@ public class MonHocDAO extends DAO{
     
     public ArrayList<MonHoc> TimMonTheoTen(String tenMon){
         ArrayList<MonHoc> ListMH=new ArrayList<>();
-        String sql="Select * FROM tblmonhoc WHERE tenMon LIKE ?";
+        String sql="Select * FROM tblmonhoc WHERE tenMon LIKE ? ORDER BY maMon ASC";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, "%" + tenMon + "%");

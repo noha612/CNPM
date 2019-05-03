@@ -22,9 +22,10 @@ public class SinhVienDAO extends DAO {
     }
     public SinhVien TimSinhVien(NguoiDung nd){
         SinhVien SV=new SinhVien();
-        String sql="Select * FROM tblsinhvien WHERE tblNguoiDungId ='" + nd.getNguoiDungId() + "'";
+        String sql="Select * FROM tblsinhvien WHERE tblNguoiDungId = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, nd.getNguoiDungId());
             ResultSet rs=ps.executeQuery();
             rs.absolute(1);
             SV.setNguoiDungId(nd.getNguoiDungId());

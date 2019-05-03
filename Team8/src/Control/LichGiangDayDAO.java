@@ -21,9 +21,10 @@ public class LichGiangDayDAO extends DAO{
     }
     public ArrayList<LichGiangDay> TimLichTheoIdLop(int tblLopHocPhanId){
         ArrayList<LichGiangDay> ListLGD=new ArrayList<>();
-         String sql="Select * FROM tbllichgiangday WHERE tblLopHocPhanId = '"+tblLopHocPhanId+"'";
+         String sql="Select * FROM tbllichgiangday WHERE tblLopHocPhanId = ? ORDER BY tblKipHocId ASC ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, tblLopHocPhanId);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 LichGiangDay lgd=new LichGiangDay();

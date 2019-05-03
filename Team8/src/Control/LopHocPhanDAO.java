@@ -24,9 +24,10 @@ public class LopHocPhanDAO extends DAO{
     }
     public ArrayList<LopHocPhan> TimLopTheoMon(MonHoc MH){
         ArrayList<LopHocPhan> ListLHP=new ArrayList<>();
-         String sql="Select * FROM tbllophocphan WHERE tblMonHocId = '"+MH.getMonHocId()+"'";
+         String sql="Select * FROM tbllophocphan WHERE tblMonHocId = ? ORDER BY maLop";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, MH.getMonHocId());
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 LopHocPhan lhp=new LopHocPhan();

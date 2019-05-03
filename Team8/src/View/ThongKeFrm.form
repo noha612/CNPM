@@ -23,7 +23,26 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel1" min="-2" pref="130" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnTKDiem" max="32767" attributes="0"/>
+                      <Component id="btnTKHocLuc" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="57" max="32767" attributes="0"/>
+          </Group>
+=======
           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+>>>>>>> e23e342ff00ba5878b9f65e57460e43d5811a45e
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -33,6 +52,34 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
+<<<<<<< HEAD
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="33" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="XEM TH&#x1ed0;NG K&#xca; "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTKDiem">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="TH&#x1ed0;NG K&#xca; THEO &#x110;I&#x1ec2;M"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTKHocLuc">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="TH&#x1ed0;NG K&#xca; THEO H&#x1ecc;C L&#x1ef0;C"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnBack">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Back"/>
+      </Properties>
+    </Component>
+=======
     <Container class="javax.swing.JPanel" name="jPanel1">
 
       <Layout>
@@ -104,5 +151,6 @@
         </Component>
       </SubComponents>
     </Container>
+>>>>>>> e23e342ff00ba5878b9f65e57460e43d5811a45e
   </SubComponents>
 </Form>

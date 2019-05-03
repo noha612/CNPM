@@ -22,9 +22,10 @@ public class KipHocDAO extends DAO{
     }
     public KipHoc TimKipHocTheoId(int id){
        KipHoc KH=new KipHoc();
-        String sql="Select * FROM tblkiphoc WHERE id = '"+id+"'";
+        String sql="Select * FROM tblkiphoc WHERE id = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
             rs.absolute(1);
             KH.setKipHocId(id);

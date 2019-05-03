@@ -21,9 +21,10 @@ public class GiangVienDAO extends DAO{
     }
     public GiangVien TimGiangVienTheoId(int id){
        GiangVien GV=new GiangVien();
-        String sql="Select * FROM tblgiangvien WHERE id = '"+id+"'";
+        String sql="Select * FROM tblgiangvien WHERE id = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
             rs.absolute(1);
             GV.setTblNguoiDungId(rs.getInt("tblNguoiDungId"));

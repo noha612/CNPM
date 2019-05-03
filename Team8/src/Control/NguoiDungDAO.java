@@ -19,9 +19,11 @@ public class NguoiDungDAO extends DAO {
         getInstance();
     }
     public NguoiDung TimNguoiDung(String tenDangNhap, String matKhau){
-        String sql="Select * FROM tblnguoidung WHERE tenDangNhap ='" + tenDangNhap + "' AND matKhau ='" + matKhau + "'";
+        String sql="Select * FROM tblnguoidung WHERE tenDangNhap = ? AND matKhau = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
+            ps.setString(1, tenDangNhap);
+            ps.setString(2, matKhau);
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
                 rs.absolute(1);

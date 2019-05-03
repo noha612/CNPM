@@ -9,38 +9,42 @@ import Control.MonHocDAO;
 import Model.LopHocPhan;
 import Model.MonHoc;
 import Model.SinhVien;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 /**
  *
  * @author ntnhu
  */
-public class TimMonFrm extends javax.swing.JFrame {
+public class TimMonFrm extends javax.swing.JFrame implements ActionListener{
     private SinhVien SV;
     private ArrayList<MonHoc> ListMH;
     private ArrayList<JButton> ListLC;
     private ArrayList<LopHocPhan> ListDK;
-    DefaultTableModel tm;
     /**
      * Creates new form TimMonFrm
      */
-    public TimMonFrm() {
-        initComponents();
-    }
-
-    public TimMonFrm(SinhVien SV) {
-        this.SV = SV;
-        initComponents();
-    }
-
     public TimMonFrm(SinhVien SV, ArrayList<LopHocPhan> ListDK) {
         this.SV = SV;
         this.ListDK = ListDK;
+        ListMH=new ArrayList<>();
+        ListLC=new ArrayList<>();
         initComponents();
+        btnQuayLai.addActionListener(this);
+        btnTimKiem.addActionListener(this);
+        tblResult.setModel(new MonHocTableModel());
+        TableCellRenderer btnRenderer = new JTableButtonRenderer();
+        tblResult.getColumn("Lựa chọn").setCellRenderer(btnRenderer);
+        tblResult.addMouseListener(new JTableButtonMouseListener(tblResult));    
     }
 
     
@@ -56,14 +60,13 @@ public class TimMonFrm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtTenMon = new javax.swing.JTextField();
+        btnTimKiem = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        tblResult = new javax.swing.JTable();
+        btnQuayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(734, 453));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
@@ -71,14 +74,9 @@ public class TimMonFrm extends javax.swing.JFrame {
 
         jLabel2.setText("Nhập tên môn học cần tìm kiếm : ");
 
-        jButton1.setText("Tìm Kiếm");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        btnTimKiem.setText("Tìm Kiếm");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -86,19 +84,9 @@ public class TimMonFrm extends javax.swing.JFrame {
                 "STT", "Mã môn học", "Tên môn học", "STC"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblResult);
 
-        jButton2.setText("Quay Lại");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        btnQuayLai.setText("Quay Lại");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,7 +94,7 @@ public class TimMonFrm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnQuayLai)
                 .addGap(37, 37, 37))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,9 +102,9 @@ public class TimMonFrm extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTenMon, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(btnTimKiem))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -133,97 +121,55 @@ public class TimMonFrm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(txtTenMon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTimKiem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnQuayLai)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void btnTimKiemClicked(){
         MonHocDAO mhDAO=new MonHocDAO();
-        ListMH=mhDAO.TimMonTheoTen(jTextField1.getText());
+        ListMH=mhDAO.TimMonTheoTen(txtTenMon.getText());
         if(ListMH.size()==0)JOptionPane.showMessageDialog(this, "Không tìm thấy môn học nào!");
         else fillTable(ListMH);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    }
+    private void btnQuayLaiClicked(){    
         new DangKyTinChiFrm(SV, ListDK).setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        int i=jTable1.getSelectedRow();
-        if(CheckMonHoc(ListMH.get(i).getMonHocId())>=0){
-            if(JOptionPane.showConfirmDialog(this, "Đã lựa chọn môn này rồi! Bạn có đồng ý xóa lựa chọn cũ?", "", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-                ListDK.remove(CheckMonHoc(ListMH.get(i).getMonHocId()));
-                JOptionPane.showMessageDialog(this, "Xóa thành công");
-                new TimLopFrm(ListMH.get(i), SV, ListDK).setVisible(true);
-                this.dispose();                
-            }
-        }
-        else{
-            new TimLopFrm(ListMH.get(i), SV, ListDK).setVisible(true);
-            this.dispose();
-        }
-    }//GEN-LAST:event_jTable1MouseClicked
-
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TimMonFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TimMonFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TimMonFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TimMonFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TimMonFrm().setVisible(true);
-            }
-        });
-    }
-    private void fillTable(ArrayList<MonHoc> ListMH){        
-        int stt=0;
-        tm=(DefaultTableModel)jTable1.getModel();
-        ListLC=new ArrayList<>();
-        tm.setRowCount(ListMH.size());
-        for(MonHoc i:ListMH){    
-            tm.setValueAt(stt+1, stt, 0);
-            tm.setValueAt(i.getMaMon(), stt, 1);
-            tm.setValueAt(i.getTenMon(), stt, 2);
-            tm.setValueAt(i.getSoTinChi(), stt, 3);
+    private void fillTable(ArrayList<MonHoc> ListMH){  
+        tblResult.setRowHeight(20);
+        TableColumn col = tblResult.getColumnModel().getColumn(0);
+        col.setPreferredWidth(5);  
+        col = tblResult.getColumnModel().getColumn(1);
+        col.setPreferredWidth(15);     
+        col = tblResult.getColumnModel().getColumn(2);
+        col.setPreferredWidth(150);  
+        col = tblResult.getColumnModel().getColumn(3);
+        col.setPreferredWidth(10);   
+        col = tblResult.getColumnModel().getColumn(4);
+        col.setPreferredWidth(10);      
+        for(MonHoc i:ListMH){
             JButton btn=new JButton("Chọn");
+            btn.addActionListener(this);
             ListLC.add(btn);
-            stt++;
         }
+        for(int i = 0; i < 4; i++){
+            TableColumnModel columnModel = tblResult.getColumnModel();
+            TableColumn column = columnModel.getColumn(i); 
+            DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+            renderer.setHorizontalAlignment(JLabel.CENTER);
+            column.setCellRenderer(renderer);
+        }
+        ((DefaultTableModel)tblResult.getModel()).fireTableDataChanged();
     }
     private int CheckMonHoc(int id){
         int ex=0;
@@ -234,12 +180,75 @@ public class TimMonFrm extends javax.swing.JFrame {
         return -1;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnQuayLai;
+    private javax.swing.JButton btnTimKiem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblResult;
+    private javax.swing.JTextField txtTenMon;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton btnClicked =(JButton)e.getSource();
+        if(btnClicked.equals(btnQuayLai)){
+            btnQuayLaiClicked();
+        }
+        if(btnClicked.equals(btnTimKiem)){
+            btnTimKiemClicked();
+        }
+        for(int i =0;i<ListMH.size();i++){
+            if(btnClicked.equals(ListLC.get(i))){
+                if(CheckMonHoc(ListMH.get(i).getMonHocId())>=0){
+                    if(JOptionPane.showConfirmDialog(this, "Đã lựa chọn môn này rồi! Bạn có đồng ý xóa lựa chọn cũ?", "", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                        ListDK.remove(CheckMonHoc(ListMH.get(i).getMonHocId()));
+                        JOptionPane.showMessageDialog(this, "Xóa thành công");
+                        new TimLopFrm(ListMH.get(i), SV, ListDK).setVisible(true);
+                        this.dispose();                
+                    }
+                }
+                else{
+                    new TimLopFrm(ListMH.get(i), SV, ListDK).setVisible(true);
+                    this.dispose();
+                }                
+            }
+        }
+    }
+    class MonHocTableModel extends DefaultTableModel{
+        private String[] columnNames = {"STT", "Mã môn học", "Tên môn học", "STC","Lựa chọn"};
+        private final Class<?>[] columnTypes = new Class<?>[] {Integer.class, String.class,String.class, Integer.class, JButton.class};
+        @Override public int getColumnCount() {
+            return 5;
+        }
+ 
+        @Override public int getRowCount() {
+            return ListMH.size();
+        }
+ 
+        @Override public String getColumnName(int columnIndex) {
+            return columnNames[columnIndex];
+        }
+ 
+        @Override public Class<?> getColumnClass(int columnIndex) {
+            return columnTypes[columnIndex];
+        }
+        
+        @Override public Object getValueAt(final int rowIndex, final int columnIndex) {
+            switch (columnIndex) {
+                case 0: 
+                    return rowIndex+1;
+                case 1: 
+                    return ListMH.get(rowIndex).getMaMon();
+                case 2: 
+                    return ListMH.get(rowIndex).getTenMon();
+                case 3:
+                    return ListMH.get(rowIndex).getSoTinChi();
+                case 4: 
+                    return ListLC.get(rowIndex);
+                default: return "Error";
+            }
+        } 
+    }
+    
 }

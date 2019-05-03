@@ -10,48 +10,52 @@ import Control.PhieuDangKyDAO;
 import Model.LopHocPhan;
 import Model.PhieuDangKy;
 import Model.SinhVien;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 /**
  *
  * @author ntnhu
  */
-public class DangKyTinChiFrm extends javax.swing.JFrame {
+public class DangKyTinChiFrm extends javax.swing.JFrame implements ActionListener{
     private SinhVien SV;
     private ArrayList<LopHocPhan> ListDK=new ArrayList<>();
     private DefaultTableModel tm;
     /**
      * Creates new form DangKyTinChiFrm
      */
-    public DangKyTinChiFrm() {
-        initComponents();
-    }
-
     public DangKyTinChiFrm(SinhVien SV) {
         this.SV = SV;
         initComponents();
-        jLabel2.setText(jLabel2.getText()+SV.getTenDangNhap());
-        jLabel3.setText(jLabel3.getText()+SV.getHoTen());
-        jLabel4.setText(jLabel4.getText()+SV.getKhoa());
-        jLabel7.setText(jLabel7.getText()+SV.getNganh());
+        btnLuu.addActionListener(this);
+        btnThem.addActionListener(this);
+        btnQuayLai.addActionListener(this);
+        lblMaSinhVien.setText(lblMaSinhVien.getText()+SV.getTenDangNhap());
+        lblHoTen.setText(lblHoTen.getText()+SV.getHoTen());
+        lblKhoa.setText(lblKhoa.getText()+SV.getKhoa());
+        lblNganh.setText(lblNganh.getText()+SV.getNganh());
     }
 
     public DangKyTinChiFrm(SinhVien SV, ArrayList<LopHocPhan> ListDK) {
         this.SV = SV;
         this.ListDK = ListDK;
         initComponents();
-        jLabel2.setText(jLabel2.getText()+SV.getTenDangNhap());
-        jLabel3.setText(jLabel3.getText()+SV.getHoTen());
-        jLabel4.setText(jLabel4.getText()+SV.getKhoa());
-        jLabel7.setText(jLabel7.getText()+SV.getNganh());
+        btnLuu.addActionListener(this);
+        btnThem.addActionListener(this);
+        btnQuayLai.addActionListener(this);
+        lblMaSinhVien.setText(lblMaSinhVien.getText()+SV.getTenDangNhap());
+        lblHoTen.setText(lblHoTen.getText()+SV.getHoTen());
+        lblKhoa.setText(lblKhoa.getText()+SV.getKhoa());
+        lblNganh.setText(lblNganh.getText()+SV.getNganh());
         int stc=0;
         for(LopHocPhan i:ListDK)stc+=i.getSoTinChi();
-        jLabel6.setText(jLabel6.getText()+stc);
-        if(stc>=14)jButton2.setEnabled(true);
+        lblStcDaDangKy.setText(lblStcDaDangKy.getText()+stc);
+        if(stc>=14)btnLuu.setEnabled(true);
         fillTable(ListDK);
     }
     
@@ -65,18 +69,18 @@ public class DangKyTinChiFrm extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblMaSinhVien = new javax.swing.JLabel();
+        lblHoTen = new javax.swing.JLabel();
+        lblKhoa = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblStcDaDangKy = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        tblResult = new javax.swing.JTable();
+        btnQuayLai = new javax.swing.JButton();
+        btnLuu = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
+        lblNganh = new javax.swing.JLabel();
+        lblTrangThai = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -85,17 +89,17 @@ public class DangKyTinChiFrm extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
         jLabel1.setText("Đăng Ký Tín Chỉ");
 
-        jLabel2.setText("Mã Sinh Viên : ");
+        lblMaSinhVien.setText("Mã Sinh Viên : ");
 
-        jLabel3.setText("Họ Và Tên : ");
+        lblHoTen.setText("Họ Và Tên : ");
 
-        jLabel4.setText("Khoa : ");
+        lblKhoa.setText("Khoa : ");
 
         jLabel5.setText("Số tín chỉ tối thiểu cần đăng ký : 14");
 
-        jLabel6.setText("Số tín chỉ đã đăng ký : ");
+        lblStcDaDangKy.setText("Số tín chỉ đã đăng ký : ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -103,33 +107,18 @@ public class DangKyTinChiFrm extends javax.swing.JFrame {
                 "STT", "Mã Môn Học", "Tên Môn Học", "STC", "Mã Lớp ", "Tên Lớp"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblResult);
 
-        jButton1.setText("Quay Lại");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        btnQuayLai.setText("Quay Lại");
 
-        jButton2.setText("Lưu Kết Quả Đăng Ký");
-        jButton2.setEnabled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        btnLuu.setText("Lưu Kết Quả Đăng Ký");
+        btnLuu.setEnabled(false);
 
-        jButton3.setText("Đăng Ký Thêm");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        btnThem.setText("Đăng Ký Thêm");
 
-        jLabel7.setText("Ngành : ");
+        lblNganh.setText("Ngành : ");
 
-        jLabel8.setText("Trạng thái: Chưa lưu vào CSDL");
+        lblTrangThai.setText("Trạng thái: Chưa lưu vào CSDL, cần chọn ít nhất 14 tín chỉ.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,29 +132,29 @@ public class DangKyTinChiFrm extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(btnLuu)
                         .addGap(33, 33, 33)
-                        .addComponent(jButton3)
+                        .addComponent(btnThem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnQuayLai)
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
+                            .addComponent(lblKhoa)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
+                                    .addComponent(lblHoTen)
+                                    .addComponent(lblMaSinhVien))
                                 .addGap(280, 280, 280)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
+                                    .addComponent(lblStcDaDangKy)
                                     .addComponent(jLabel5)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(39, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7))
+                            .addComponent(lblTrangThai)
+                            .addComponent(lblNganh))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -175,48 +164,31 @@ public class DangKyTinChiFrm extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblMaSinhVien)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6))
+                    .addComponent(lblHoTen)
+                    .addComponent(lblStcDaDangKy))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(lblKhoa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(lblNganh)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel8)
+                .addComponent(lblTrangThai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnQuayLai)
+                    .addComponent(btnLuu)
+                    .addComponent(btnThem))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if(JOptionPane.showConfirmDialog(this, "Xác nhận kết thúc việc đăng ký?", "", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-            new TrangChuSinhVienFrm(SV).setVisible(true);
-            this.dispose();     
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        new TimMonFrm(SV,ListDK).setVisible(true);
-        this.dispose();
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    private void btnLuuClicked(){
         ArrayList<PhieuDangKy> ListPDK=new ArrayList<>();
         for(LopHocPhan lhp:ListDK){
             PhieuDangKy pdk=new PhieuDangKy();
@@ -229,47 +201,27 @@ public class DangKyTinChiFrm extends javax.swing.JFrame {
         }
         PhieuDangKyDAO pdkDAO=new PhieuDangKyDAO();
         pdkDAO.LuuDanhSachPDK(ListPDK);
-        jLabel8.setText("Trạng thái: Đã xóa PDK cũ->Đã lưu PDK mới vào CSDL!");
-        jButton2.setEnabled(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
+        lblTrangThai.setText("Trạng thái: Đã xóa PDK cũ->Đã lưu PDK mới vào CSDL!");
+        btnLuu.setEnabled(false);        
+    }
+    
+    public void btnThemClicked(){
+        new TimMonFrm(SV,ListDK).setVisible(true);
+        this.dispose();        
+    }
+    
+    public void btnQuayLaiClicked(){
+        if(JOptionPane.showConfirmDialog(this, "Xác nhận kết thúc việc đăng ký?", "", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+            new TrangChuSinhVienFrm(SV).setVisible(true);
+            this.dispose();     
+        }        
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DangKyTinChiFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DangKyTinChiFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DangKyTinChiFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DangKyTinChiFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DangKyTinChiFrm().setVisible(true);
-            }
-        });
-    }
     public void fillTable(ArrayList<LopHocPhan> ListDK){
         int stt=0;
-        tm=(DefaultTableModel)jTable1.getModel();
+        tm=(DefaultTableModel)tblResult.getModel();
         tm.setRowCount(ListDK.size());
         for(LopHocPhan i:ListDK){
             tm.setValueAt(stt+1, stt, 0);
@@ -282,18 +234,32 @@ public class DangKyTinChiFrm extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnLuu;
+    private javax.swing.JButton btnQuayLai;
+    private javax.swing.JButton btnThem;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblHoTen;
+    private javax.swing.JLabel lblKhoa;
+    private javax.swing.JLabel lblMaSinhVien;
+    private javax.swing.JLabel lblNganh;
+    private javax.swing.JLabel lblStcDaDangKy;
+    private javax.swing.JLabel lblTrangThai;
+    private javax.swing.JTable tblResult;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton btnClicked =(JButton)e.getSource();
+        if(btnClicked.equals(btnLuu)){
+            btnLuuClicked();
+        }
+        if(btnClicked.equals(btnThem)){
+            btnThemClicked();
+        }
+        if(btnClicked.equals(btnQuayLai)){
+            btnQuayLaiClicked();
+        }
+    }
 }

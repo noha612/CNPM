@@ -30,9 +30,17 @@ public class ThongKeFrm extends javax.swing.JFrame implements ActionListener{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+<<<<<<< HEAD
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel1.setText("XEM THỐNG KÊ ");
+
+        btnTKDiem.setText("THỐNG KÊ THEO ĐIỂM");
+=======
         btnBack.setText("Back");
         btnBack.setAlignmentY(0.0F);
         btnBack.setAutoscrolls(true);
+>>>>>>> e23e342ff00ba5878b9f65e57460e43d5811a45e
 
         btnTKHocLuc.setText("THỐNG KÊ THEO HỌC LỰC");
         btnTKHocLuc.setAlignmentY(0.0F);
@@ -40,6 +48,24 @@ public class ThongKeFrm extends javax.swing.JFrame implements ActionListener{
         btnTKDiem.setText("THỐNG KÊ THEO ĐIỂM");
         btnTKDiem.setAlignmentY(0.0F);
 
+<<<<<<< HEAD
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(112, 112, 112))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnTKDiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTKHocLuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(57, Short.MAX_VALUE))
+=======
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -60,6 +86,7 @@ public class ThongKeFrm extends javax.swing.JFrame implements ActionListener{
                 .addGap(111, 111, 111)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> e23e342ff00ba5878b9f65e57460e43d5811a45e
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +138,11 @@ public class ThongKeFrm extends javax.swing.JFrame implements ActionListener{
             return;
         }
         if(btnClicked.equals(btnBack)){
+<<<<<<< HEAD
+            parent.setVisible(true);
+=======
             this.parent.setVisible(true);
+>>>>>>> e23e342ff00ba5878b9f65e57460e43d5811a45e
             this.dispose();
         }
     }

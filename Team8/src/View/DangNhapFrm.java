@@ -7,13 +7,16 @@ package View;
 
 import Control.*;
 import Model.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author ntnhu
  */
-public class DangNhapFrm extends javax.swing.JFrame {
+public class DangNhapFrm extends javax.swing.JFrame implements ActionListener{
         private String tenDangNhap;
         private String matKhau;
         private NguoiDungDAO ndDAO=new NguoiDungDAO();
@@ -23,6 +26,8 @@ public class DangNhapFrm extends javax.swing.JFrame {
      */
     public DangNhapFrm() {
         initComponents();
+        btnDangNhap.addActionListener(this);
+        btnThoat.addActionListener(this);
     }
 
     /**
@@ -37,10 +42,10 @@ public class DangNhapFrm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtTenDangNhap = new javax.swing.JTextField();
+        btnDangNhap = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
+        txtMatKhau = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Demo Nhóm 8");
@@ -54,25 +59,9 @@ public class DangNhapFrm extends javax.swing.JFrame {
 
         jLabel3.setText("Mật Khẩu");
 
-        jButton1.setText("Đăng Nhập");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        btnDangNhap.setText("Đăng Nhập");
 
-        jButton2.setText("Thoát");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jPasswordField1KeyTyped(evt);
-            }
-        });
+        btnThoat.setText("Thoát");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,13 +80,13 @@ public class DangNhapFrm extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))
+                            .addComponent(txtTenDangNhap)
+                            .addComponent(txtMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(89, 89, 89)
-                        .addComponent(jButton1)
+                        .addComponent(btnDangNhap)
                         .addGap(71, 71, 71)
-                        .addComponent(jButton2)))
+                        .addComponent(btnThoat)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -108,32 +97,23 @@ public class DangNhapFrm extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnDangNhap)
+                    .addComponent(btnThoat))
                 .addContainerGap(113, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        if(JOptionPane.showConfirmDialog(this, "Đồng ý thoát?","", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-            System.exit(0);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        tenDangNhap=jTextField1.getText();
-        matKhau=jPasswordField1.getText();
+    private void btnDangNhapClicked(){
+        tenDangNhap=txtTenDangNhap.getText();
+        matKhau=txtMatKhau.getText();
         NguoiDung nd=new NguoiDungDAO().TimNguoiDung(tenDangNhap, matKhau);
         if(nd==null){
             JOptionPane.showMessageDialog(this, "Sai thông tin đăng nhập!");
@@ -153,13 +133,13 @@ public class DangNhapFrm extends javax.swing.JFrame {
                 dm.setVisible(true);
                 this.dispose();
             }
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jPasswordField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1KeyTyped
-
+        }        
+    }
+    private void btnThoatClicked(){
+        if(JOptionPane.showConfirmDialog(this, "Đồng ý thoát?","", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+            System.exit(0);
+        }        
+    }
     /**
      * @param args the command line arguments
      */
@@ -196,12 +176,23 @@ public class DangNhapFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnDangNhap;
+    private javax.swing.JButton btnThoat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtMatKhau;
+    private javax.swing.JTextField txtTenDangNhap;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton btnClicked =(JButton)e.getSource();
+        if(btnClicked.equals(btnDangNhap)){
+            btnDangNhapClicked();
+        }
+        if(btnClicked.equals(btnThoat)){
+            btnThoatClicked();
+        }
+    }
 }

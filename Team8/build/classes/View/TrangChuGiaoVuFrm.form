@@ -23,19 +23,36 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace pref="58" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btnLich" max="32767" attributes="0"/>
+                                  <Component id="btnThongKe" min="-2" pref="134" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+=======
                   <Component id="jLabel1" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnLich" max="32767" attributes="0"/>
                           <Component id="btnThongKe" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
+>>>>>>> e23e342ff00ba5878b9f65e57460e43d5811a45e
                       </Group>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnDangXuat" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -48,7 +65,13 @@
               <Component id="btnLich" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnThongKe" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
+              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <Component id="btnDangXuat" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+=======
               <EmptySpace pref="65" max="32767" attributes="0"/>
+>>>>>>> e23e342ff00ba5878b9f65e57460e43d5811a45e
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,6 +97,11 @@
     <Component class="javax.swing.JButton" name="btnThongKe">
       <Properties>
         <Property name="text" type="java.lang.String" value="XEM TH&#x1ed0;NG K&#xca;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDangXuat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Xu&#x1ea5;t"/>
       </Properties>
     </Component>
   </SubComponents>
