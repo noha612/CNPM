@@ -42,24 +42,7 @@ public class MonHocDAO extends DAO{
         }
         return ListMH;
         }
-    
-    public MonHoc TimMonHocTheoId(int id){
-       MonHoc MH=new MonHoc();
-        String sql="Select * FROM tblmonhoc WHERE id = '"+id+"'";
-        try {
-            PreparedStatement ps=con.prepareStatement(sql);
-            ResultSet rs=ps.executeQuery();
-            rs.absolute(1);
-            MH.setMonHocId(id);
-            MH.setTenMon(rs.getString("tenMon"));
-            MH.setMaMon(rs.getString("maMon"));
-            MH.setSoTinChi(rs.getInt("soTinChi"));
-            //con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return MH;
-    }
+
     
     public MonHoc timMonHoc(int ID){
         String sql = "select * from tblmonhoc where tblmonhoc.id = ?";
@@ -72,6 +55,7 @@ public class MonHocDAO extends DAO{
                                 rs.getInt("soTietBT"), rs.getInt("soTietTH"), rs.getDouble("hsChuyenCan"), 
                                 rs.getDouble("hsKiemTra"), rs.getDouble("hsBaiTapLon"), rs.getDouble("hsThucHanh"), rs.getDouble("hsCuoiKy"), 
                                 rs.getString("monDK"), rs.getString("boMon"), rs.getString("khoa"));
+                rt.setMaMon(rs.getString("maMon"));
                 return rt;
             }
         }catch(Exception e){

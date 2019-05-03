@@ -145,14 +145,14 @@ public class XemLichFrm extends javax.swing.JFrame implements ActionListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void btnQuayLaiClicked(){
-        MonHoc MH=new MonHocDAO().TimMonHocTheoId(LHP.getMonHocId());
+        MonHoc MH=new MonHocDAO().timMonHoc(LHP.getMonHocId());
         new TimLopFrm(MH, SV, ListDK).setVisible(true);
         this.dispose();
     }
     private void btnDangKyClicked(){
         if(CheckTrungLich()==false){
             JOptionPane.showMessageDialog(this, "Trùng Lịch");
-            MonHoc MH=new MonHocDAO().TimMonHocTheoId(LHP.getMonHocId());
+            MonHoc MH=new MonHocDAO().timMonHoc(LHP.getMonHocId());
             new TimLopFrm(MH, SV, ListDK).setVisible(true);
             this.dispose();
         }
