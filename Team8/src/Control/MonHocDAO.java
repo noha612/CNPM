@@ -23,6 +23,7 @@ public class MonHocDAO extends DAO{
     
     public ArrayList<MonHoc> TimMonTheoTen(String tenMon){
         ArrayList<MonHoc> ListMH=new ArrayList<>();
+        if(tenMon=="")return ListMH;
         String sql="Select * FROM tblmonhoc WHERE tenMon LIKE ? ORDER BY maMon ASC";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -51,17 +52,29 @@ public class MonHocDAO extends DAO{
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                MonHoc rt = new MonHoc(rs.getInt("id"), rs.getString("tenMon"), rs.getInt("soTinChi"), rs.getInt("soTietLT"), 
-                                rs.getInt("soTietBT"), rs.getInt("soTietTH"), rs.getDouble("hsChuyenCan"), 
-                                rs.getDouble("hsKiemTra"), rs.getDouble("hsBaiTapLon"), rs.getDouble("hsThucHanh"), rs.getDouble("hsCuoiKy"), 
-                                rs.getString("monDK"), rs.getString("boMon"), rs.getString("khoa"));
+                if(rs.getInt("id")==0)return null;
+                MonHoc rt = new MonHoc();
+                rt.setMonHocId(rs.getInt("id")); 
+                rt.setTenMon(rs.getString("tenMon")); 
+                rt.setSoTinChi(rs.getInt("soTinChi")); 
+                rt.setSoTietLT(rs.getInt("soTietLT")); 
+                rt.setSoTietBT(rs.getInt("soTietBT"));
+                rt.setSoTietTH(rs.getInt("soTietTH"));
+                rt.setHsChuyenCan(rs.getDouble("hsChuyenCan")); 
+                rt.setHsKiemTra(rs.getDouble("hsKiemTra")); 
+                rt.setHsBaiTapLon(rs.getDouble("hsBaiTapLon")); 
+                rt.setHsThucHanh(rs.getDouble("hsThucHanh")); 
+                rt.setHsCuoiKy(rs.getDouble("hsCuoiKy")); 
+                rt.setMonDK(rs.getString("monDK")); 
+                rt.setBoMon(rs.getString("boMon")); 
+                rt.setKhoa(rs.getString("khoa"));
                 rt.setMaMon(rs.getString("maMon"));
                 return rt;
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-        return new MonHoc();
+        return null;
     }
  
 }

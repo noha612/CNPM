@@ -26,8 +26,8 @@ public class GiangVienDAO extends DAO{
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
-            rs.absolute(1);
-            if(rs.getInt("id")>0){
+            while(rs.next()){
+                if(rs.getInt("id")==0)return null;
                 GV=new GiangVien();
                 GV.setGiangVienId(rs.getInt("id"));
                 GV.setKhoa(rs.getString("khoa"));

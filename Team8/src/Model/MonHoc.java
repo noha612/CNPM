@@ -30,23 +30,6 @@ public class MonHoc implements Serializable{
 
     public MonHoc() {
     }
-
-    public MonHoc(int monHocId, String tenMon, int soTinChi, int soTietLT, int soTietBT, int soTietTH, double hsChuyenCan, double hsKiemTra, double hsThucHanh, double hsBaiTapLon, double hsCuoiKy, String monDK, String boMon, String khoa) {
-        this.monHocId = monHocId;
-        this.tenMon = tenMon;
-        this.soTinChi = soTinChi;
-        this.soTietLT = soTietLT;
-        this.soTietBT = soTietBT;
-        this.soTietTH = soTietTH;
-        this.hsChuyenCan = hsChuyenCan;
-        this.hsKiemTra = hsKiemTra;
-        this.hsThucHanh = hsThucHanh;
-        this.hsBaiTapLon = hsBaiTapLon;
-        this.hsCuoiKy = hsCuoiKy;
-        this.monDK = monDK;
-        this.boMon = boMon;
-        this.khoa = khoa;
-    }
     
     public int getMonHocId() {
         return monHocId;
