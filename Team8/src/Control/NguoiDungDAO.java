@@ -42,7 +42,8 @@ public class NguoiDungDAO extends DAO {
             e.printStackTrace();
         }
         return null;
-    }public NguoiDung TimNguoiDungTheoId(int id){
+    }
+    public NguoiDung TimNguoiDungTheoId(int id){
         NguoiDung nd=new NguoiDung();
         String sql="Select * FROM tblnguoidung WHERE id =?";
         try {

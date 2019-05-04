@@ -20,17 +20,25 @@ public class GiangVienDAO extends DAO{
         getInstance();
     }
     public GiangVien TimGiangVienTheoId(int id){
-       GiangVien GV=new GiangVien();
+       GiangVien GV=null;
         String sql="Select * FROM tblgiangvien WHERE id = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
             rs.absolute(1);
-            GV.setTblNguoiDungId(rs.getInt("tblNguoiDungId"));
+            if(rs.getInt("id")>0){
+                GV=new GiangVien();
+                GV.setGiangVienId(rs.getInt("id"));
+                GV.setKhoa(rs.getString("khoa"));
+                GV.setHocVi(rs.getString("hocVi"));
+                GV.setNganh(rs.getString("nganh"));
+                GV.setBoMon(rs.getString("boMon"));
+                GV.setTblNguoiDungId(rs.getInt("tblNguoiDungId"));
             //con.close();
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace();          
         }
         return GV;
     }

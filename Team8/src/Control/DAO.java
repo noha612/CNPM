@@ -13,7 +13,7 @@ import java.sql.DriverManager;
  * @author ntnhu
  */
 public class DAO {
-    protected static Connection con;
+    public static Connection con;
 
     public DAO() {
     }

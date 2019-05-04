@@ -21,17 +21,20 @@ public class KipHocDAO extends DAO{
         getInstance();
     }
     public KipHoc TimKipHocTheoId(int id){
-       KipHoc KH=new KipHoc();
+       KipHoc KH=null;
         String sql="Select * FROM tblkiphoc WHERE id = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
             rs.absolute(1);
-            KH.setKipHocId(id);
-            KH.setGioBatDau(rs.getInt("gioBatDau"));
-            KH.setGioKetThuc(rs.getInt("gioKetThuc"));
-            KH.setThu(rs.getInt("thu"));
+            if(rs.getInt("id")>0){
+                KH=new KipHoc();
+                KH.setKipHocId(id);
+                KH.setGioBatDau(rs.getInt("gioBatDau"));
+                KH.setGioKetThuc(rs.getInt("gioKetThuc"));
+                KH.setThu(rs.getInt("thu"));                
+            }
             //con.close();
         } catch (Exception e) {
             e.printStackTrace();
