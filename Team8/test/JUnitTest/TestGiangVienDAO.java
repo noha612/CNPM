@@ -26,11 +26,11 @@ public class TestGiangVienDAO {
         //Standard test case 1
         gv=gvDAO.TimGiangVienTheoId(1);
         Assert.assertNotNull(gv);
-        Assert.assertEquals(gv.getGiangVienId(), 1);
-        Assert.assertEquals(gv.getTblNguoiDungId(), 6);
-        Assert.assertEquals(gv.getKhoa(), "CNTT");
-        Assert.assertEquals(gv.getNganh(), "CNTT");
-        Assert.assertEquals(gv.getHocVi(), "Tiến Sĩ");
-        Assert.assertEquals(gv.getBoMon(), null);
+        Assert.assertEquals(1,gv.getGiangVienId());
+        Assert.assertEquals(6,gv.getTblNguoiDungId());
+        Assert.assertEquals("CNTT",gv.getKhoa());
+        Assert.assertEquals("CNTT",gv.getNganh());
+        Assert.assertEquals("Tiến Sĩ",gv.getHocVi());
+        Assert.assertEquals(null,gv.getBoMon());
     }
 }

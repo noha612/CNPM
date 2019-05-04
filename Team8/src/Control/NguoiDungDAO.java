@@ -25,8 +25,8 @@ public class NguoiDungDAO extends DAO {
             ps.setString(1, tenDangNhap);
             ps.setString(2, matKhau);
             ResultSet rs=ps.executeQuery();
-            if(rs.next()){
-                rs.absolute(1);
+            while(rs.next()){
+                if(rs.getInt("id")==0)return null;
                 NguoiDung nd=new NguoiDung();
                 nd.setNguoiDungId(rs.getInt("id"));
                 nd.setTenDangNhap(rs.getString("tenDangNhap"));
@@ -44,13 +44,15 @@ public class NguoiDungDAO extends DAO {
         return null;
     }
     public NguoiDung TimNguoiDungTheoId(int id){
-        NguoiDung nd=new NguoiDung();
+        NguoiDung nd=null;
         String sql="Select * FROM tblnguoidung WHERE id =?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
-                rs.absolute(1);
+            while(rs.next()){
+                if(rs.getInt("id")==0)return null;
+                nd=new NguoiDung();
                 nd.setNguoiDungId(rs.getInt("id"));
                 nd.setTenDangNhap(rs.getString("tenDangNhap"));
                 nd.setMatKhau(rs.getString("matKhau"));
@@ -58,6 +60,8 @@ public class NguoiDungDAO extends DAO {
                 nd.setNgaySinh(rs.getString("ngaySinh"));
                 nd.setGioiTinh(rs.getString("gioiTinh"));
                 nd.setVaiTro(rs.getString("vaiTro"));
+                return nd;
+            }
             //con.close();
         } catch (Exception e) {
             e.printStackTrace();

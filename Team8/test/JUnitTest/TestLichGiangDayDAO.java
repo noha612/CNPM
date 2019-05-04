@@ -8,7 +8,7 @@ package JUnitTest;
 import Control.LichGiangDayDAO;
 import Model.LichGiangDay;
 import java.util.ArrayList;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -24,15 +24,15 @@ public class TestLichGiangDayDAO {
         i=0;
         ArrayList<LichGiangDay> ListLGD=lgdDAO.TimLichTheoIdLop(i);
         Assert.assertNotNull(ListLGD);
-        Assert.assertEquals(ListLGD.size(), 0);
+        Assert.assertEquals(0,ListLGD.size());
         
         //Standard test case 1
         i=3;
         ListLGD=lgdDAO.TimLichTheoIdLop(i);
         Assert.assertNotNull(ListLGD);
-        Assert.assertEquals(ListLGD.size(), 2);
+        Assert.assertEquals(2,ListLGD.size());
         for(LichGiangDay lgd : ListLGD){
-            Assert.assertEquals(lgd.getTblLopHocPhanId(),i);
+            Assert.assertEquals(i,lgd.getTblLopHocPhanId());
         }
     }
 }

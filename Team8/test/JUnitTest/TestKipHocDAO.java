@@ -29,9 +29,9 @@ public class TestKipHocDAO {
         //Standard test case 1
         kh=khDAO.TimKipHocTheoId(1);
         Assert.assertNotNull(kh);
-        Assert.assertEquals(kh.getKipHocId(), 1);
-        Assert.assertEquals(kh.getGioBatDau(), 7);
-        Assert.assertEquals(kh.getGioKetThuc(), 9);
-        Assert.assertEquals(kh.getThu(), 2);
+        Assert.assertEquals(1,kh.getKipHocId());
+        Assert.assertEquals(7,kh.getGioBatDau());
+        Assert.assertEquals(9,kh.getGioKetThuc());
+        Assert.assertEquals(2,kh.getThu());
     }
 }

@@ -25,19 +25,19 @@ public class TestMonHocDAO {
         x="djkgkdghkasdgh";
         ArrayList<MonHoc> ListMH=mhDAO.TimMonTheoTen(x);
         Assert.assertNotNull(ListMH);
-        Assert.assertEquals(ListMH.size(), 0);
+        Assert.assertEquals(0,ListMH.size());
         
         //Exception test case 2
         x="";
         ListMH=mhDAO.TimMonTheoTen(x);
         Assert.assertNotNull(ListMH);
-        Assert.assertEquals(ListMH.size(), 0);
+        Assert.assertEquals(0,ListMH.size());
         
         //Standard test case 1
         x="x";
         ListMH=mhDAO.TimMonTheoTen(x);
         Assert.assertNotNull(ListMH);
-        Assert.assertEquals(ListMH.size(), 2);
+        Assert.assertEquals(2,ListMH.size());
         for(MonHoc mh : ListMH){
             Assert.assertTrue(mh.getTenMon().toLowerCase().contains(x));
         }
@@ -56,21 +56,21 @@ public class TestMonHocDAO {
         //Standard test case 1
         mh=mhDAO.timMonHoc(1);
         Assert.assertNotNull(mh);
-        Assert.assertEquals(mh.getMonHocId(), 1);
-        Assert.assertEquals(mh.getSoTinChi(), 3);
-        Assert.assertEquals(mh.getBoMon(), "CNPM");
+        Assert.assertEquals(1,mh.getMonHocId());
+        Assert.assertEquals(3,mh.getSoTinChi());
+        Assert.assertEquals("CNPM",mh.getBoMon());
         Assert.assertTrue(mh.getHsBaiTapLon()== 0.2);
         Assert.assertTrue(mh.getHsChuyenCan()==0.1);
         Assert.assertTrue(mh.getHsCuoiKy()==0.6);
         Assert.assertTrue(mh.getHsKiemTra()==0.1);
         Assert.assertTrue(0==mh.getHsThucHanh());
-        Assert.assertEquals(mh.getKhoa(), "CNTT");
-        Assert.assertEquals(mh.getMaMon(), "INT1340");
-        Assert.assertEquals(mh.getMonDK(), null);
-        Assert.assertEquals(mh.getSoTietBT(), 0);
-        Assert.assertEquals(mh.getSoTietTH(), 0);
-        Assert.assertEquals(mh.getSoTietLT(), 45);
-        Assert.assertEquals(mh.getTenMon(), "Nhập môn Công nghệ phần mềm");
+        Assert.assertEquals("CNTT",mh.getKhoa());
+        Assert.assertEquals("INT1340",mh.getMaMon());
+        Assert.assertEquals(null,mh.getMonDK());
+        Assert.assertEquals(0,mh.getSoTietBT());
+        Assert.assertEquals(0,mh.getSoTietTH());
+        Assert.assertEquals(45,mh.getSoTietLT());
+        Assert.assertEquals("Nhập môn Công nghệ phần mềm",mh.getTenMon());
     }
     
 }

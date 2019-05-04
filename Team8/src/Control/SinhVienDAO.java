@@ -21,32 +21,35 @@ public class SinhVienDAO extends DAO {
         getInstance();
     }
     public SinhVien TimSinhVien(NguoiDung nd){
-        SinhVien SV=new SinhVien();
         String sql="Select * FROM tblsinhvien WHERE tblNguoiDungId = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, nd.getNguoiDungId());
             ResultSet rs=ps.executeQuery();
-            rs.absolute(1);
-            SV.setNguoiDungId(nd.getNguoiDungId());
-            SV.setGioiTinh(nd.getGioiTinh());
-            SV.setHoTen(nd.getHoTen());
-            SV.setMatKhau(nd.getMatKhau());
-            SV.setNgaySinh(nd.getNgaySinh());
-            SV.setTenDangNhap(nd.getTenDangNhap());
-            SV.setVaiTro(nd.getVaiTro());
-            SV.setGpa(rs.getFloat("gpa"));
-            SV.setHocLuc(rs.getString("hocLuc"));
-            SV.setKhoa(rs.getString("khoa"));
-            SV.setLop(rs.getString("lop"));
-            SV.setNganh(rs.getString("nganh"));
-            SV.setSinhVienId(rs.getInt("id"));
-            SV.setStcTichLuy(rs.getInt("stcTichLuy"));
-            //con.close();
+            while(rs.next()){
+                if(rs.getInt("id")==0)return null;
+                SinhVien SV=new SinhVien();
+                SV.setNguoiDungId(nd.getNguoiDungId());
+                SV.setGioiTinh(nd.getGioiTinh());
+                SV.setHoTen(nd.getHoTen());
+                SV.setMatKhau(nd.getMatKhau());
+                SV.setNgaySinh(nd.getNgaySinh());
+                SV.setTenDangNhap(nd.getTenDangNhap());
+                SV.setVaiTro(nd.getVaiTro());
+                SV.setGpa(rs.getFloat("gpa"));
+                SV.setHocLuc(rs.getString("hocLuc"));
+                SV.setKhoa(rs.getString("khoa"));
+                SV.setLop(rs.getString("lop"));
+                SV.setNganh(rs.getString("nganh"));
+                SV.setSinhVienId(rs.getInt("id"));
+                SV.setStcTichLuy(rs.getInt("stcTichLuy"));
+                return SV;
+                //con.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return SV;
+        return null;
     }
     
     public SinhVien timSinhVien(String maSinhVien){
@@ -56,7 +59,9 @@ public class SinhVienDAO extends DAO {
             ps.setString(1, maSinhVien);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                if(rs.getInt("id")==0)return null;
                 SinhVien rt = new SinhVien();
+                rt.setSinhVienId(rs.getInt("id"));
                 rt.setTenDangNhap(rs.getString("tenDangNhap"));
                 rt.setHoTen( rs.getString("hoTen"));
                 rt.setLop(rs.getString("lop")); 
@@ -70,6 +75,6 @@ public class SinhVienDAO extends DAO {
         }catch(Exception e){
             e.printStackTrace();
         }
-        return new SinhVien();
+        return null;
     }
 }

@@ -20,16 +20,24 @@ public class PhongHocDAO extends DAO{
         getInstance();
     }
     public PhongHoc TimPhongHocTheoId(int id){
-       PhongHoc PH=new PhongHoc();
+       PhongHoc PH=null;
         String sql="Select * FROM tblphonghoc WHERE id = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
-            rs.absolute(1);
-            PH.setPhongHocId(rs.getInt("id"));
-            PH.setTenPhong(rs.getString("tenPhong"));
+            while(rs.next()){
+                if(rs.getInt("id")==0)return null;
+                PH=new PhongHoc();
+                PH.setMoTa(rs.getString("moTa"));
+                PH.setViTri(rs.getString("viTri"));
+                PH.setSucChua(rs.getInt("suaChua"));
+                PH.setTblTruongId(rs.getInt("tblTruongId"));
+                PH.setPhongHocId(rs.getInt("id"));
+                PH.setTenPhong(rs.getString("tenPhong"));
+                return PH;
             //con.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

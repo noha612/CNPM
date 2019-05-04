@@ -26,13 +26,13 @@ public class TestLopHocPhanDAO {
         MH.setMonHocId(0);
         ArrayList<LopHocPhan> ListLHP=lhpDAO.TimLopTheoMon(MH);
         Assert.assertNotNull(ListLHP);
-        Assert.assertEquals(ListLHP.size(), 0);
+        Assert.assertEquals(0,ListLHP.size());
         
         //Standard test case 1
         MH.setMonHocId(4);
         ListLHP=lhpDAO.TimLopTheoMon(MH);
         Assert.assertNotNull(ListLHP);
-        Assert.assertEquals(ListLHP.size(), 5);
+        Assert.assertEquals(5,ListLHP.size());
         for(LopHocPhan lhp : ListLHP){
             Assert.assertEquals(MH.getMonHocId(),lhp.getMonHocId());
         }
