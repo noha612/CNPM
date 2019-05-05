@@ -78,7 +78,6 @@ public class LopHocPhanDAO extends DAO{
                 lhp.setMaLop(rs.getString("maLop"));
                 lhp.setTen(rs.getString("ten"));
                 lhp.setSiSo(rs.getInt("siSo"));
-                lhp.setDaChon(rs.getInt("daChon"));
                 ListLHP.add(lhp);
            }
             //con.close();
