@@ -46,7 +46,7 @@ public class TestMonHocDAO {
     public void testTimMonHocTheoId(){
         MonHocDAO mhDAO=new MonHocDAO();
         //Exception test case 1
-        MonHoc mh=mhDAO.timMonHoc(13);
+        MonHoc mh=mhDAO.timMonHoc(32);
         Assert.assertNull(mh);
         
         //Exception test case 2

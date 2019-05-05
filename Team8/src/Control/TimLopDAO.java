@@ -5,26 +5,21 @@
  */
 package Control;
 
-import static Control.DAO.con;
+import static Control.DAO.getInstance;
 import Model.LopHocPhan;
 import Model.MonHoc;
-import Model.PhieuDangKy;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/**
- *
- * @author ntnhu
- */
-public class LopHocPhanDAO extends DAO{
 
-    public LopHocPhanDAO() {
+public class TimLopDAO extends DAO{
+     public TimLopDAO() {
         getInstance();
     }
-    public ArrayList<LopHocPhan> TimLopTheoMon(MonHoc MH){
+    public ArrayList<LopHocPhan> GVTimLopTheoMon(MonHoc MH){
         ArrayList<LopHocPhan> ListLHP=new ArrayList<>();
-         String sql="Select * FROM tbllophocphan WHERE tblMonHocId = ? ORDER BY ten ASC, maLop ASC";
+         String sql="Select * FROM tbllophocphan WHERE tblMonHocId = ? ORDER BY maLop";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, MH.getMonHocId());
@@ -39,8 +34,9 @@ public class LopHocPhanDAO extends DAO{
                 lhp.setMaLop(rs.getString("maLop"));
                 lhp.setTen(rs.getString("ten"));
                 lhp.setSiSo(rs.getInt("siSo"));
-                PhieuDangKyDAO pdkDAO=new PhieuDangKyDAO();
-                lhp.setDaChon(pdkDAO.DemSoSVCuaLHP(rs.getInt("id")));
+                lhp.setHocKy(rs.getString("hocKy"));
+                //PhieuDangKyDAO pdkDAO=new PhieuDangKyDAO();
+               // lhp.setDaChon(pdkDAO.DemSoSVCuaLHP(rs.getInt("id")));
                 ListLHP.add(lhp);
            }
             //con.close();
@@ -49,5 +45,4 @@ public class LopHocPhanDAO extends DAO{
         }
         return ListLHP;
     }
-
 }

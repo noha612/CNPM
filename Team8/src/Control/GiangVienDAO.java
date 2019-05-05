@@ -9,6 +9,7 @@ import static Control.DAO.con;
 import Model.GiangVien;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -42,4 +43,28 @@ public class GiangVienDAO extends DAO{
         }
         return GV;
     }
+    
+    public ArrayList<GiangVien> TimGVTheoKhoa(String tenKhoa){
+        ArrayList<GiangVien> ListGV =new ArrayList<>();
+        String sql = "select tblgiangvien.*, tblnguoidung.hoTen From tblgiangvien, tblnguoidung where  tblgiangvien.tblNguoiDungId = tblnguoidung.id and tblgiangvien.khoa = ?";
+      //  String sql="Select * FROM tblgiangvien WHERE khoa LIKE ?";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setString(1, tenKhoa);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                GiangVien gv =new GiangVien();
+                gv.setGiangVienId(rs.getInt("id"));
+                gv.setHoTen(rs.getString("hoTen"));
+                gv.setHocVi(rs.getString("hocVi"));
+                gv.setNganh(rs.getString("nganh"));
+                gv.setKhoa(rs.getString("khoa"));
+                ListGV.add(gv);
+           }
+            //con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ListGV;
+        }
 }

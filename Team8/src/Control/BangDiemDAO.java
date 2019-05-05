@@ -65,7 +65,7 @@ public class BangDiemDAO extends DAO {
     public ArrayList<BangDiem> getBangDiemTheoHocLuc(int kyHoc, String hocLuc) {
         ArrayList<BangDiem> rt = new ArrayList<>();
         String sql = "select tbl2.msv, tbl2.diemTrungBinh from(	select sum(tbl1.diemTongKet*soTinChi)/sum(soTinChi) as diemTrungBinh, tbl1.msv as msv		from (		select tbldiem.maSinhVien as msv,  tblmonhoc.soTinChi, (diemCC*hsChuyenCan + diemKT*hsKiemTra + diemBTL*hsBaiTapLon + diemTH*hsThucHanh + diemCK*hsCuoiKy) as diemTongKet 		from tblmonhoc, tbldiem         where tbldiem.kyHoc=? and tbldiem.tblMonHocId=tblmonhoc.id        ) as tbl1		group by tbl1.msv	) as tbl2 where tbl2.diemTrungBinh >=? and tbl2.diemTrungBinh<? order by tbl2.diemTrungBinh desc";
-            try {
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, kyHoc);
             switch (hocLuc) {

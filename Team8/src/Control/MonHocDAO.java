@@ -24,7 +24,7 @@ public class MonHocDAO extends DAO{
     public ArrayList<MonHoc> TimMonTheoTen(String tenMon){
         ArrayList<MonHoc> ListMH=new ArrayList<>();
         if(tenMon=="")return ListMH;
-        String sql="Select * FROM tblmonhoc WHERE tenMon LIKE ? ORDER BY maMon ASC";
+        String sql="Select * FROM tblmonhoc WHERE tenMon LIKE ? ORDER BY tenMon ASC, maMon ASC";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, "%" + tenMon + "%");
@@ -34,7 +34,18 @@ public class MonHocDAO extends DAO{
                 mh.setMonHocId(rs.getInt("id"));
                 mh.setMaMon(rs.getString("maMon"));
                 mh.setTenMon(rs.getString("tenMon"));
-                mh.setSoTinChi(rs.getInt("soTinChi"));
+                mh.setSoTinChi(rs.getInt("soTinChi")); 
+                mh.setSoTietLT(rs.getInt("soTietLT")); 
+                mh.setSoTietBT(rs.getInt("soTietBT"));
+                mh.setSoTietTH(rs.getInt("soTietTH"));
+                mh.setHsChuyenCan(rs.getDouble("hsChuyenCan")); 
+                mh.setHsKiemTra(rs.getDouble("hsKiemTra")); 
+                mh.setHsBaiTapLon(rs.getDouble("hsBaiTapLon")); 
+                mh.setHsThucHanh(rs.getDouble("hsThucHanh")); 
+                mh.setHsCuoiKy(rs.getDouble("hsCuoiKy")); 
+                mh.setMonDK(rs.getString("monDK")); 
+                mh.setBoMon(rs.getString("boMon")); 
+                mh.setKhoa(rs.getString("khoa"));
                 ListMH.add(mh);
            }
             //con.close();
@@ -76,5 +87,33 @@ public class MonHocDAO extends DAO{
         }
         return null;
     }
+    
+     public ArrayList<MonHoc> GVTimMonTheoTen(String tenMon){
+        ArrayList<MonHoc> ListMH=new ArrayList<>();
+        String sql="Select * FROM tblmonhoc WHERE tenMon LIKE ?";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setString(1, "%" + tenMon + "%");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                MonHoc mh=new MonHoc();
+                mh.setMonHocId(rs.getInt("id"));
+                mh.setMaMon(rs.getString("maMon"));
+                mh.setTenMon(rs.getString("tenMon"));
+                mh.setSoTinChi(rs.getInt("soTinChi"));
+                mh.setSoTietLT(rs.getInt("soTietLT"));
+                mh.setSoTietTH(rs.getInt("soTietTH"));
+                mh.setSoTietBT(rs.getInt("soTietBT"));
+                mh.setBoMon(rs.getString("boMon"));
+                mh.setKhoa(rs.getString("khoa"));
+                mh.setMonDK(rs.getString("monDK"));
+                ListMH.add(mh);
+           }
+            //con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ListMH;
+        }
  
 }

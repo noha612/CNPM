@@ -16,10 +16,14 @@ public class TestGiangVienDAO {
     public void testTimGiangVienTheoId(){
         GiangVienDAO gvDAO=new GiangVienDAO();
         //Exception test case 1
-        GiangVien gv=gvDAO.TimGiangVienTheoId(6);
+        GiangVien gv=gvDAO.TimGiangVienTheoId(0);
         Assert.assertNull(gv);
         
         //Exception test case 2
+        gv=gvDAO.TimGiangVienTheoId(22);
+        Assert.assertNull(gv);
+        
+        //Exception test case 3
         gv=gvDAO.TimGiangVienTheoId(322);
         Assert.assertNull(gv);
         

@@ -70,6 +70,11 @@ public class TestNguoiDungDAO {
         Assert.assertNull(nd);
         
         //Exception test case 2
+        id=135;
+        nd=ndDAO.TimNguoiDungTheoId(id);
+        Assert.assertNull(nd);
+        
+        //Exception test case 3
         id=322;
         nd=ndDAO.TimNguoiDungTheoId(id);
         Assert.assertNull(nd);

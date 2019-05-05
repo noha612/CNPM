@@ -88,7 +88,8 @@ public class TrangChuGiaoVuFrm extends javax.swing.JFrame implements ActionListe
     public void actionPerformed(ActionEvent e){
         JButton btnClicked = (JButton)e.getSource();
         if(btnClicked.equals(btnLich)){
-            // modul Hoa
+            this.setVisible(false);
+            (new QuanLiLichFrm(this)).setVisible(true);
             return;
         }
         if(btnClicked.equals(btnThongKe)){

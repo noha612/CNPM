@@ -22,17 +22,22 @@ public class TestSinhVienDAO {
         NguoiDung nd=new NguoiDung();
         
         //Exception test case 1
-        nd.setNguoiDungId(16);
+        nd.setNguoiDungId(0);
         SinhVien sv=svDAO.TimSinhVien(nd);
         Assert.assertNull(sv);
         
         //Exception test case 2
-        nd.setNguoiDungId(6);
+        nd.setNguoiDungId(13);
+        sv=svDAO.TimSinhVien(nd);
+        Assert.assertNull(sv);
+        
+        //Exception test case 2
+        nd.setNguoiDungId(135);
         sv=svDAO.TimSinhVien(nd);
         Assert.assertNull(sv);
         
         //Exception test case 3
-        nd.setNguoiDungId(322);
+        nd.setNguoiDungId(3220);
         sv=svDAO.TimSinhVien(nd);
         Assert.assertNull(sv);
         

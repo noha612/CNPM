@@ -41,4 +41,24 @@ public class KipHocDAO extends DAO{
         }
         return KH;
     }
+    
+    public KipHoc TimKipGV(int giobd, int giokt, int thu){
+        KipHoc KH= new KipHoc();
+        String sql="Select * FROM tblkiphoc WHERE gioBatDau = '"+giobd+"' AND gioKetThuc = '"+giokt+"' AND thu = '"+thu+"'";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            rs.absolute(1);
+            KH.setThu(thu);
+            KH.setGioBatDau(giobd);
+            KH.setGioKetThuc(giokt);
+            KH.setKipHocId(rs.getInt("id"));
+            //con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       
+            return KH ;
+        
+    }
 }
