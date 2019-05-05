@@ -38,7 +38,7 @@ CREATE TABLE `tbldiem` (
   KEY `khoa_ngoai_diem_sinh_vien` (`tblSinhVientblNguoiDungId`),
   CONSTRAINT `khoa_ngoai_diem_sinh_vien` FOREIGN KEY (`tblSinhVientblNguoiDungId`) REFERENCES `tblsinhvien` (`id`) ON DELETE SET NULL,
   CONSTRAINT `khoa_ngoai_mon_hoc_diem` FOREIGN KEY (`tblMonHocId`) REFERENCES `tblmonhoc` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,6 +47,7 @@ CREATE TABLE `tbldiem` (
 
 LOCK TABLES `tbldiem` WRITE;
 /*!40000 ALTER TABLE `tbldiem` DISABLE KEYS */;
+INSERT INTO `tbldiem` VALUES (7,10,9,7,8,9.5,'20171','B16DCCN159',16,3);
 /*!40000 ALTER TABLE `tbldiem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +131,7 @@ CREATE TABLE `tbllichgiangday` (
   CONSTRAINT `khoa_ngoai_kip_hoc` FOREIGN KEY (`tblKipHocId`) REFERENCES `tblkiphoc` (`id`),
   CONSTRAINT `khoa_ngoai_lop_hoc_phan` FOREIGN KEY (`tblLopHocPhanId`) REFERENCES `tbllophocphan` (`id`),
   CONSTRAINT `khoa_ngoai_phong_hoc` FOREIGN KEY (`tblPhongHocId`) REFERENCES `tblphonghoc` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +140,7 @@ CREATE TABLE `tbllichgiangday` (
 
 LOCK TABLES `tbllichgiangday` WRITE;
 /*!40000 ALTER TABLE `tbllichgiangday` DISABLE KEYS */;
-INSERT INTO `tbllichgiangday` VALUES (10,11,33,1,1,1,3),(11,11,22,2,1,1,3);
+INSERT INTO `tbllichgiangday` VALUES (16,11,33,4,2,35,3),(17,11,22,4,3,35,6);
 /*!40000 ALTER TABLE `tbllichgiangday` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +153,7 @@ DROP TABLE IF EXISTS `tbllophocphan`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `tbllophocphan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `maLop` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `maLop` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `ten` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `hocKy` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `siSo` int(10) DEFAULT NULL,
@@ -182,7 +183,7 @@ DROP TABLE IF EXISTS `tblmonhoc`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `tblmonhoc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `maMon` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `maMon` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `tenMon` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `soTinChi` int(11) DEFAULT NULL,
   `soTietLT` int(11) DEFAULT NULL,
@@ -258,7 +259,7 @@ CREATE TABLE `tblphieudangky` (
   KEY `khoa_ngoai_sinh_vien_phieu_dang_ky` (`tblSinhVientblNguoiDungId`),
   CONSTRAINT `khoa_ngoai_lop_hoc_phan_phieu_dang_ki` FOREIGN KEY (`tblLopHocPhanId`) REFERENCES `tbllophocphan` (`id`) ON DELETE SET NULL,
   CONSTRAINT `khoa_ngoai_sinh_vien_phieu_dang_ky` FOREIGN KEY (`tblSinhVientblNguoiDungId`) REFERENCES `tblsinhvien` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,7 +268,7 @@ CREATE TABLE `tblphieudangky` (
 
 LOCK TABLES `tblphieudangky` WRITE;
 /*!40000 ALTER TABLE `tblphieudangky` DISABLE KEYS */;
-INSERT INTO `tblphieudangky` VALUES (105,'Sun May 05 13:40:55 ICT 2019',435000,10,1),(106,'Sun May 05 13:40:55 ICT 2019',435000,1,1);
+INSERT INTO `tblphieudangky` VALUES (112,'Sun May 05 22:52:44 ICT 2019',435000,35,3),(113,'Sun May 05 22:52:44 ICT 2019',435000,10,3);
 /*!40000 ALTER TABLE `tblphieudangky` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,4 +370,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-05 13:43:47
+-- Dump completed on 2019-05-05 23:06:29

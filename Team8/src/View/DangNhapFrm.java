@@ -126,7 +126,11 @@ public class DangNhapFrm extends javax.swing.JFrame implements ActionListener{
                  this.dispose();
             }
             if(nd.getVaiTro().equals("GV")){
-                System.out.println("Tích hợp giảng viên vào đây");
+                GiangVienDAO gvDAO = new GiangVienDAO();
+                GiangVien GV = gvDAO.TimGiangVien(nd);
+                System.out.println(GV.getGiangVienId());
+                new TrangChuGiangVienFrm(GV).setVisible(true);
+                this.dispose();
             }
             if(nd.getVaiTro().equals("GVU")){
                 TrangChuGiaoVuFrm dm = new TrangChuGiaoVuFrm();

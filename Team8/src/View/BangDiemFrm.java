@@ -8,6 +8,7 @@ import Model.SinhVien;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.util.Collection;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -67,7 +68,7 @@ public class BangDiemFrm extends javax.swing.JFrame{
         ));
         jScrollPane1.setViewportView(bangDiem);
 
-        btnBack.setText("Back");
+        btnBack.setText("Quay Lại");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -91,14 +92,15 @@ public class BangDiemFrm extends javax.swing.JFrame{
                         .addComponent(tt, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(177, 177, 177))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(341, 341, 341))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(290, 290, 290))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnBack)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,9 +114,9 @@ public class BangDiemFrm extends javax.swing.JFrame{
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlbTongKet, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBack)
-                .addGap(80, 80, 80))
+                .addGap(75, 75, 75))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,6 +150,7 @@ public class BangDiemFrm extends javax.swing.JFrame{
     // End of variables declaration//GEN-END:variables
 
     private void fillTable(){
+        bd.sapXep();
         String head[] = {"STT", "Mon", "So Tin Chi", "DiemCC", "DiemKT", "DiemBTL", "DiemTH", "DiemCK", "TongKet"};
         DefaultTableModel tb = new DefaultTableModel(head, 0);
         bangDiem.setModel(tb);
@@ -170,4 +173,6 @@ public class BangDiemFrm extends javax.swing.JFrame{
             tb.addRow(new Object[]{tt++, tmp.getTenMon(), tmp.getSoTinChi(), d.getDiemCC(), d.getDiemKT(), d.getDiemBTL(), d.getDiemTH(), d.getDiemCK(), (double)Math.round(d.getTongKet()*100)/100});
         }
     }
+    
+    
 }

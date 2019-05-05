@@ -56,7 +56,7 @@ public class QuanLiLichFrm extends javax.swing.JFrame implements ActionListener{
         btnXoa.setText("Xóa Lịch Một Lớp Học Phần");
 
         btnback.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnback.setText("Back");
+        btnback.setText("Quay Lại");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

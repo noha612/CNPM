@@ -78,7 +78,7 @@ public class ThongKeHocLucFrm extends javax.swing.JFrame implements ActionListen
         ));
         jScrollPane1.setViewportView(tblSoLuong);
 
-        btnBack.setText("Back");
+        btnBack.setText("Quay Lại");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 2, 10)); // NOI18N
         jLabel3.setText("năm học + kỳ, vd: 20161");
@@ -89,9 +89,6 @@ public class ThongKeHocLucFrm extends javax.swing.JFrame implements ActionListen
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(btnBack))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(jLabel2)
@@ -107,6 +104,9 @@ public class ThongKeHocLucFrm extends javax.swing.JFrame implements ActionListen
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnBack))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,9 +121,8 @@ public class ThongKeHocLucFrm extends javax.swing.JFrame implements ActionListen
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBack)
-                .addContainerGap())
+                .addGap(29, 29, 29)
+                .addComponent(btnBack))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

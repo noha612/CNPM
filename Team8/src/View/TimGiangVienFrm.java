@@ -275,7 +275,7 @@ public class TimGiangVienFrm extends javax.swing.JFrame implements ActionListene
         return;  
       }
         this.setVisible(false);
-        new LenLichFrm(this, MH, LHP , PH, listGV.get(i), KH).setVisible(true);
+        new LenLichFrm(this, MH, LHP , PH, listGV.get(i), KH,parent).setVisible(true);
         return;
     }
 

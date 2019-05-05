@@ -31,16 +31,19 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
     private DefaultTableModel tm;
     private ArrayList<LichGiangDay> LGD;
     private LichGiangDay lgd;
+    private TimPhongFrm grandpra;
+    private int STT;
  
             
             
-    public LenLichFrm(TimGiangVienFrm parent, MonHoc MH, LopHocPhan LHP, PhongHoc PH, GiangVien GV, KipHoc KH) {
+    public LenLichFrm(TimGiangVienFrm parent, MonHoc MH, LopHocPhan LHP, PhongHoc PH, GiangVien GV, KipHoc KH,TimPhongFrm grandpra) {
         this.parent = parent;
         this.MH = MH;
         this.LHP = LHP;
         this.KH = KH;
         this.PH = PH;
         this.GV =GV ;
+        this.grandpra=grandpra;
         LGD = new ArrayList<LichGiangDay>();
         lgd = new LichGiangDay();
         initComponents();
@@ -52,7 +55,8 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
         tbnthemlich.addActionListener(this);
         tbnquaylai.addActionListener(this);
         tbnluulich.addActionListener(this);
-        
+        btnRefresh.addActionListener(this);
+        btnTrangChu.addActionListener(this);
         
         
     }
@@ -73,13 +77,14 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
         jLabel3 = new javax.swing.JLabel();
         txttuanbd = new javax.swing.JTextField();
         txttuankt = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        ttlenlich = new javax.swing.JLabel();
         tbnluulich = new javax.swing.JButton();
         tbnquaylai = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbnbang = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        btnRefresh = new javax.swing.JButton();
+        btnTrangChu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,7 +113,7 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
         });
 
         tbnthemlich.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tbnthemlich.setText("Thêm Lịch");
+        tbnthemlich.setText("Thêm Lịch khác");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Tuần bắt đầu: ");
@@ -120,20 +125,14 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
 
         txttuankt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Thông tin lên lịch");
+        ttlenlich.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ttlenlich.setText("Xác nhận thông tin :");
 
         tbnluulich.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tbnluulich.setText("Lưu Lịch");
 
         tbnquaylai.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tbnquaylai.setText("Quay Lại");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
-        jLabel5.setText("Click Tạo Lịch để lên lịch.       Click Lưu Lịch để lưu lịch học cho lớp học phần sau khi tạo. ");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
-        jLabel6.setText("Click Thêm Lịch nếu muốn thêm lịch cho lớp học phần.");
+        tbnquaylai.setText("Quay lại");
 
         tbnbang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,6 +144,15 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
         ));
         jScrollPane1.setViewportView(tbnbang);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel4.setText("Thêm lịch cho Lớp học phần với Phòng học hoặc Giảng viên khác.");
+
+        btnRefresh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnRefresh.setText("Refresh");
+
+        btnTrangChu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnTrangChu.setText("Quay về Trang chủ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,52 +160,52 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mamon)
-                                    .addComponent(txtsotinchi))
-                                .addGap(129, 129, 129)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tenmon)
-                                    .addComponent(txtlhp)))
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(37, 37, 37)
-                                .addComponent(txttuanbd, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(98, 98, 98)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txttuankt, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(tbnquaylai)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tbntaolich)
-                                        .addGap(50, 50, 50)
-                                        .addComponent(tbnluulich)
-                                        .addGap(35, 35, 35)
-                                        .addComponent(tbnthemlich)))
-                                .addGap(206, 206, 206))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(358, 358, 358)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(jLabel6)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tbnquaylai)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(mamon)
+                                        .addComponent(txtsotinchi))
+                                    .addGap(129, 129, 129)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tenmon)
+                                        .addComponent(txtlhp)))
+                                .addComponent(ttlenlich)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(tbntaolich))
+                                    .addGap(36, 36, 36)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnRefresh)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txttuanbd, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(98, 98, 98)
+                                            .addComponent(jLabel3)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txttuankt, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(tbnluulich)
+                                    .addGap(38, 38, 38)
+                                    .addComponent(btnTrangChu)
+                                    .addGap(36, 36, 36)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(tbnthemlich)))))))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -215,21 +223,23 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tbntaolich)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tbnluulich)
-                        .addComponent(tbnthemlich)))
-                .addGap(14, 14, 14)
-                .addComponent(jLabel5)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tbntaolich)
+                        .addGap(18, 18, 18)
+                        .addComponent(ttlenlich)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tbnluulich)
+                            .addComponent(tbnthemlich)
+                            .addComponent(btnTrangChu)))
+                    .addComponent(btnRefresh))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addGap(19, 19, 19)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(tbnquaylai)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         pack();
@@ -244,12 +254,12 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnTrangChu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel mamon;
     private javax.swing.JTable tbnbang;
@@ -258,6 +268,7 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton tbntaolich;
     private javax.swing.JButton tbnthemlich;
     private javax.swing.JLabel tenmon;
+    private javax.swing.JLabel ttlenlich;
     private javax.swing.JLabel txtlhp;
     private javax.swing.JLabel txtsotinchi;
     private javax.swing.JTextField txttuanbd;
@@ -272,7 +283,11 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
             return;
         }
         if(btnClicked.equals(tbnthemlich)){
-            btnThemLich();
+            try {
+                btnThemLich();
+            } catch (SQLException ex) {
+                Logger.getLogger(LenLichFrm.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return;
         }
         if(btnClicked.equals(tbnluulich)){
@@ -287,6 +302,20 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
             parent.setVisible(true);
             this.dispose();
         }
+        if(btnClicked.equals(btnRefresh)){
+            btnRefresh();
+        }
+        if(btnClicked.equals(btnTrangChu)){
+            new TrangChuGiaoVuFrm().setVisible(true);
+            this.dispose();
+        }
+    }
+
+    private void btnRefresh() {
+        txttuanbd.setText("");
+        txttuankt.setText("");
+        LGD.removeAll(LGD);
+        fillTable();
     }
 
     private void btnTaoLich() {
@@ -298,24 +327,24 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
         lgd.setTblLopHocPhanId(LHP.getLopHocPhanId());
         lgd.setTblGiangVientblNguoiDungId(GV.getGiangVienId());
         LGD.add(lgd);
+        ttlenlich.setText(ttlenlich.getText());
         fillTable();
     }
 
-    private void btnThemLich() {
-       this.setVisible(false);
-       new TimPhongFrm(this.MH, this.LHP).setVisible(true);
-       this.dispose();
-       
+    private void btnThemLich() throws SQLException {
+       grandpra.setVisible(true);
+       this.dispose();      
     }
 
     private void btnLuuLich() throws SQLException {
-        LichGiangDayDAO LGDDAO = new LichGiangDayDAO();
-        for(LichGiangDay i: LGD){
-            LGDDAO.LenLich(i);
-        }
-        JOptionPane.showMessageDialog(this, "Lên Lịch Thành công");
-        new TrangChuGiaoVuFrm().setVisible(true);
-        this.dispose();
+        if(JOptionPane.showConfirmDialog(this, "Bạn có muốn lưu lại thông tin lịch vừa tạo?","", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+            LichGiangDayDAO LGDDAO = new LichGiangDayDAO();
+            STT++;
+            for(LichGiangDay i: LGD){
+                LGDDAO.LenLich(i);
+            }     
+            tbnluulich.setEnabled(false);
+       }
     }
 
     private void fillTable() {
@@ -329,8 +358,8 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
             tm.setValueAt(KH.getThu(), stt, 3);
             tm.setValueAt(KH.getGioBatDau(), stt, 4);
             tm.setValueAt(KH.getGioKetThuc(), stt, 5);
-            tm.setValueAt(GV.getHoTen(), stt, 6);
-            tm.setValueAt(PH.getTenPhong(), stt, 7);
+            tm.setValueAt(GV.getHoTen(), stt, 7);
+            tm.setValueAt(PH.getTenPhong(), stt, 6);
             stt++;
         }
     } 
