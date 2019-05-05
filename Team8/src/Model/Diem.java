@@ -1,6 +1,6 @@
 package Model;
 
-public class Diem {
+public class Diem extends SinhVien{
     private double diemCC;
     private double diemKT;
     private double diemTH;
@@ -107,6 +107,10 @@ public class Diem {
         this.get = get;
     }
 
-    
+    public Object[] toObject(int index) {
+        return new Object[]{
+            index, this.getTenDangNhap(), this.getHoTen(), this.getDiemCC() >= 0 ? this.getDiemCC() : "" , this.getDiemKT() >= 0 ? this.getDiemKT() : "", this.getDiemBTL() >= 0 ? this.getDiemBTL() : "", this.getDiemTH() >=0 ? this.getDiemTH() : "", this.getDiemCK() >= 0 ? this.getDiemCK() :"" 
+        };
+    } 
 
 }

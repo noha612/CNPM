@@ -18,6 +18,7 @@ public class LopHocPhan extends MonHoc implements Serializable {
     private String hocKy;
     private int siSo;
     private int daChon;
+    private LichGiangDay lichGiangDay;
     public LopHocPhan() {
     }
 
@@ -69,6 +70,14 @@ public class LopHocPhan extends MonHoc implements Serializable {
 
     public void setDaChon(int daChon) {
         this.daChon = daChon;
+    }
+    
+    public void setLichGiangDay(LichGiangDay lichGiangDay) {
+        this.lichGiangDay = lichGiangDay;
+    }
+
+    public LichGiangDay getLichGiangDay() {
+        return lichGiangDay;
     }
 
 }

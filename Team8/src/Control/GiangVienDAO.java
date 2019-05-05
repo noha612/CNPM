@@ -7,6 +7,7 @@ package Control;
 
 import static Control.DAO.con;
 import Model.GiangVien;
+import Model.NguoiDung;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -67,4 +68,30 @@ public class GiangVienDAO extends DAO{
         }
         return ListGV;
         }
+    public GiangVien TimGiangVien(NguoiDung nd){
+        GiangVien GV = new GiangVien();
+        String sql="Select * FROM tblgiangvien WHERE tblNguoiDungId = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, nd.getNguoiDungId());
+            ResultSet rs=ps.executeQuery();
+            rs.absolute(1);
+            GV.setNguoiDungId(nd.getNguoiDungId());
+            GV.setGioiTinh(nd.getGioiTinh());
+            GV.setHoTen(nd.getHoTen());
+            GV.setMatKhau(nd.getMatKhau());
+            GV.setNgaySinh(nd.getNgaySinh());
+            GV.setTenDangNhap(nd.getTenDangNhap());
+            GV.setVaiTro(nd.getVaiTro());
+            GV.setGiangVienId(rs.getInt("id"));
+            GV.setKhoa(rs.getString("khoa"));
+            GV.setNganh(rs.getString("nganh"));
+            GV.setHocVi(rs.getString("hocVi"));
+            GV.setBoMon(rs.getString("boMon"));
+            //con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return GV;
+    }
 }

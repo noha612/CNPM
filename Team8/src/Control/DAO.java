@@ -27,7 +27,7 @@ public class DAO {
                 con=DriverManager.getConnection(dbUrl,"root","doanxem0316");
             }catch(Exception e){
             e.printStackTrace();
-            }              
+            }    
         }
     }
 }

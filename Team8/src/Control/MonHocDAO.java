@@ -6,6 +6,7 @@
 package Control;
 
 import static Control.DAO.con;
+import Model.GiangVien;
 import Model.MonHoc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -115,5 +116,35 @@ public class MonHocDAO extends DAO{
         }
         return ListMH;
         }
+    public ArrayList<MonHoc> timMonHocTheoKey(GiangVien GV, String key, String hocky){
+        ArrayList<MonHoc> ListMH = new ArrayList<>();
+        String sql = "SELECT * FROM tblmonhoc"
+                     + " WHERE tblmonhoc.id IN (SELECT DISTINCT tblmonhoc.id FROM tblmonhoc"
+                     + " LEFT JOIN tbllophocphan ON tbllophocphan.tblMonHocId = tblmonhoc.id"
+                     + " LEFT JOIN tbllichgiangday ON tbllichgiangday.tblLopHocPhanId = tbllophocphan.id"
+                     + " LEFT JOIN tblgiangvien ON tblgiangvien.id = tbllichgiangday.tblGiangVientblNguoiDungId"
+                     + " WHERE tblmonhoc.tenMon LIKE ?"
+                     + " AND tbllophocphan.hocKy = ?"
+                     + " AND tbllichgiangday.tblGiangVientblNguoiDungId = ?)";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setString(1, "%" + key + "%");
+            ps.setString(2, hocky);
+            ps.setInt(3, GV.getGiangVienId());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                MonHoc mh=new MonHoc();
+                mh.setMonHocId(rs.getInt("id"));
+                mh.setMaMon(rs.getString("maMon"));
+                mh.setTenMon(rs.getString("tenMon"));
+                mh.setSoTinChi(rs.getInt("soTinChi"));
+                ListMH.add(mh);
+           }
+            //con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ListMH;
+    } 
  
 }

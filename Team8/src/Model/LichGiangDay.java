@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author ntnhu
  */
-public class LichGiangDay implements Serializable{
+public class LichGiangDay extends GiangVien implements Serializable{
     private int lichGiangDayId;
     private int tuanBatDau;
     private int tuanKetThuc;
