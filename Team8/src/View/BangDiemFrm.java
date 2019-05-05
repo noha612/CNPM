@@ -8,6 +8,7 @@ import Model.SinhVien;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.util.Collection;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -148,6 +149,7 @@ public class BangDiemFrm extends javax.swing.JFrame{
     // End of variables declaration//GEN-END:variables
 
     private void fillTable(){
+        bd.sapXep();
         String head[] = {"STT", "Mon", "So Tin Chi", "DiemCC", "DiemKT", "DiemBTL", "DiemTH", "DiemCK", "TongKet"};
         DefaultTableModel tb = new DefaultTableModel(head, 0);
         bangDiem.setModel(tb);
@@ -170,4 +172,6 @@ public class BangDiemFrm extends javax.swing.JFrame{
             tb.addRow(new Object[]{tt++, tmp.getTenMon(), tmp.getSoTinChi(), d.getDiemCC(), d.getDiemKT(), d.getDiemBTL(), d.getDiemTH(), d.getDiemCK(), (double)Math.round(d.getTongKet()*100)/100});
         }
     }
+    
+    
 }

@@ -1,6 +1,8 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class BangDiem {
     private ArrayList<Diem> listDiem;
@@ -11,6 +13,16 @@ public class BangDiem {
     public BangDiem(ArrayList<Diem> listDiem, double trungBinh) {
         this.listDiem = listDiem;
         this.trungBinh = trungBinh;
+    }
+    
+    public void sapXep(){
+        Collections.sort(listDiem, new Comparator<Diem>(){
+            @Override
+            public int compare(Diem tr, Diem s) {
+                return (int)(100*(s.getTongKet() - tr.getTongKet()));
+            }
+            
+        });
     }
 
     public ArrayList<Diem> getListDiem() {
