@@ -90,6 +90,7 @@ public class BangDiemDAO extends DAO {
                     ps.setDouble(2, 9.0);
                     ps.setDouble(3, 10.1);
                     break;
+                default: return rt;
             }
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
