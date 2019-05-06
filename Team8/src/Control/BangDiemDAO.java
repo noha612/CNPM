@@ -110,7 +110,6 @@ public class BangDiemDAO extends DAO {
                     tmp.setDiemCK(rs2.getDouble("diemCK"));
                     tmp.setIdMonHoc(rs2.getInt("tblMonhocId"));
                     tmp.setKyHoc(rs2.getInt("kyHoc"));
-                    tmp.setMaSinhVien(rs2.getString("maSinhVien"));
                     tmp.setTongKet(rs2.getDouble("tongKet"));
                     listDiem.add(tmp);
                 }

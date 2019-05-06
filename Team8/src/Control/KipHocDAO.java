@@ -44,9 +44,12 @@ public class KipHocDAO extends DAO{
     
     public KipHoc TimKipGV(int giobd, int giokt, int thu){
         KipHoc KH= new KipHoc();
-        String sql="Select * FROM tblkiphoc WHERE gioBatDau = '"+giobd+"' AND gioKetThuc = '"+giokt+"' AND thu = '"+thu+"'";
+        String sql="Select * FROM tblkiphoc WHERE gioBatDau = ? AND gioKetThuc = ? AND thu = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, giobd);
+            ps.setInt(2, giokt);
+            ps.setInt(3, thu);
             ResultSet rs=ps.executeQuery();
             rs.absolute(1);
             KH.setThu(thu);

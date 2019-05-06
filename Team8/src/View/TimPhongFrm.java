@@ -309,14 +309,18 @@ public class TimPhongFrm extends javax.swing.JFrame implements ActionListener{
     }
 
     private void btnSearchClick() {
-        if((txtThu.getText() == null)||(txtThu.getText().length() == 0) || (txtgiobd.getText() == null) || (txtgiokt.getText()==null)) {
+        if((txtThu.getText().equals("") )|| (txtgiobd.getText().equals("")) || (txtgiokt.getText().equals(""))) {
             JOptionPane.showMessageDialog(this, "Không tìm thấy phòng");
             return;
         }
-       // if((Integer.parseInt(txtgiobd.getText()) != 7) || (Integer.parseInt(txtgiobd.getText()) !=9) || (Integer.parseInt(txtgiobd.getText()) !=12) || (Integer.parseInt(txtgiobd.getText())!=14) || Integer.parseInt(txtgiobd.getText()) != 16 || Integer.parseInt(txtgiobd.getText())!=18){
-          //  JOptionPane.showMessageDialog(this, "giờ bắt đầu của các kíp học là 7h, 9h, 12h, 14h, 16h, 18h. Với các kíp thực hành giờ bắt đầu là 7h,  12h. Vui Lòng nhập lại. ");
-       //     return;
-       // }
+        if((Integer.parseInt(txtgiobd.getText()) != 7) && (Integer.parseInt(txtgiobd.getText()) !=9) &&(Integer.parseInt(txtgiobd.getText()) !=12) && (Integer.parseInt(txtgiobd.getText())!=14) && Integer.parseInt(txtgiobd.getText()) != 16 && Integer.parseInt(txtgiobd.getText())!=18){
+            JOptionPane.showMessageDialog(this, "giờ bắt đầu của các kíp học là 7h, 9h, 12h, 14h, 16h, 18h. Với các kíp thực hành giờ bắt đầu là 7h,  12h. Vui Lòng nhập lại. ");
+            return;
+        }
+        if(Integer.parseInt(txtgiobd.getText())!=Integer.parseInt(txtgiokt.getText())-2 ){
+            JOptionPane.showMessageDialog(this, "Một kíp học kéo dài 2 tiếng!!!");
+            return;
+        }
         KipHocDAO KHDAO = new KipHocDAO();
         KH = KHDAO.TimKipGV(Integer.parseInt(txtgiobd.getText()), Integer.parseInt(txtgiokt.getText()) , Integer.parseInt(txtThu.getText())); 
         LichGiangDayDAO PhongDAO = new LichGiangDayDAO();

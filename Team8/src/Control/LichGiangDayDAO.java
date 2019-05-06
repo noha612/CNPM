@@ -49,7 +49,7 @@ public class LichGiangDayDAO extends DAO{
     
     public ArrayList<PhongHoc> TimPhongGV(int idkip){
         ArrayList<PhongHoc> ListPH =new ArrayList<>();
-         String sql="SELECT *FROM tblphonghoc WHERE tblphonghoc.id NOT IN (SELECT tbllichgiangday.tblPhongHocId FROM tbllichgiangday WHERE tbllichgiangday.tblKipHocId = ?)";
+         String sql="SELECT * FROM tblphonghoc WHERE tblphonghoc.id NOT IN (SELECT tbllichgiangday.tblPhongHocId FROM tbllichgiangday WHERE tbllichgiangday.tblKipHocId = ?) ORDER BY tenPhong ASC";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
              ps.setInt(1, idkip);
@@ -89,9 +89,11 @@ public class LichGiangDayDAO extends DAO{
     
     public GiangVien  checkGV(int id, int kip){
         GiangVien GV=new GiangVien();
-        String sql= "SELECT *FROM tbllichgiangday WHERE tblGiangVientblNguoiDungId = '"+id+"' AND tblKipHocId = '"+kip+"' ";
+        String sql= "SELECT *FROM tbllichgiangday WHERE tblGiangVientblNguoiDungId = ? AND tblKipHocId = ?";
          try {
             PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setInt(2, kip);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 return GV;

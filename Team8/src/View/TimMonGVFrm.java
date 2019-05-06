@@ -218,13 +218,17 @@ public class TimMonGVFrm extends javax.swing.JFrame implements ActionListener {
     }
 
     private void btnSearchClick() {
-        if((txtxmonhoc.getText() == null)||(txtxmonhoc.getText().length() == 0)){
-            JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin môn học này. Vui lòng nhập lại!");
+        if(txtxmonhoc.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Chưa nhập tên môn học!!!");
             return;
-        }
-            
+        } 
         MonHocDAO MHDAO = new MonHocDAO();
         listMH = MHDAO.GVTimMonTheoTen(txtxmonhoc.getText().trim());
+        
+        if(listMH.size()==0){
+            JOptionPane.showMessageDialog(this, "Không tìm thấy môn học nào!!!");
+            return;
+        }   
         listselect.clear();
       
         for(int i=0; i<listMH.size(); i++){

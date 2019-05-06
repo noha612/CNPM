@@ -24,7 +24,7 @@ public class DiemDAO {
 
     public ArrayList<Diem> getSinhVienTheoLHP(LopHocPhan LHP) {
         ArrayList<Diem> listStudent = new ArrayList<>();
-        String sql = "SELECT tblsinhvien.*, tblNguoiDung.tenDangNhap, tblNguoiDung.hoTen, tblNguoiDung.tenDangNhap FROM tblsinhvien"
+        String sql = "SELECT tblsinhvien.*, tblNguoiDung.tenDangNhap, tblNguoiDung.hoTen FROM tblsinhvien"
                     + " LEFT JOIN tblNguoiDung ON tblNguoiDung.id = tblsinhvien.tblNguoiDungId"
                     + " LEFT JOIN tblPhieuDangKy ON tblPhieuDangKy.tblSinhVientblNguoiDungId = tblsinhvien.id"
                     + " LEFT JOIN tblLopHocPhan ON tblLopHocPhan.id = tblPhieuDangKy.tblLopHocPhanId"
@@ -38,7 +38,6 @@ public class DiemDAO {
                 sv.setSinhVienId(rs.getInt("id"));
                 sv.setTenDangNhap(rs.getString("tenDangNhap"));
                 sv.setHoTen(rs.getString("hoTen"));
-                sv.setMaSinhVien(rs.getString("tenDangNhap"));
                 sv.setDiemCC(Double.parseDouble("-1"));
                 sv.setDiemKT(Double.parseDouble("-1"));
                 sv.setDiemBTL(Double.parseDouble("-1"));

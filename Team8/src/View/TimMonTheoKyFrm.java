@@ -16,6 +16,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -25,14 +26,14 @@ import javax.swing.table.TableColumn;
  *
  * @author TaDuyHieu
  */
-public class TimMonTheoKy extends javax.swing.JFrame implements ActionListener{
+public class TimMonTheoKyFrm extends javax.swing.JFrame implements ActionListener{
     private GiangVien GV;
     private String hocky;
     private String monHoc;
     private ArrayList<MonHoc> listSubject;
     private TrangChuGiangVienFrm parent;
     private ArrayList<JButton> listSelect;
-    public TimMonTheoKy(GiangVien GV, TrangChuGiangVienFrm parent) {
+    public TimMonTheoKyFrm(GiangVien GV, TrangChuGiangVienFrm parent) {
         this.parent = parent;
         this.GV = GV;
         listSelect = new ArrayList<JButton>();
@@ -41,7 +42,7 @@ public class TimMonTheoKy extends javax.swing.JFrame implements ActionListener{
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         btnSearch.addActionListener(this);
         btnBack.addActionListener(this);
-        tableSubject.setModel(new TimMonTheoKy.SubjectTableModel());
+        tableSubject.setModel(new TimMonTheoKyFrm.SubjectTableModel());
         TableCellRenderer buttonRenderer = new JTableButtonRenderer();
         tableSubject.getColumn("Thao tác").setCellRenderer(buttonRenderer);
         tableSubject.addMouseListener(new JTableButtonMouseListener(tableSubject));
@@ -66,6 +67,7 @@ public class TimMonTheoKy extends javax.swing.JFrame implements ActionListener{
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Demo Nhóm 8");
 
         jLabel1.setText("Nhập môn cần tìm kiếm ");
 
@@ -205,10 +207,19 @@ public class TimMonTheoKy extends javax.swing.JFrame implements ActionListener{
     private void btnSearchClick(){
         String KeyMH = txtKeyMH.getText();
         this.hocky = txtKeyHK.getText();
+        if (Integer.parseInt(this.hocky) < 10000 || Integer.parseInt(this.hocky) > 99999) {
+            JOptionPane.showMessageDialog(this, "Nhập sai định dạng học kỳ!!!");
+            return;
+        }
+        
         labelGV.setText("Môn học của giảng viên : " + this.GV.getHoTen());
         labelHK.setText("Học kì : " + hocky);
         MonHocDAO mhd = new MonHocDAO();
         listSubject = mhd.timMonHocTheoKey(this.GV, KeyMH, hocky);
+        if (listSubject.size()==0) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy môn học nào!");
+            return;
+        }
         for(int i = 1; i <= listSubject.size(); i++){
             JButton add = new JButton("Xem");
             add.addActionListener(this);

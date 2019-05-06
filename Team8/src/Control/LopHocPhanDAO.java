@@ -61,7 +61,7 @@ public class LopHocPhanDAO extends DAO{
                  + " LEFT JOIN tblnguoidung ON tblnguoidung.id = tblgiangvien.tblNguoiDungId"
                  + " WHERE tblMonHocId = ?"
                  + " AND tbllichgiangday.tblGiangVientblNguoiDungId = ?"
-                 + " AND tbllophocphan.hocKy = ?)";
+                 + " AND tbllophocphan.hocKy = ?) ORDER BY ten";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, MH.getMonHocId());

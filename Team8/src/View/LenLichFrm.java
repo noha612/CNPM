@@ -57,6 +57,7 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
         tbnluulich.addActionListener(this);
         btnRefresh.addActionListener(this);
         btnTrangChu.addActionListener(this);
+        tm=(DefaultTableModel)tbnbang.getModel();
         
         
     }
@@ -319,7 +320,10 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
     }
 
     private void btnTaoLich() {
-      
+        if(Integer.parseInt(txttuanbd.getText())>Integer.parseInt(txttuankt.getText())||Integer.parseInt(txttuanbd.getText())<1||Integer.parseInt(txttuankt.getText())<1){
+            JOptionPane.showMessageDialog(this, "Tuần bắt đầu hoặc tuần kết thúc nhập sai!");
+        }
+        lgd=new LichGiangDay();
         lgd.setTuanBatDau(Integer.parseInt(txttuanbd.getText()));
         lgd.setTuanKetThuc(Integer.parseInt(txttuankt.getText()));
         lgd.setTblKipHocId(KH.getKipHocId());
@@ -328,6 +332,7 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
         lgd.setTblGiangVientblNguoiDungId(GV.getGiangVienId());
         LGD.add(lgd);
         ttlenlich.setText(ttlenlich.getText());
+        tm.setRowCount(0);
         fillTable();
     }
 
@@ -349,12 +354,11 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
 
     private void fillTable() {
         int stt=0;
-        tm=(DefaultTableModel)tbnbang.getModel();
         tm.setRowCount(LGD.size());
         for(LichGiangDay i:LGD){
             tm.setValueAt(stt+1, stt, 0);
-            tm.setValueAt(lgd.getTuanBatDau(), stt, 1);
-            tm.setValueAt(lgd.getTuanKetThuc(), stt, 2);
+            tm.setValueAt(i.getTuanBatDau(), stt, 1);
+            tm.setValueAt(i.getTuanKetThuc(), stt, 2);
             tm.setValueAt(KH.getThu(), stt, 3);
             tm.setValueAt(KH.getGioBatDau(), stt, 4);
             tm.setValueAt(KH.getGioKetThuc(), stt, 5);

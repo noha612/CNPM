@@ -52,6 +52,7 @@ public class TrangChuGiangVienFrm extends javax.swing.JFrame implements ActionLi
         btnQuayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Demo Nhóm 8");
 
         labelGV.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelGV.setForeground(new java.awt.Color(0, 0, 102));
@@ -122,7 +123,7 @@ public class TrangChuGiangVienFrm extends javax.swing.JFrame implements ActionLi
         JButton btnClicked = (JButton)e.getSource();
         if(btnClicked.equals(btnNhapDiem)){
             this.setVisible(false);
-            (new TimMonTheoKy(this.GV, this)).setVisible(true);
+            (new TimMonTheoKyFrm(this.GV, this)).setVisible(true);
             return;
         }
         if(btnClicked.equals(btnQuayLai)){

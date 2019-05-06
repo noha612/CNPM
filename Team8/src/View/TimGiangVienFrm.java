@@ -68,7 +68,7 @@ public class TimGiangVienFrm extends javax.swing.JFrame implements ActionListene
         btlkq.setRowHeight(20);
         TableColumn col = btlkq.getColumnModel().getColumn(0);
         col.setPreferredWidth(10); 
-        col = btlkq.getColumnModel().getColumn(1);
+        col = btlkq.getColumnModel().getColumn(2);
         col.setPreferredWidth(100);  
     }
 
@@ -292,8 +292,8 @@ public class TimGiangVienFrm extends javax.swing.JFrame implements ActionListene
     
     
     class GiangVienTableModel extends DefaultTableModel {
-        private String[] columnNames = {"STT", "Tên giảng viên", "Học vị", "Ngành", "Khoa", "Chon"};
-        private final Class<?>[] columnTypes = new  Class<?>[] {Integer.class, String.class, String.class, String.class, String.class, JButton.class};
+        private String[] columnNames = {"STT","Mã giảng viên", "Tên giảng viên", "Học vị", "Ngành", "Khoa", "Chon"};
+        private final Class<?>[] columnTypes = new  Class<?>[] {Integer.class, String.class,String.class, String.class, String.class, String.class, JButton.class};
  
         @Override public int getColumnCount() {
             return columnNames.length;
@@ -316,16 +316,18 @@ public class TimGiangVienFrm extends javax.swing.JFrame implements ActionListene
             switch (columnIndex) {
                 case 0: 
                     return rowIndex+1;
-                case 1: 
-                    return listGV.get(rowIndex).getHoTen();
                 case 2: 
-                    return listGV.get(rowIndex).getHocVi();
+                    return listGV.get(rowIndex).getHoTen();
+                case 1: 
+                    return listGV.get(rowIndex).getTenDangNhap();
                 case 3: 
-                    return listGV.get(rowIndex).getNganh();
+                    return listGV.get(rowIndex).getHocVi();
                 case 4: 
+                    return listGV.get(rowIndex).getNganh();
+                case 5: 
                     return listGV.get(rowIndex).getKhoa();
                 
-                case 5:
+                case 6:
                     return listselect.get(rowIndex);
                 default: return "Error";
             }

@@ -106,12 +106,16 @@ public class ThongKeTheoMonHocFrm extends javax.swing.JFrame implements ActionLi
         String x=txtKyBD.getText().toString();
         String y=txtKyKT.getText().toString();
         if(x.compareTo(y)>0){
-            JOptionPane.showMessageDialog(this, "Xin hãy nhập kì bắt đầu trước kì kết thúc");
+            JOptionPane.showMessageDialog(this, "Xin hãy nhập kì bắt đầu trước kì kết thúc!!!");
         }
         else{
+            if(x.equals("") || y.equals("")){
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin kì học để thống kê!!!");
+                return;
+            }
         ThongKeTheoMonHocDAO tk=new ThongKeTheoMonHocDAO();
         ltk=tk.layThongKeTheoMonHoc(x, y);
-        if(ltk.size()==0) JOptionPane.showMessageDialog(this, "Kì đã chọn không có thông tin thống kê, mời nhập lại");
+        if(ltk.size()==0){ JOptionPane.showMessageDialog(this, "Kì đã chọn không có thông tin thống kê, mời nhập lại!!!");return;}
         for(int i = 1; i <= ltk.size(); i++){
             JButton add = new JButton("Xem");
             add.addActionListener(this);

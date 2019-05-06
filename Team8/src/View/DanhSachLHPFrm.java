@@ -28,14 +28,14 @@ import javax.swing.table.TableColumnModel;
  */
 public class DanhSachLHPFrm extends javax.swing.JFrame implements ActionListener{
     private GiangVien GV;
-    private TimMonTheoKy parent;
+    private TimMonTheoKyFrm parent;
     private ArrayList<LopHocPhan> listSubject;
     private ArrayList<JButton> listSelect;
     int idSubject;
     private MonHoc MH;
     private String hocKy;
     
-    public DanhSachLHPFrm(GiangVien GV, String hocKy, MonHoc MH, TimMonTheoKy parent) {
+    public DanhSachLHPFrm(GiangVien GV, String hocKy, MonHoc MH, TimMonTheoKyFrm parent) {
         this.MH = MH;
         this.GV = GV;
         this.hocKy = hocKy;
@@ -75,6 +75,7 @@ public class DanhSachLHPFrm extends javax.swing.JFrame implements ActionListener
         labelHK = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Demo Nhóm 8");
 
         labelDanhSachLopHocPhan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelDanhSachLopHocPhan.setForeground(new java.awt.Color(0, 0, 102));
@@ -103,14 +104,6 @@ public class DanhSachLHPFrm extends javax.swing.JFrame implements ActionListener
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack)
-                .addGap(43, 43, 43))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelDanhSachLopHocPhan, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,6 +113,15 @@ public class DanhSachLHPFrm extends javax.swing.JFrame implements ActionListener
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelHK, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(43, 43, 43))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(labelDanhSachLopHocPhan, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

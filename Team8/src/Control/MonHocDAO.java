@@ -91,7 +91,7 @@ public class MonHocDAO extends DAO{
     
      public ArrayList<MonHoc> GVTimMonTheoTen(String tenMon){
         ArrayList<MonHoc> ListMH=new ArrayList<>();
-        String sql="Select * FROM tblmonhoc WHERE tenMon LIKE ?";
+        String sql="Select * FROM tblmonhoc WHERE tenMon LIKE ? ORDER BY tenMon ASC";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, "%" + tenMon + "%");
@@ -126,7 +126,7 @@ public class MonHocDAO extends DAO{
                      + " LEFT JOIN tblgiangvien ON tblgiangvien.id = tbllichgiangday.tblGiangVientblNguoiDungId"
                      + " WHERE tblmonhoc.tenMon LIKE ?"
                      + " AND tbllophocphan.hocKy = ?"
-                     + " AND tbllichgiangday.tblGiangVientblNguoiDungId = ?)";
+                     + " AND tbllichgiangday.tblGiangVientblNguoiDungId = ?) ORDER BY tenMon ASC";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, "%" + key + "%");
