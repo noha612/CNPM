@@ -1,5 +1,6 @@
 package Control;
 
+import static Control.DAO.getInstance;
 import Model.BangDiem;
 import Model.Diem;
 import java.sql.DriverManager;
@@ -64,28 +65,28 @@ public class BangDiemDAO extends DAO {
 
     public ArrayList<BangDiem> getBangDiemTheoHocLuc(int kyHoc, String hocLuc) {
         ArrayList<BangDiem> rt = new ArrayList<>();
-        String sql = "select tbl2.msv, tbl2.diemTrungBinh from(	select sum(tbl1.diemTongKet*soTinChi)/sum(soTinChi) as diemTrungBinh, tbl1.msv as msv		from (		select tbldiem.maSinhVien as msv,  tblmonhoc.soTinChi, (diemCC*hsChuyenCan + diemKT*hsKiemTra + diemBTL*hsBaiTapLon + diemTH*hsThucHanh + diemCK*hsCuoiKy) as diemTongKet 		from tblmonhoc, tbldiem         where tbldiem.kyHoc=? and tbldiem.tblMonHocId=tblmonhoc.id        ) as tbl1		group by tbl1.msv	) as tbl2 where tbl2.diemTrungBinh >=? and tbl2.diemTrungBinh<? order by tbl2.diemTrungBinh desc";
+        String sql = "select tbl2.msv, tbl2.diemTrungBinh from(		select sum(tbl1.diemTongKet*soTinChi)/sum(soTinChi) as diemTrungBinh, tbl1.msv as msv		    from (				select tblnguoidung.tenDangNhap as msv,  tblmonhoc.soTinChi, (diemCC*hsChuyenCan + diemKT*hsKiemTra + diemBTL*hsBaiTapLon + diemTH*hsThucHanh + diemCK*hsCuoiKy) as diemTongKet 		        from tblmonhoc, tbldiem, tblnguoidung ,tblsinhvien               where tbldiem.kyHoc=? and tbldiem.tblMonHocId=tblmonhoc.id and tblsinhvien.id = tbldiem.tblSinhVientblNguoiDungId and tblnguoidung.id = tblsinhvien.tblNguoiDungId            ) as tbl1			group by tbl1.msv	    ) as tbl2 where tbl2.diemTrungBinh >=? and tbl2.diemTrungBinh<? order by tbl2.diemTrungBinh desc";        
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, kyHoc);
             switch (hocLuc) {
-                case "Yeu":
+                case "Yếu":
                     ps.setDouble(2, 0.0);
                     ps.setDouble(3, 4.0);
                     break;
-                case "Trung Binh":
+                case "Trung Bình":
                     ps.setDouble(2, 4.0);
                     ps.setDouble(3, 6.5);
                     break;
-                case "Kha":
+                case "Khá":
                     ps.setDouble(2, 6.5);
                     ps.setDouble(3, 8.0);
                     break;
-                case "Gioi":
+                case "Giỏi":
                     ps.setDouble(2, 8.0);
                     ps.setDouble(3, 9.0);
                     break;
-                case "Xuat Sac":
+                case "Xuất Sắc":
                     ps.setDouble(2, 9.0);
                     ps.setDouble(3, 10.1);
                     break;
@@ -95,7 +96,7 @@ public class BangDiemDAO extends DAO {
                 BangDiem bd = new BangDiem();
                 String maSinhVien = rs.getString("msv");
                 bd.setTrungBinh(rs.getDouble("diemTrungBinh"));
-                String sql2 = "select tbldiem.*, (diemCC*hsChuyenCan + diemKT*hsKiemTra + diemBTL*hsBaiTapLon + diemTH*hsThucHanh + diemCK*hsCuoiKy) as tongKet from tbldiem,tblmonhoc where tbldiem.kyHoc=? and tbldiem.maSinhVien=? and tbldiem.tblMonHocId=tblmonhoc.id";
+                String sql2 = "select tbldiem.*, (diemCC*hsChuyenCan + diemKT*hsKiemTra + diemBTL*hsBaiTapLon + diemTH*hsThucHanh + diemCK*hsCuoiKy) as tongKet from tbldiem,tblmonhoc, tblnguoidung,tblsinhvien where tbldiem.kyHoc=? and tbldiem.tblSinhVientblNguoiDungId = tblsinhvien.id and tblsinhvien.tblNguoiDungId = tblnguoidung.id and tblnguoidung.tenDangNhap = ? and tbldiem.tblMonHocId=tblmonhoc.id";
                 PreparedStatement ps2 = con.prepareCall(sql2);
                 ps2.setInt(1, kyHoc);
                 ps2.setString(2, maSinhVien);
@@ -110,6 +111,7 @@ public class BangDiemDAO extends DAO {
                     tmp.setDiemCK(rs2.getDouble("diemCK"));
                     tmp.setIdMonHoc(rs2.getInt("tblMonhocId"));
                     tmp.setKyHoc(rs2.getInt("kyHoc"));
+                    tmp.setMaSinhVien(maSinhVien);
                     tmp.setTongKet(rs2.getDouble("tongKet"));
                     listDiem.add(tmp);
                 }

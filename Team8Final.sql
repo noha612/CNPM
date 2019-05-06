@@ -30,7 +30,6 @@ CREATE TABLE `tbldiem` (
   `diemBTL` float DEFAULT NULL,
   `diemCK` float DEFAULT NULL,
   `kyHoc` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `maSinhVien` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `tblMonHocId` int(11) DEFAULT NULL,
   `tblSinhVientblNguoiDungId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -38,7 +37,7 @@ CREATE TABLE `tbldiem` (
   KEY `khoa_ngoai_diem_sinh_vien` (`tblSinhVientblNguoiDungId`),
   CONSTRAINT `khoa_ngoai_diem_sinh_vien` FOREIGN KEY (`tblSinhVientblNguoiDungId`) REFERENCES `tblsinhvien` (`id`) ON DELETE SET NULL,
   CONSTRAINT `khoa_ngoai_mon_hoc_diem` FOREIGN KEY (`tblMonHocId`) REFERENCES `tblmonhoc` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +46,7 @@ CREATE TABLE `tbldiem` (
 
 LOCK TABLES `tbldiem` WRITE;
 /*!40000 ALTER TABLE `tbldiem` DISABLE KEYS */;
-INSERT INTO `tbldiem` VALUES (7,10,9,7,8,9.5,'20171','B16DCCN159',16,3);
+INSERT INTO `tbldiem` VALUES (10,9,9,6,8,9,'20171',1,1),(11,9,8,8,7,9,'20171',1,2),(12,9,10,9,10,9,'20171',1,3),(13,6,7,4,8,8,'20171',1,4),(14,3,3,1,2,2,'20171',1,5),(15,6,7,9,8,7,'20171',1,9),(16,6,8,9,6,5,'20171',1,10),(17,9,9,10,9,10,'20171',1,11),(18,9,9,9,8,9,'20171',1,12),(19,3,4,2,6,8,'20171',1,13),(20,8,7,5,6,4,'20171',1,14),(21,2,2,1,1,1,'20171',1,15),(22,1,1,6,2,1,'20171',1,16),(23,7,6,8,3,8,'20171',1,17),(24,8,5,5,3,2,'20171',1,18),(25,9,7,8,6,9,'20171',30,1),(26,9,8,9,9,9,'20171',30,2),(27,10,9,9,9,10,'20171',30,3),(28,7,4,8,7,4,'20171',30,4),(29,1,6,4,5,3,'20171',30,5),(30,8,6,2,3,6,'20171',30,9),(31,2,1,2,3,1,'20171',30,10),(32,7,7,7,4,2,'20171',30,11),(33,9,9,1,1,1,'20171',30,12),(34,9,9,9,7,9,'20171',30,13),(35,1,3,3,3,3,'20171',30,14),(36,7,6,4,4,3,'20171',30,15),(37,5,4,7,4,5,'20171',30,16),(38,7,4,4,6,5,'20171',30,17),(39,6,7,7,8,7,'20171',30,18),(40,9,8,5,6,6,'20171',22,1),(41,8,9,8,8,8,'20171',22,2),(42,8,9,9,9,10,'20171',22,3),(43,6,6,7,7,6,'20171',22,4),(44,1,2,4,3,1,'20171',22,5),(45,8,6,5,7,3,'20171',22,9),(46,5,7,5,5,4,'20171',22,10),(47,9,9,9,9,9,'20171',22,11),(48,2,1,3,2,2,'20171',22,12),(49,1,2,3,2,1,'20171',22,13),(50,1,2,2,3,1,'20171',22,14),(51,2,3,5,4,6,'20171',22,15),(52,4,3,7,5,8,'20171',22,16),(53,6,7,8,8,7,'20171',22,17),(54,9,9,9,9,8,'20171',22,18),(55,6,7,6,8,7,'20171',9,1),(56,8,7,8,6,7,'20171',9,2),(57,9,9,8,10,9,'20171',9,3),(58,9,9,9,8,10,'20171',9,4),(59,1,2,3,3,2,'20171',9,5),(60,2,1,3,2,2,'20171',9,9),(61,2,4,6,5,7,'20171',9,10),(62,6,7,7,5,7,'20171',9,11),(63,9,8,9,8,9,'20171',9,12),(64,8,9,9,8,8,'20171',9,13),(65,5,7,5,5,5,'20171',9,14),(66,1,1,2,1,3,'20171',9,15),(67,2,3,2,4,3,'20171',9,16),(68,6,7,8,8,7,'20171',9,17),(69,9,8,9,8,9,'20171',9,18);
 /*!40000 ALTER TABLE `tbldiem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +130,7 @@ CREATE TABLE `tbllichgiangday` (
   CONSTRAINT `khoa_ngoai_kip_hoc` FOREIGN KEY (`tblKipHocId`) REFERENCES `tblkiphoc` (`id`),
   CONSTRAINT `khoa_ngoai_lop_hoc_phan` FOREIGN KEY (`tblLopHocPhanId`) REFERENCES `tbllophocphan` (`id`),
   CONSTRAINT `khoa_ngoai_phong_hoc` FOREIGN KEY (`tblPhongHocId`) REFERENCES `tblphonghoc` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +139,7 @@ CREATE TABLE `tbllichgiangday` (
 
 LOCK TABLES `tbllichgiangday` WRITE;
 /*!40000 ALTER TABLE `tbllichgiangday` DISABLE KEYS */;
-INSERT INTO `tbllichgiangday` VALUES (16,11,33,4,2,35,3),(17,11,22,4,3,35,6);
+INSERT INTO `tbllichgiangday` VALUES (21,1,15,1,1,16,12),(22,1,15,7,1,17,12),(23,1,15,13,1,18,12),(24,1,15,13,2,12,1),(25,1,15,7,2,13,1),(26,1,15,19,1,14,1),(27,1,15,25,1,15,1),(28,1,15,2,1,52,21),(29,1,15,8,1,53,21),(30,1,15,14,1,54,21),(31,1,15,14,2,76,2),(32,1,15,20,1,77,2),(33,1,15,26,1,78,2);
 /*!40000 ALTER TABLE `tbllichgiangday` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,7 +206,7 @@ CREATE TABLE `tblmonhoc` (
 
 LOCK TABLES `tblmonhoc` WRITE;
 /*!40000 ALTER TABLE `tblmonhoc` DISABLE KEYS */;
-INSERT INTO `tblmonhoc` VALUES (1,'INT1340','Nhập môn Công nghệ phần mềm',3,45,0,0,0.1,0.1,0,0.2,0.6,NULL,'CNPM','CNTT'),(4,'INT1362','Xử lý ảnh',2,45,0,0,0.1,0.1,0.1,0,0.7,NULL,NULL,'CNTT'),(7,'TST1111','13 Tín Chỉ',13,100,0,0,0,0,0,0,1,NULL,NULL,'CB'),(9,'BAS1141','Tiếng Anh A11',4,45,0,0,0,0,0,0,1,NULL,NULL,'CB'),(10,'BAS1142','Tiếng Anh A12',4,45,0,0,0,0,0,0,1,NULL,NULL,'CB'),(11,'BAS1143','Tiếng Anh A21',4,45,0,0,0,0,0,0,1,NULL,NULL,'CB'),(12,'BAS1144','Tiếng Anh A22',4,45,0,0,0,0,0,0,1,NULL,NULL,'CB'),(14,'INT1341','Nhập môn trí tuệ nhân tạo',3,45,0,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(15,'INT1336','Mạng máy tính',3,40,0,5,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT'),(16,'INT1328','Kỹ thuật đồ họa',3,45,0,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(17,'INT1303','An toàn bảo mật hệ thống thông tin',3,40,0,5,0.1,0.1,0,0.2,0.6,NULL,NULL,'CNTT'),(18,'INT1332','Lập trình hướng đối tượng',3,45,0,8,0.1,0.2,0.2,0,0.5,NULL,NULL,'CNTT'),(19,'INT1306','Cấu trúc dữ liệu và giải thuật',3,45,0,0,0.1,0.2,0.2,0,0.5,NULL,NULL,'CNTT'),(20,'INT1358','Toán rời rạc 1',3,45,0,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(21,'INT1359','Toán rời rạc 2',3,45,0,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(22,'INT1313','Cơ sở dữ liệu',3,40,0,5,0.1,0.1,0,0.2,0.6,NULL,NULL,'CNTT'),(23,'INT1319','Hệ điều hành',3,40,0,5,0.1,0.1,0.1,0,0.7,NULL,NULL,'CNTT'),(24,'INT1330','Kĩ thuật vi xử lý',3,45,0,0,0.1,0.1,0,0.2,0.6,NULL,NULL,'CNTT'),(25,'INT1154','Tin học cơ sở 1',3,35,0,10,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT'),(26,'INT1155','Tin học cơ sở 2',3,35,0,0,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT'),(27,'INT1339','Ngôn ngữ lập trình C++',3,35,0,0,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT'),(28,'ELE1330','Xử lý tín hiệu số',3,45,0,0,0.1,0.1,0,0.2,0.6,NULL,NULL,'CNTT'),(29,'ELE1319','Lý thuyết thông tin',3,45,0,0,0.1,0.1,0,0.2,0.6,NULL,NULL,'CNTT'),(30,'BAS1324','Vật lý 1 và thí nghiệm',3,40,0,5,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT'),(31,'BAS1327','Vật lý 3 và thí nghiệm',3,40,0,5,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT');
+INSERT INTO `tblmonhoc` VALUES (1,'INT1340','Nhập môn Công nghệ phần mềm',3,45,0,0,0.1,0.1,0,0.2,0.6,NULL,'CNPM','CNTT'),(4,'INT1362','Xử lý ảnh',2,45,0,0,0.1,0.1,0.1,0,0.7,NULL,NULL,'CNTT'),(7,'TST1111','13 Tín Chỉ',13,100,0,0,0,0,0,0,1,NULL,NULL,'CB'),(9,'BAS1141','Tiếng Anh A11',4,45,0,0,0,0,0,0,1,NULL,NULL,'CB'),(10,'BAS1142','Tiếng Anh A12',4,45,0,0,0,0,0,0,1,NULL,NULL,'CB'),(11,'BAS1143','Tiếng Anh A21',4,45,0,0,0,0,0,0,1,NULL,NULL,'CB'),(12,'BAS1144','Tiếng Anh A22',4,45,0,0,0,0,0,0,1,NULL,NULL,'CB'),(14,'INT1341','Nhập môn trí tuệ nhân tạo',3,45,0,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(15,'INT1336','Mạng máy tính',3,40,0,5,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT'),(16,'INT1328','Kỹ thuật đồ họa',3,45,0,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(17,'INT1303','An toàn bảo mật hệ thống thông tin',3,40,0,5,0.1,0.1,0,0.2,0.6,NULL,NULL,'CNTT'),(18,'INT1332','Lập trình hướng đối tượng',3,45,0,8,0.1,0.2,0.2,0,0.5,NULL,NULL,'CNTT'),(19,'INT1306','Cấu trúc dữ liệu và giải thuật',3,45,0,0,0.1,0.2,0.2,0,0.5,NULL,NULL,'CNTT'),(20,'INT1358','Toán rời rạc 1',3,45,0,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(21,'INT1359','Toán rời rạc 2',3,45,0,0,0.1,0.1,0,0.1,0.7,NULL,NULL,'CNTT'),(22,'INT1313','Cơ sở dữ liệu',3,40,0,5,0.1,0.1,0,0.2,0.6,NULL,NULL,'CNTT'),(23,'INT1319','Hệ điều hành',3,40,0,5,0.1,0.1,0.1,0,0.7,NULL,NULL,'CNTT'),(24,'INT1330','Kĩ thuật vi xử lý',3,45,0,0,0.1,0.1,0,0.2,0.6,NULL,NULL,'CNTT'),(25,'INT1154','Tin học cơ sở 1',3,35,0,10,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT'),(26,'INT1155','Tin học cơ sở 2',3,35,0,0,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT'),(27,'INT1339','Ngôn ngữ lập trình C++',3,35,0,0,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT'),(28,'ELE1330','Xử lý tín hiệu số',3,45,0,0,0.1,0.1,0,0.2,0.6,NULL,NULL,'CNTT'),(29,'ELE1319','Lý thuyết thông tin',3,45,0,0,0.1,0.1,0,0.2,0.6,NULL,NULL,'CNTT'),(30,'BAS1324','Vật lý 1 và thí nghiệm',4,40,0,5,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT'),(31,'BAS1327','Vật lý 3 và thí nghiệm',4,40,0,5,0.1,0.1,0.2,0,0.6,NULL,NULL,'CNTT');
 /*!40000 ALTER TABLE `tblmonhoc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,7 +258,7 @@ CREATE TABLE `tblphieudangky` (
   KEY `khoa_ngoai_sinh_vien_phieu_dang_ky` (`tblSinhVientblNguoiDungId`),
   CONSTRAINT `khoa_ngoai_lop_hoc_phan_phieu_dang_ki` FOREIGN KEY (`tblLopHocPhanId`) REFERENCES `tbllophocphan` (`id`) ON DELETE SET NULL,
   CONSTRAINT `khoa_ngoai_sinh_vien_phieu_dang_ky` FOREIGN KEY (`tblSinhVientblNguoiDungId`) REFERENCES `tblsinhvien` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -268,7 +267,7 @@ CREATE TABLE `tblphieudangky` (
 
 LOCK TABLES `tblphieudangky` WRITE;
 /*!40000 ALTER TABLE `tblphieudangky` DISABLE KEYS */;
-INSERT INTO `tblphieudangky` VALUES (112,'Sun May 05 22:52:44 ICT 2019',435000,35,3),(113,'Sun May 05 22:52:44 ICT 2019',435000,10,3);
+INSERT INTO `tblphieudangky` VALUES (118,'Mon May 06 14:06:23 ICT 2019',435000,16,1),(119,'Mon May 06 14:06:23 ICT 2019',435000,12,1),(120,'Mon May 06 14:06:23 ICT 2019',435000,76,1),(121,'Mon May 06 14:06:23 ICT 2019',435000,52,1),(122,'Mon May 06 14:07:24 ICT 2019',435000,52,2),(123,'Mon May 06 14:07:24 ICT 2019',435000,16,2),(124,'Mon May 06 14:07:24 ICT 2019',435000,76,2),(125,'Mon May 06 14:07:24 ICT 2019',435000,12,2),(126,'Mon May 06 14:08:44 ICT 2019',435000,52,3),(127,'Mon May 06 14:08:44 ICT 2019',435000,12,3),(128,'Mon May 06 14:08:44 ICT 2019',435000,16,3),(129,'Mon May 06 14:08:44 ICT 2019',435000,76,3),(130,'Mon May 06 14:09:27 ICT 2019',435000,52,4),(131,'Mon May 06 14:09:27 ICT 2019',435000,12,4),(132,'Mon May 06 14:09:27 ICT 2019',435000,16,4),(133,'Mon May 06 14:09:27 ICT 2019',435000,76,4),(134,'Mon May 06 14:10:04 ICT 2019',435000,52,5),(135,'Mon May 06 14:10:04 ICT 2019',435000,12,5),(136,'Mon May 06 14:10:04 ICT 2019',435000,16,5),(137,'Mon May 06 14:10:04 ICT 2019',435000,76,5),(138,'Mon May 06 14:13:57 ICT 2019',435000,53,9),(139,'Mon May 06 14:13:57 ICT 2019',435000,14,9),(140,'Mon May 06 14:13:57 ICT 2019',435000,17,9),(141,'Mon May 06 14:13:57 ICT 2019',435000,77,9),(142,'Mon May 06 14:16:14 ICT 2019',435000,53,10),(143,'Mon May 06 14:16:14 ICT 2019',435000,14,10),(144,'Mon May 06 14:16:14 ICT 2019',435000,17,10),(145,'Mon May 06 14:16:14 ICT 2019',435000,77,10),(146,'Mon May 06 14:17:11 ICT 2019',435000,53,11),(147,'Mon May 06 14:17:11 ICT 2019',435000,14,11),(148,'Mon May 06 14:17:11 ICT 2019',435000,17,11),(149,'Mon May 06 14:17:11 ICT 2019',435000,77,11),(150,'Mon May 06 14:18:29 ICT 2019',435000,53,12),(151,'Mon May 06 14:18:29 ICT 2019',435000,14,12),(152,'Mon May 06 14:18:29 ICT 2019',435000,17,12),(153,'Mon May 06 14:18:29 ICT 2019',435000,77,12),(154,'Mon May 06 14:19:10 ICT 2019',435000,53,13),(155,'Mon May 06 14:19:10 ICT 2019',435000,14,13),(156,'Mon May 06 14:19:10 ICT 2019',435000,17,13),(157,'Mon May 06 14:19:10 ICT 2019',435000,77,13),(158,'Mon May 06 14:20:17 ICT 2019',435000,54,14),(159,'Mon May 06 14:20:17 ICT 2019',435000,15,14),(160,'Mon May 06 14:20:17 ICT 2019',435000,18,14),(161,'Mon May 06 14:20:17 ICT 2019',435000,78,14),(162,'Mon May 06 14:21:26 ICT 2019',435000,54,15),(163,'Mon May 06 14:21:26 ICT 2019',435000,15,15),(164,'Mon May 06 14:21:26 ICT 2019',435000,18,15),(165,'Mon May 06 14:21:26 ICT 2019',435000,78,15),(166,'Mon May 06 14:22:11 ICT 2019',435000,54,16),(167,'Mon May 06 14:22:11 ICT 2019',435000,15,16),(168,'Mon May 06 14:22:11 ICT 2019',435000,18,16),(169,'Mon May 06 14:22:11 ICT 2019',435000,78,16),(170,'Mon May 06 14:22:56 ICT 2019',435000,54,17),(171,'Mon May 06 14:22:56 ICT 2019',435000,15,17),(172,'Mon May 06 14:22:56 ICT 2019',435000,18,17),(173,'Mon May 06 14:22:56 ICT 2019',435000,78,17),(174,'Mon May 06 14:23:47 ICT 2019',435000,54,18),(175,'Mon May 06 14:23:47 ICT 2019',435000,15,18),(176,'Mon May 06 14:23:47 ICT 2019',435000,18,18),(177,'Mon May 06 14:23:47 ICT 2019',435000,78,18);
 /*!40000 ALTER TABLE `tblphieudangky` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,4 +369,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-05 23:06:29
+-- Dump completed on 2019-05-06 15:55:49

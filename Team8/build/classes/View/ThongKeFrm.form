@@ -24,26 +24,25 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Component id="btnTKHocLuc" min="-2" pref="209" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="161" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="161" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnTKDiem" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnTKHocLuc" min="-2" pref="209" max="-2" attributes="0"/>
+                          <Component id="btnTKDiem" min="-2" pref="209" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
               </Group>
+              <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,12 +76,18 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnTKDiem">
       <Properties>
-        <Property name="text" type="java.lang.String" value="TH&#x1ed0;NG K&#xca; M&#xd4;N H&#x1ecc;C THEO K&#x1ebe;T QU&#x1ea2;"/>
+        <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea; theo M&#xf4;n h&#x1ecd;c"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnTKHocLuc">
       <Properties>
-        <Property name="text" type="java.lang.String" value="TH&#x1ed0;NG K&#xca; THEO H&#x1ecc;C L&#x1ef0;C"/>
+        <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea; theo H&#x1ecd;c l&#x1ef1;c"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[209, 23]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[209, 23]"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnBack">

@@ -57,7 +57,7 @@ public class DiemDAO {
             boolean exist = checkTonTaiDiem (a.getSinhVienId(), a.getIdMonHoc());
             if (exist == true) {
                 String sql = "UPDATE tbldiem"
-                             + " SET diemCC = ?, diemKT= ?, diemTH = ?, diemBTL = ?, diemCK = ?, kyHoc = ?, maSinhVien = ?"
+                             + " SET diemCC = ?, diemKT= ?, diemTH = ?, diemBTL = ?, diemCK = ?, kyHoc = ?"
                              + " WHERE tblMonHocId = ?"
                              + " AND tblSinhVientblNguoiDungId = ?";
                 try {
@@ -68,17 +68,16 @@ public class DiemDAO {
                     ps.setDouble(4, a.getDiemBTL());
                     ps.setDouble(5, a.getDiemCK());
                     ps.setString(6, a.getKyHoc()+"");
-                    ps.setString(7, a.getMaSinhVien());
-                    ps.setInt(8, a.getIdMonHoc());
-                    ps.setInt(9, a.getSinhVienId());
+                    ps.setInt(7, a.getIdMonHoc());
+                    ps.setInt(8, a.getSinhVienId());
                     ps.executeUpdate();         
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
             else{
-                String sql = "INSERT INTO tbldiem(diemCC, diemKT, diemTH, diemBTL, diemCK, kyHoc, maSinhVien, tblMonHocId, tblSinhVientblNguoiDungId)"
-                            + " VALUES (?,?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO tbldiem(diemCC, diemKT, diemTH, diemBTL, diemCK, kyHoc, tblMonHocId, tblSinhVientblNguoiDungId)"
+                            + " VALUES (?,?,?,?,?,?,?,?)";
                 try {
                     PreparedStatement ps=con.prepareStatement(sql);
                     ps.setDouble(1, a.getDiemCC());
@@ -87,9 +86,8 @@ public class DiemDAO {
                     ps.setDouble(4, a.getDiemBTL());
                     ps.setDouble(5, a.getDiemCK());
                     ps.setString(6, a.getKyHoc()+"");
-                    ps.setString(7, a.getMaSinhVien());
-                    ps.setInt(8, a.getIdMonHoc());
-                    ps.setInt(9, a.getSinhVienId());
+                    ps.setInt(7, a.getIdMonHoc());
+                    ps.setInt(8, a.getSinhVienId());
                     ps.executeUpdate();         
                 } catch (Exception e) {
                     e.printStackTrace();

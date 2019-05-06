@@ -135,6 +135,10 @@ public class TimMonFrm extends javax.swing.JFrame implements ActionListener{
     private void btnTimKiemClicked(){
         MonHocDAO mhDAO=new MonHocDAO();
         ListMH=mhDAO.TimMonTheoTen(txtTenMon.getText());
+        if(ListMH.size()==0){
+            JOptionPane.showMessageDialog(this, "Không tìm thấy môn học nào!");
+            return ;
+        }
         if(ListMH.size()==0)JOptionPane.showMessageDialog(this, "Không tìm thấy môn học nào!");
         else fillTable(ListMH);
     }

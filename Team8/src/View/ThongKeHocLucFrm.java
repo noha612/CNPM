@@ -34,7 +34,7 @@ public class ThongKeHocLucFrm extends javax.swing.JFrame implements ActionListen
         btnBack.addActionListener(this);
         tblSoLuong.setModel(new SoLuongTableModel());
         TableCellRenderer buttonRenderer = new JTableButtonRenderer();
-        tblSoLuong.getColumn("Xem Danh Sach").setCellRenderer(buttonRenderer);
+        tblSoLuong.getColumn("Xem Danh Sách").setCellRenderer(buttonRenderer);
         tblSoLuong.addMouseListener(new JTableButtonMouseListener(tblSoLuong));
         this.setLocation(300,150);
     }
@@ -180,7 +180,7 @@ public class ThongKeHocLucFrm extends javax.swing.JFrame implements ActionListen
         try{
             kyHoc = Integer.parseInt(txtKyHoc.getText());
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(rootPane, "nhap sai dinh dang");
+            JOptionPane.showMessageDialog(rootPane, "Nhập sai định dạng");
             e.printStackTrace();
             return;
         }
@@ -212,18 +212,18 @@ public class ThongKeHocLucFrm extends javax.swing.JFrame implements ActionListen
     private void btnDetailClick(int i){
         this.setVisible(false);
         switch(i){
-            case 0: (new DanhSachThongKeFrm(kyHoc, "Xuat Sac", this)).setVisible(true); break;
-            case 1: (new DanhSachThongKeFrm(kyHoc, "Gioi", this)).setVisible(true); break;
-            case 2: (new DanhSachThongKeFrm(kyHoc, "Kha", this)).setVisible(true); break;
-            case 3: (new DanhSachThongKeFrm(kyHoc, "Trung Binh", this)).setVisible(true); break;
-            case 4: (new DanhSachThongKeFrm(kyHoc, "Yeu", this)).setVisible(true); break;
+            case 0: (new DanhSachThongKeFrm(kyHoc, "Xuất Sắc", this)).setVisible(true); break;
+            case 1: (new DanhSachThongKeFrm(kyHoc, "Giỏi", this)).setVisible(true); break;
+            case 2: (new DanhSachThongKeFrm(kyHoc, "Khá", this)).setVisible(true); break;
+            case 3: (new DanhSachThongKeFrm(kyHoc, "Trung Bình", this)).setVisible(true); break;
+            case 4: (new DanhSachThongKeFrm(kyHoc, "Yếu", this)).setVisible(true); break;
         }
     }
     
     class SoLuongTableModel extends DefaultTableModel{
-        private String[] columnNames = {"STT", "Hoc Luc", "So Luong", "Xem Danh Sach"};
+        private String[] columnNames = {"STT", "Họcc Lực", "Số Lượng", "Xem Danh Sách"};
         private final Class<?>[] columnTypes = new Class<?>[] {Integer.class, String.class, Integer.class, JButton.class};
-        private final String[] h = {"Xuat Sac", "Gioi", "Kha", "Trung Binh", "Yeu"};
+        private final String[] h = {"Xuất Sắc", "Giỏi", "Khá", "Trung Bình", "Yếu"};
         @Override public int getColumnCount() {
             return 4;
         }

@@ -20,7 +20,7 @@ public class DAO {
     
     protected static void getInstance(){
         if(con==null){
-            String dbUrl="jdbc:mysql://localhost:3306/test";
+            String dbUrl="jdbc:mysql://localhost:3306/qltc";
             String dbClass = "com.mysql.cj.jdbc.Driver";
             try{
                 Class.forName(dbClass);

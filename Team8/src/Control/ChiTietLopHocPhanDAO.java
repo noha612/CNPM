@@ -26,7 +26,17 @@ public class ChiTietLopHocPhanDAO extends DAO{
     public ArrayList<ChiTietLopHocPhan> layDiem(String maLop, String hocKy){
         ArrayList<ChiTietLopHocPhan> ltk=null;
         ltk=new ArrayList<>();
-        String sql="SELECT DISTINCT tblnguoidung.hoTen AS HoTen, tbldiem.diemCC AS DiemCC,tbldiem.diemKT AS DiemKT,tbldiem.diemTH AS DiemTH,tbldiem.diemBTL AS DiemBTL,tbldiem.diemCK AS DiemCK, (diemCC*hsChuyenCan+diemBTL*hsBaiTapLon+diemKT*hsKiemTra+diemTH*hsThucHanh+diemCK*hsCuoiKy) AS DiemTB  FROM tblsinhvien,tblmonhoc,tbldiem,tblnguoidung,tbllophocphan,tblphieudangky WHERE tbldiem.tblMonHocId=tblmonhoc.id AND tblnguoidung.id=tblsinhvien.tblNguoiDungId AND tbldiem.tblSinhVientblNguoiDungId=tblsinhvien.id AND tblmonhoc.id=tbllophocphan.tblMonHocId  AND tbllophocphan.id=? AND tbldiem.kyHoc=? ORDER BY DiemTB DESC, HoTen ASC";
+        String sql="SELECT tblnguoidung.hoTen AS HoTen, tbldiem.diemCC AS DiemCC,tbldiem.diemKT AS DiemKT,tbldiem.diemTH AS DiemTH,tbldiem.diemBTL AS DiemBTL,tbldiem.diemCK AS DiemCK, (diemCC*hsChuyenCan+diemBTL*hsBaiTapLon+diemKT*hsKiemTra+diemTH*hsThucHanh+diemCK*hsCuoiKy) AS DiemTB " +
+                    "FROM tblsinhvien,tblmonhoc,tbldiem,tblnguoidung,tbllophocphan,tblphieudangky " +
+                        "WHERE tbldiem.tblMonHocId=tblmonhoc.id " +
+                        "AND tblphieudangky.tblSinhVientblNguoiDungId=tbldiem.tblSinhVientblNguoiDungId " +
+                        "AND tblphieudangky.tblLopHocPhanId=tbllophocphan.id " +
+                        "AND tblnguoidung.id=tblsinhvien.tblNguoiDungId " +
+                        "AND tbldiem.tblSinhVientblNguoiDungId=tblsinhvien.id " +
+                        "AND tblmonhoc.id=tbllophocphan.tblMonHocId  " +
+                        "AND tbllophocphan.id= ? " +
+                        "AND tbldiem.kyHoc=? " +
+                    "ORDER BY DiemTB DESC, HoTen ASC";
         try{
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, maLop);

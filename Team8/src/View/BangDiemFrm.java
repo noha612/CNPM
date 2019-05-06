@@ -151,7 +151,7 @@ public class BangDiemFrm extends javax.swing.JFrame{
 
     private void fillTable(){
         bd.sapXep();
-        String head[] = {"STT", "Mon", "So Tin Chi", "DiemCC", "DiemKT", "DiemBTL", "DiemTH", "DiemCK", "TongKet"};
+        String head[] = {"STT", "Môn", "Số Tín Chỉ", "CC", "KT", "BTL", "TH", "CK", "Tổng Kết"};
         DefaultTableModel tb = new DefaultTableModel(head, 0);
         bangDiem.setModel(tb);
         int tt = 1;

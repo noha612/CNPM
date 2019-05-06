@@ -47,7 +47,7 @@ public class GiangVienDAO extends DAO{
     
     public ArrayList<GiangVien> TimGVTheoKhoa(String tenKhoa){
         ArrayList<GiangVien> ListGV =new ArrayList<>();
-        String sql = "select tblgiangvien.*, tblnguoidung.* From tblgiangvien, tblnguoidung where  tblgiangvien.tblNguoiDungId = tblnguoidung.id and tblgiangvien.khoa = ?";
+        String sql = "select tblgiangvien.*, tblnguoidung.* From tblgiangvien, tblnguoidung where  tblgiangvien.tblNguoiDungId = tblnguoidung.id and tblgiangvien.khoa = ? ORDER BY hoTen ASC";
       //  String sql="Select * FROM tblgiangvien WHERE khoa LIKE ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);

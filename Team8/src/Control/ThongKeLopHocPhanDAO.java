@@ -23,7 +23,18 @@ public class ThongKeLopHocPhanDAO extends DAO{
     public ArrayList<ThongKeLopHocPhan> layThongKeLopHocPhan(String kyBD,String kyKT, Integer monHocID){
         ArrayList<ThongKeLopHocPhan> ltk=null;
         ltk=new ArrayList<>();
-        String sql="SELECT tbllophocphan.id AS maLop,tbllophocphan.hocKy AS hocKy,tbllophocphan.ten AS LopHocPhan,tblnguoidung.hoTen AS GiangVien,Z.sySo AS Syso, X.Tong/Z.sySo AS DiemTB,Y.QuaMon/Z.sySo*100 AS TyLe  FROM tbllophocphan,tblnguoidung,tbllichgiangday, tblgiangvien,(SELECT tblLopHocPhanId AS C,COUNT(id) AS sySo FROM  tblphieudangky GROUP BY tblLopHocPhanId) AS Z, (SELECT tbllophocphan.id AS A, SUM(diemCC*hsChuyenCan+diemBTL*hsBaiTapLon+diemKT*hsKiemTra+diemTH*hsThucHanh+diemCK*hsCuoiKy) AS Tong FROM tbldiem,tblmonhoc,tbllophocphan WHERE kyHoc >= ? AND kyHoc <= ? AND  tbldiem.tblMonHocId=? AND tblmonhoc.id=tbldiem.tblMonHocId AND tbllophocphan.tblMonHocId=tblmonhoc.id GROUP BY tbllophocphan.id ) AS X,  (SELECT tbllophocphan.id AS B, COUNT(tbldiem.tblSinhVientblNguoiDungId) AS QuaMon FROM tbldiem,tblmonhoc,tbllophocphan  WHERE kyHoc >=?  AND kyHoc <= ? AND  tbldiem.tblMonHocId=? AND tblmonhoc.id=tbldiem.tblMonHocId  AND tbllophocphan.tblMonHocId=tblmonhoc.id  AND (diemCC*hsChuyenCan+diemBTL*hsBaiTapLon+diemKT*hsKiemTra+diemTH*hsThucHanh+diemCK*hsCuoiKy)>=4 GROUP BY tbllophocphan.id ) AS Y  WHERE X.A=Y.B AND tbllophocphan.id=X.A  AND tbllophocphan.id=tbllichgiangday.tblLopHocPhanId  AND tblgiangvien.id=tbllichgiangday.tblGiangVientblNguoiDungId AND tblgiangvien.tblNguoiDungId=tblnguoidung.id AND Z.C=tbllichgiangday.tblLopHocPhanId  ORDER BY TyLe DESC,Syso ASC";
+        String sql="SELECT tbllophocphan.id AS maLop,tbllophocphan.hocKy AS hocKy,tbllophocphan.ten AS LopHocPhan,tblnguoidung.hoTen AS GiangVien,Z.sySo AS Syso, X.Tong/Z.sySo AS DiemTB,Y.QuaMon/Z.sySo*100 AS TyLe " +
+                   "FROM tbllophocphan,tblnguoidung,tbllichgiangday, tblgiangvien, " +
+                        "(SELECT tblLopHocPhanId AS C,COUNT(id) AS sySo FROM  tblphieudangky GROUP BY tblLopHocPhanId) AS Z," +
+                        "(SELECT tbllophocphan.id AS A, SUM(diemCC*hsChuyenCan+diemBTL*hsBaiTapLon+diemKT*hsKiemTra+diemTH*hsThucHanh+diemCK*hsCuoiKy) AS Tong FROM tbldiem,tblmonhoc,tbllophocphan,tblphieudangky WHERE kyHoc >= ? AND kyHoc <= ? AND tblphieudangky.tblLopHocPhanId=tbllophocphan.id AND tblphieudangky.tblSinhVientblNguoiDungId=tbldiem.tblSinhVientblNguoiDungId AND  tbldiem.tblMonHocId=? AND tblmonhoc.id=tbldiem.tblMonHocId AND tbllophocphan.tblMonHocId=tblmonhoc.id GROUP BY tbllophocphan.id ) AS X, " +
+                        "(SELECT tbllophocphan.id AS B, COUNT(tbldiem.tblSinhVientblNguoiDungId) AS QuaMon FROM tbldiem,tblmonhoc,tbllophocphan,tblphieudangky  WHERE kyHoc >=?  AND kyHoc <= ? AND tblphieudangky.tblLopHocPhanId=tbllophocphan.id AND tblphieudangky.tblSinhVientblNguoiDungId=tbldiem.tblSinhVientblNguoiDungId AND  tbldiem.tblMonHocId=? AND tblmonhoc.id=tbldiem.tblMonHocId  AND tbllophocphan.tblMonHocId=tblmonhoc.id  AND (diemCC*hsChuyenCan+diemBTL*hsBaiTapLon+diemKT*hsKiemTra+diemTH*hsThucHanh+diemCK*hsCuoiKy)>=4 GROUP BY tbllophocphan.id ) AS Y " +
+                    "  WHERE X.A=Y.B " +
+                        "  AND tbllophocphan.id=X.A " +
+                        "  AND tbllophocphan.id=tbllichgiangday.tblLopHocPhanId " +
+                        "  AND tblgiangvien.id=tbllichgiangday.tblGiangVientblNguoiDungId " +
+                        "  AND tblgiangvien.tblNguoiDungId=tblnguoidung.id " +
+                        "  AND Z.C=tbllichgiangday.tblLopHocPhanId " +
+                        "  ORDER BY TyLe DESC,Syso ASC;";
         try{
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, kyBD);

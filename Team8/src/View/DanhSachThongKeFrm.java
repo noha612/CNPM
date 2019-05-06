@@ -38,7 +38,7 @@ public class DanhSachThongKeFrm extends javax.swing.JFrame implements ActionList
         jlbHeader.setText("Danh sách sinh viên học lực:  "  + this.hocLuc + "      Kỳ: " + this.kyHoc%10 + " - Năm học: " + this.kyHoc/10);
         tblDanhSach.setModel(new DanhSachTableModel());
         TableCellRenderer btnRenderer = new JTableButtonRenderer();
-        tblDanhSach.getColumn("Xem Bang Diem").setCellRenderer(btnRenderer);
+        tblDanhSach.getColumn("Xem Bảng Điểm").setCellRenderer(btnRenderer);
         tblDanhSach.addMouseListener(new JTableButtonMouseListener(tblDanhSach));
         fillTable();
         this.setLocation(300,150);
@@ -182,7 +182,7 @@ public class DanhSachThongKeFrm extends javax.swing.JFrame implements ActionList
     }
     
      class DanhSachTableModel extends DefaultTableModel{
-        private String[] columnNames = {"STT", "Ma Sinh Vien", "Ho Ten", "Lop", "Diem Trung Binh", "Xem Bang Diem"};
+        private String[] columnNames = {"STT", "Mã Sinh Viên", "Họ Tên", "Lớp", "Điểm Trung Bình", "Xem Bảng Điểm"};
         private final Class<?>[] columnTypes = new Class<?>[]{Integer.class, String.class, String.class, String.class, Double.class, JButton.class};
         
         @Override public int getColumnCount() {
