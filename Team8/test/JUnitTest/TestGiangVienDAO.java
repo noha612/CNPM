@@ -6,6 +6,8 @@
 package JUnitTest;
 import Control.GiangVienDAO;
 import Model.GiangVien;
+import Model.NguoiDung;
+import java.util.ArrayList;
 import org.junit.*;
 /**
  *
@@ -35,6 +37,68 @@ public class TestGiangVienDAO {
         Assert.assertEquals("CNTT",gv.getKhoa());
         Assert.assertEquals("CNTT",gv.getNganh());
         Assert.assertEquals("Tiến Sĩ",gv.getHocVi());
-        Assert.assertEquals(null,gv.getBoMon());
+        Assert.assertEquals("x",gv.getBoMon());
     }
+    @Test
+    public void testGVTimGiangVien(){
+        GiangVienDAO gvDAO=new GiangVienDAO();
+        String x = null;
+        //Exception test case 1
+        x ="acb";
+        ArrayList<GiangVien> ListGV = new ArrayList<GiangVien>();
+        ListGV = gvDAO.TimGVTheoKhoa(x);
+        Assert.assertNotNull(ListGV);
+        Assert.assertEquals(0, ListGV.size());
+        
+        //Exception test case 2
+        x ="rmd";
+        ListGV = gvDAO.TimGVTheoKhoa(x);
+        Assert.assertNotNull(ListGV);
+        Assert.assertEquals(0, ListGV.size());
+        
+        //Standard test case
+        x ="CNTT";
+        ListGV = gvDAO.TimGVTheoKhoa(x);
+        Assert.assertNotNull(ListGV);
+        Assert.assertEquals(13, ListGV.size());
+        for(int i=0; i<ListGV.size(); i++){
+            Assert.assertEquals(x, ListGV.get(i).getKhoa());
+        }
+    }
+    @Test
+    public void testTimGiangVien(){
+        GiangVienDAO gvDAO = new GiangVienDAO();
+        NguoiDung nd = new NguoiDung();
+        
+        //Exception test case 1
+        nd.setNguoiDungId(0);
+        GiangVien gv = gvDAO.TimGiangVien(nd);
+        Assert.assertNull(gv);
+        
+        //Exception test case 2
+        nd.setNguoiDungId(13);
+        gv = gvDAO.TimGiangVien(nd);
+        Assert.assertNull(gv);
+        
+        //Exception test case 2
+        nd.setNguoiDungId(135);
+        gv = gvDAO.TimGiangVien(nd);
+        Assert.assertNull(gv);
+        
+        //Exception test case 3
+        nd.setNguoiDungId(3220);
+        gv = gvDAO.TimGiangVien(nd);
+        Assert.assertNull(gv);
+        
+        //Standard test case 1
+        nd.setNguoiDungId(6);
+        gv = gvDAO.TimGiangVien(nd);
+        Assert.assertNotNull(gv);
+        Assert.assertEquals(1, gv.getGiangVienId());
+        Assert.assertEquals("CNTT", gv.getKhoa());
+        Assert.assertEquals("CNTT", gv.getNganh());
+        Assert.assertEquals("Tiến Sĩ", gv.getHocVi());
+        Assert.assertEquals("x", gv.getBoMon());
+    }
+
 }

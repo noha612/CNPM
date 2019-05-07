@@ -66,14 +66,14 @@ public class NhapDiemFrm extends javax.swing.JFrame implements ActionListener{
         col.setPreferredWidth(10);
         col = tableNhapDiem.getColumnModel().getColumn(7);
         col.setPreferredWidth(10);
-        HienThiSinhVien();
+        fillTable();
     }
     
     public NhapDiemFrm(){
         initComponents(); 
     }
     
-    public void HienThiSinhVien(){
+    public void fillTable(){
         DefaultTableModel m = (DefaultTableModel) tableNhapDiem.getModel();
         m.getDataVector().removeAllElements();
         int index = 1;
@@ -449,7 +449,7 @@ public class NhapDiemFrm extends javax.swing.JFrame implements ActionListener{
                 listStudent.get(row).setDiemBTL(diemBTL);
                 listStudent.get(row).setDiemTH(diemTH);
                 listStudent.get(row).setDiemCK(diemThi);
-                HienThiSinhVien();
+                fillTable();
             }
         }
         else{

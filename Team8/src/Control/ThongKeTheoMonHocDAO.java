@@ -23,7 +23,12 @@ public class ThongKeTheoMonHocDAO extends DAO{
     public ArrayList<ThongKeTheoMonHoc> layThongKeTheoMonHoc(String kiBatDau, String kiKetThuc){
         ArrayList<ThongKeTheoMonHoc> ltk = null;
         ltk=new ArrayList<>();
-        String sql = "SELECT tblmonhoc.id,tblmonhoc.tenMon, tblmonhoc.khoa,X.TongSo, Y.QuaMon,(X.TongSo - Y.QuaMon) AS TruotMon, X.TrungBinh  FROM tblmonhoc, (SELECT tblMonHocId, COUNT(tblSinhVientblNguoiDungId) AS TongSo, AVG(diemCC*tblmonhoc.hsChuyenCan +diemKT*tblmonhoc.hsKiemTra+ diemTH*tblmonhoc.hsThucHanh + diemBTL*tblmonhoc.hsBaiTapLon +diemCK*tblmonhoc.hsCuoiKy) AS TrungBinh  FROM tbldiem, tblmonhoc WHERE kyHoc >= ?  AND kyHoc <=? AND tbldiem.tblMonHocId=tblmonhoc.id  GROUP BY tblMonHocId) AS X, (SELECT tblMonHocId, COUNT(tblSinhVientblNguoiDungId) AS QuaMon FROM tbldiem, tblmonhoc WHERE kyHoc >= ? AND kyHoc <=? AND tbldiem.tblMonHocId=tblmonhoc.id  AND (diemCC*tblmonhoc.hsChuyenCan +diemKT*tblmonhoc.hsKiemTra+ diemTH*tblmonhoc.hsThucHanh + diemBTL*tblmonhoc.hsBaiTapLon +diemCK*tblmonhoc.hsCuoiKy)>4 GROUP BY tblMonHocId) AS Y  WHERE tblmonhoc.id=X.tblMonHocId AND tblmonhoc.id=Y.tblMonHocId ORDER BY X.TrungBinh DESC, tblmonhoc.id ASC ;";
+        String sql = "SELECT tblmonhoc.id,tblmonhoc.tenMon, tblmonhoc.khoa,X.TongSo, Y.QuaMon,(X.TongSo - Y.QuaMon) AS TruotMon, X.TrungBinh  "
+                     + "FROM tblmonhoc, "
+                          + "(SELECT tblMonHocId, COUNT(tblSinhVientblNguoiDungId) AS TongSo, AVG(diemCC*tblmonhoc.hsChuyenCan +diemKT*tblmonhoc.hsKiemTra+ diemTH*tblmonhoc.hsThucHanh + diemBTL*tblmonhoc.hsBaiTapLon +diemCK*tblmonhoc.hsCuoiKy) AS TrungBinh  FROM tbldiem, tblmonhoc WHERE kyHoc >= ?  AND kyHoc <=? AND tbldiem.tblMonHocId=tblmonhoc.id  GROUP BY tblMonHocId) AS X, "
+                          + "(SELECT tblMonHocId, COUNT(tblSinhVientblNguoiDungId) AS QuaMon FROM tbldiem, tblmonhoc WHERE kyHoc >= ? AND kyHoc <=? AND tbldiem.tblMonHocId=tblmonhoc.id  AND (diemCC*tblmonhoc.hsChuyenCan +diemKT*tblmonhoc.hsKiemTra+ diemTH*tblmonhoc.hsThucHanh + diemBTL*tblmonhoc.hsBaiTapLon +diemCK*tblmonhoc.hsCuoiKy)>4 GROUP BY tblMonHocId) AS Y  "
+                     + "WHERE tblmonhoc.id=X.tblMonHocId AND tblmonhoc.id=Y.tblMonHocId "
+                     + "ORDER BY X.TrungBinh DESC, tblmonhoc.id ASC ;";
         try{
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, kiBatDau);

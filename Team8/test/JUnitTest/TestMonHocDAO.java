@@ -6,6 +6,7 @@
 package JUnitTest;
 
 import Control.MonHocDAO;
+import Model.GiangVien;
 import Model.MonHoc;
 import java.util.ArrayList;
 import org.junit.Assert;
@@ -37,9 +38,12 @@ public class TestMonHocDAO {
         x="x";
         ListMH=mhDAO.TimMonTheoTen(x);
         Assert.assertNotNull(ListMH);
-        Assert.assertEquals(2,ListMH.size());
+        Assert.assertEquals(3,ListMH.size());
         for(MonHoc mh : ListMH){
             Assert.assertTrue(mh.getTenMon().toLowerCase().contains(x));
+        }
+        for(int k=0;k<ListMH.size()-1;k++){
+            Assert.assertTrue(ListMH.get(k).getTenMon().charAt(0)<=ListMH.get(k+1).getTenMon().charAt(0));
         }
     }
     @Test
@@ -58,7 +62,7 @@ public class TestMonHocDAO {
         Assert.assertNotNull(mh);
         Assert.assertEquals(1,mh.getMonHocId());
         Assert.assertEquals(3,mh.getSoTinChi());
-        Assert.assertEquals("CNPM",mh.getBoMon());
+        Assert.assertEquals("x",mh.getBoMon());
         Assert.assertTrue(mh.getHsBaiTapLon()== 0.2);
         Assert.assertTrue(mh.getHsChuyenCan()==0.1);
         Assert.assertTrue(mh.getHsCuoiKy()==0.6);
@@ -72,5 +76,44 @@ public class TestMonHocDAO {
         Assert.assertEquals(45,mh.getSoTietLT());
         Assert.assertEquals("Nhập môn Công nghệ phần mềm",mh.getTenMon());
     }
-    
+    @Test
+    public void testTimMonHocTheoKey(){
+        MonHocDAO mhDAO=new MonHocDAO();
+        MonHoc MH = new MonHoc();
+        GiangVien GV = new GiangVien();
+        GV.setGiangVienId(1);
+        String key = null;
+        String hocky = null;
+        //Exception test case 1
+        key = "";
+        hocky = "";
+        ArrayList<MonHoc> ListMH = mhDAO.timMonHocTheoKey(GV, key, hocky);
+        Assert.assertNotNull(ListMH);
+        Assert.assertEquals(0,ListMH.size());
+        
+        //Exception test case 2
+        key = "xxxxxx";
+        hocky = "";
+        ListMH = mhDAO.timMonHocTheoKey(GV, key, hocky);
+        Assert.assertNotNull(ListMH);
+        Assert.assertEquals(0,ListMH.size());
+        
+        //Exception test case 3
+        key = "";
+        hocky = "xxxxxxxxx";
+        ListMH = mhDAO.timMonHocTheoKey(GV, key, hocky);
+        Assert.assertNotNull(ListMH);
+        Assert.assertEquals(0,ListMH.size());
+        
+        //Standard test case 1
+        key = "nhap";
+        hocky = "20171";
+        ListMH = ListMH = mhDAO.timMonHocTheoKey(GV, key, hocky);
+        Assert.assertNotNull(ListMH);
+        Assert.assertEquals(1, ListMH.size());
+        for(MonHoc mh : ListMH){
+            Assert.assertTrue(mh.getTenMon().toLowerCase().contains("nhập môn công nghệ phần mềm"));
+        }
+    }
+
 }

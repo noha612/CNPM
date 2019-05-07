@@ -40,6 +40,7 @@ public class LopHocPhanDAO extends DAO{
                 lhp.setMaLop(rs.getString("maLop"));
                 lhp.setTen(rs.getString("ten"));
                 lhp.setSiSo(rs.getInt("siSo"));
+                lhp.setHocKy(rs.getString("hocKy"));
                 PhieuDangKyDAO pdkDAO=new PhieuDangKyDAO();
                 lhp.setDaChon(pdkDAO.DemSoSVCuaLHP(rs.getInt("id")));
                 ListLHP.add(lhp);

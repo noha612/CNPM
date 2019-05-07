@@ -16,7 +16,7 @@ public class ThongKeTheoMonHoc implements Serializable{
     private String kiKT;
     private Integer monID;
     private String tenMon;
-    private  String khoa;
+    private String khoa;
     private Integer tongSoSinhVien;
     private Integer tongSoQuaMon;
     private Integer tongSoTruot;

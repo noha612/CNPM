@@ -102,5 +102,54 @@ public class LichGiangDayDAO extends DAO{
             e.printStackTrace();
         }
         return null;
-    }    
+    }  
+    public ArrayList<LichGiangDay> getAllLichGiangDay(){
+            ArrayList<LichGiangDay>  ListLGD = new ArrayList<LichGiangDay>();
+            String sql = "SELECT * FROM tbllichgiangday";
+            try{
+                PreparedStatement ps= con.prepareStatement(sql);
+                ResultSet rs=ps.executeQuery();
+                while(rs.next()){
+                    LichGiangDay lgd=new LichGiangDay();
+                    lgd.setLichGiangDayId(rs.getInt("id"));
+                    lgd.setTblLopHocPhanId(rs.getInt("tblLopHocPhanId"));
+                    lgd.setTuanBatDau(rs.getInt("tuanBatDau"));
+                    lgd.setTuanKetThuc(rs.getInt("tuanKetThuc"));
+                    lgd.setTblGiangVientblNguoiDungId(rs.getInt("tblGiangVientblNguoiDungId"));
+                    lgd.setTblKipHocId(rs.getInt("tblKipHocId"));
+                    lgd.setTblPhongHocId(rs.getInt("tblPhongHocId"));
+                    ListLGD.add(lgd);
+            }
+            //con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            return ListLGD;
+    }
+    
+    public LichGiangDay TimLichTheoID(int i){
+        LichGiangDay LGD = null;
+        String sql="Select * FROM tbllichgiangday WHERE id = ?";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, i);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+//                if(rs.getInt("id")==0)return null;
+                LGD = new LichGiangDay();
+                LGD.setLichGiangDayId(i);
+                LGD.setTblLopHocPhanId(rs.getInt("tblLopHocPhanId"));
+                LGD.setTuanBatDau(rs.getInt("tuanBatDau"));
+                LGD.setTuanKetThuc(rs.getInt("tuanKetThuc"));
+                LGD.setTblGiangVientblNguoiDungId(rs.getInt("tblGiangVientblNguoiDungId"));
+                LGD.setTblKipHocId(rs.getInt("tblKipHocId"));
+                LGD.setTblPhongHocId(rs.getInt("tblPhongHocId"));
+                               
+            }
+            //con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return LGD;
+    }
 }

@@ -43,7 +43,7 @@ public class KipHocDAO extends DAO{
     }
     
     public KipHoc TimKipGV(int giobd, int giokt, int thu){
-        KipHoc KH= new KipHoc();
+        KipHoc KH= null;
         String sql="Select * FROM tblkiphoc WHERE gioBatDau = ? AND gioKetThuc = ? AND thu = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -51,12 +51,14 @@ public class KipHocDAO extends DAO{
             ps.setInt(2, giokt);
             ps.setInt(3, thu);
             ResultSet rs=ps.executeQuery();
-            rs.absolute(1);
-            KH.setThu(thu);
-            KH.setGioBatDau(giobd);
-            KH.setGioKetThuc(giokt);
-            KH.setKipHocId(rs.getInt("id"));
-            //con.close();
+            while(rs.next()){
+                if(rs.getInt("id")!=0)KH=new KipHoc();
+                KH.setThu(thu);
+                KH.setGioBatDau(giobd);
+                KH.setGioKetThuc(giokt);
+                KH.setKipHocId(rs.getInt("id"));
+                //con.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -6,7 +6,7 @@
 package View;
 
 import Control.LopHocPhanDAO;
-import Control.TimLopDAO;
+import Control.LopHocPhanDAO;
 import Model.LopHocPhan;
 import Model.MonHoc;
 import java.awt.Component;
@@ -43,7 +43,7 @@ public class DanhSachCacLHPFrm extends javax.swing.JFrame implements ActionListe
         ListLHP = new ArrayList<LopHocPhan>();
         Listselect = new ArrayList<JButton>();
         
-        TimLopDAO lhp = new TimLopDAO(); 
+        LopHocPhanDAO lhp = new LopHocPhanDAO(); 
         mamon.setText(mamon.getText()+MH.getMaMon());
         tenmon.setText(tenmon.getText()+MH.getTenMon());
         sotinchi.setText(sotinchi.getText()+MH.getSoTinChi());
@@ -222,8 +222,8 @@ public class DanhSachCacLHPFrm extends javax.swing.JFrame implements ActionListe
     }
 
     private void fillTable() {
-        TimLopDAO lhp =  new TimLopDAO();
-        this.ListLHP = lhp.GVTimLopTheoMon(MH); 
+        LopHocPhanDAO lhp =  new LopHocPhanDAO();
+        this.ListLHP = lhp.TimLopTheoMon(MH); 
         if(ListLHP.size()==0){
             JOptionPane.showMessageDialog(this, "Môn học này chưa có lớp học phần. Vui lòng quay lại chọn môn khác để thao tác.");
         }

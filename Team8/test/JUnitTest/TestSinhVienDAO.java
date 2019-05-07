@@ -31,12 +31,12 @@ public class TestSinhVienDAO {
         sv=svDAO.TimSinhVien(nd);
         Assert.assertNull(sv);
         
-        //Exception test case 2
+        //Exception test case 3
         nd.setNguoiDungId(135);
         sv=svDAO.TimSinhVien(nd);
         Assert.assertNull(sv);
         
-        //Exception test case 3
+        //Exception test case 4
         nd.setNguoiDungId(3220);
         sv=svDAO.TimSinhVien(nd);
         Assert.assertNull(sv);

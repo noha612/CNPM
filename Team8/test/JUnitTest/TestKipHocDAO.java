@@ -34,4 +34,29 @@ public class TestKipHocDAO {
         Assert.assertEquals(9,kh.getGioKetThuc());
         Assert.assertEquals(2,kh.getThu());
     }
+    @Test
+    
+    public void testTimKipGV(){
+        KipHocDAO khDAO = new KipHocDAO();
+        
+        //Exception test case 1
+        KipHoc kh = khDAO.TimKipGV(6, 8, 1);
+        Assert.assertNull(kh);
+        
+        //Exception test case 2
+        kh = khDAO.TimKipGV(3, 1, 2);
+        Assert.assertNull(kh);
+        
+        //Exception test case 3
+        kh = khDAO.TimKipGV(7, 10, 2);
+        Assert.assertNull(kh);
+        
+        //Standard test case
+        kh= khDAO.TimKipGV(7, 9, 2);
+        Assert.assertNotNull(kh);
+        Assert.assertEquals(1, kh.getKipHocId());       
+        Assert.assertEquals(7, kh.getGioBatDau());
+        Assert.assertEquals(9, kh.getGioKetThuc());
+        Assert.assertEquals(2, kh.getThu());
+    }
 }

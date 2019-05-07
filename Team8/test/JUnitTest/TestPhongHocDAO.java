@@ -31,9 +31,9 @@ public class TestPhongHocDAO {
         Assert.assertNotNull(ph);
         Assert.assertEquals(1,ph.getPhongHocId());
         Assert.assertEquals("101 A2",ph.getTenPhong());
-        Assert.assertEquals(null,ph.getViTri());
+        Assert.assertEquals("Mặt Trước",ph.getViTri());
         Assert.assertEquals(59,ph.getSucChua());
-        Assert.assertEquals(null,ph.getMoTa());   
+        Assert.assertEquals("Máy chiếu + Điều hòa",ph.getMoTa());   
         Assert.assertEquals(1,ph.getTblTruongId());
     }
     
