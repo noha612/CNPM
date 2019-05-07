@@ -205,37 +205,55 @@ public class TimMonTheoKyFrm extends javax.swing.JFrame implements ActionListene
     }
     
     private void btnSearchClick(){
-        String KeyMH = txtKeyMH.getText();
-        this.hocky = txtKeyHK.getText();
-        if (Integer.parseInt(this.hocky) < 10000 || Integer.parseInt(this.hocky) > 99999) {
+        fillTable();
+        
+    }
+    
+    public void fillTable(){
+        try {
+            String KeyMH = txtKeyMH.getText();
+            this.hocky = txtKeyHK.getText();
+            if (KeyMH.length() == 0) {
+                JOptionPane.showMessageDialog(this, "Môn học không được để trống");
+                return;
+            }
+            if (this.hocky.length() == 0) {
+                JOptionPane.showMessageDialog(this, "Học kỳ không được để trống");
+                return;
+            }
+            if (Integer.parseInt(this.hocky) < 10000 || Integer.parseInt(this.hocky) > 99999) {
+                JOptionPane.showMessageDialog(this, "Nhập sai định dạng học kỳ!!!");
+                return;
+            }
+
+            labelGV.setText("Môn học của giảng viên : " + this.GV.getHoTen());
+            labelHK.setText("Học kì : " + hocky);
+            MonHocDAO mhd = new MonHocDAO();
+            listSubject = mhd.timMonHocTheoKey(this.GV, KeyMH, hocky);
+            if (listSubject.size()==0) {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy môn học nào!");
+                return;
+            }
+            for(int i = 1; i <= listSubject.size(); i++){
+                JButton add = new JButton("Xem");
+                add.addActionListener(this);
+                listSelect.add(add);
+            }
+            tableSubject.setRowHeight(25);
+            TableColumn col = tableSubject.getColumnModel().getColumn(0);
+            col.setPreferredWidth(30);
+            for(int i = 0; i < 3; i++){
+                TableColumnModel columnModel = tableSubject.getColumnModel();
+                TableColumn column = columnModel.getColumn(i); 
+                DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+                renderer.setHorizontalAlignment(JLabel.CENTER);
+                column.setCellRenderer(renderer);
+            }
+            ((DefaultTableModel)tableSubject.getModel()).fireTableDataChanged();
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Nhập sai định dạng học kỳ!!!");
             return;
         }
-        
-        labelGV.setText("Môn học của giảng viên : " + this.GV.getHoTen());
-        labelHK.setText("Học kì : " + hocky);
-        MonHocDAO mhd = new MonHocDAO();
-        listSubject = mhd.timMonHocTheoKey(this.GV, KeyMH, hocky);
-        if (listSubject.size()==0) {
-            JOptionPane.showMessageDialog(this, "Không tìm thấy môn học nào!");
-            return;
-        }
-        for(int i = 1; i <= listSubject.size(); i++){
-            JButton add = new JButton("Xem");
-            add.addActionListener(this);
-            listSelect.add(add);
-        }
-        tableSubject.setRowHeight(25);
-        TableColumn col = tableSubject.getColumnModel().getColumn(0);
-        col.setPreferredWidth(30);
-        for(int i = 0; i < 3; i++){
-            TableColumnModel columnModel = tableSubject.getColumnModel();
-            TableColumn column = columnModel.getColumn(i); 
-            DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-            renderer.setHorizontalAlignment(JLabel.CENTER);
-            column.setCellRenderer(renderer);
-        }
-        ((DefaultTableModel)tableSubject.getModel()).fireTableDataChanged();
     }
 
     private void btnBackClick(){
