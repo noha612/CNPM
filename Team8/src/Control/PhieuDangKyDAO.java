@@ -63,4 +63,23 @@ public class PhieuDangKyDAO extends DAO{
         }
         return daChon;
     }
+    
+    public ArrayList<PhieuDangKy> TimPhieuDangKy(int idSV){
+        ArrayList<PhieuDangKy> ListPDK=new ArrayList<>();
+        String sql="SELECT * FROM tblphieudangky WHERE tblSinhVientblNguoiDungId = ? ";   
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, idSV);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                PhieuDangKy pdk=new PhieuDangKy();
+                pdk.setPhieuDangKyId(rs.getInt("id"));
+                pdk.setTblSinhVienId(rs.getInt("tblSinhVientblNguoiDungId"));
+                pdk.setTblLopHocPhanId(rs.getInt("tblLopHocPhanId"));
+                ListPDK.add(pdk);
+            }
+        } catch (Exception e) {
+        }
+        return ListPDK; 
+    }
 }

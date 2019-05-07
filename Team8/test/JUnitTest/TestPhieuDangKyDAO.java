@@ -31,22 +31,54 @@ public class TestPhieuDangKyDAO {
         Assert.assertEquals(0, sl);
     }
     @Test
+    public void testTimPhieuDangKy(){
+        PhieuDangKyDAO pdkDAO=new PhieuDangKyDAO();
+        //Exception test case 1
+        ArrayList<PhieuDangKy> ListPDK=pdkDAO.TimPhieuDangKy(0);
+        Assert.assertNotNull(ListPDK);
+        Assert.assertEquals(0, ListPDK.size());
+        //Exception test case 2
+        ListPDK=pdkDAO.TimPhieuDangKy(-1);
+        Assert.assertNotNull(ListPDK);
+        Assert.assertEquals(0, ListPDK.size());
+        //Exception test case 3
+        ListPDK=pdkDAO.TimPhieuDangKy(1000);
+        Assert.assertNotNull(ListPDK);
+        Assert.assertEquals(0, ListPDK.size());
+        //Standard test case 2
+        ListPDK=pdkDAO.TimPhieuDangKy(1);
+        Assert.assertNotNull(ListPDK);
+        Assert.assertEquals(4, ListPDK.size());
+        
+    }
+    @Test
     public void testLuuDanhSachPDK(){
         PhieuDangKyDAO pdkDAO=new PhieuDangKyDAO();
         //Standard test case 1
         ArrayList<PhieuDangKy> ListPDK=new ArrayList<>();
         for(int i=0;i<4;i++){
             PhieuDangKy pdk = new PhieuDangKy();
-            pdk.setTblLopHocPhanId(80);
-            pdk.setTblSinhVienId(100+i);
+            pdk.setTblLopHocPhanId(70+i);
+            pdk.setTblSinhVienId(100);
             ListPDK.add(pdk);
         }
         Connection con=DAO.con;
         try {
             con.setAutoCommit(false);
             pdkDAO.LuuDanhSachPDK(ListPDK);
-            int sl=pdkDAO.DemSoSVCuaLHP(80);
-            Assert.assertEquals(4, sl);
+            int sl=pdkDAO.DemSoSVCuaLHP(70);
+            Assert.assertEquals(1, sl);
+            sl=pdkDAO.DemSoSVCuaLHP(71);
+            Assert.assertEquals(1, sl);
+            sl=pdkDAO.DemSoSVCuaLHP(72);
+            Assert.assertEquals(1, sl);
+            sl=pdkDAO.DemSoSVCuaLHP(73);
+            Assert.assertEquals(1, sl);
+            ListPDK=pdkDAO.TimPhieuDangKy(100);
+            for(int i=0;i<ListPDK.size()-1;i++){
+                Assert.assertTrue(ListPDK.get(i).getPhieuDangKyId()<ListPDK.get(i+1).getPhieuDangKyId());
+            }
+            Assert.assertTrue(ListPDK.get(0).getPhieuDangKyId()>177);
         } catch (Exception e) {
             e.printStackTrace();
         }finally{

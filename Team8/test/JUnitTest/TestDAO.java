@@ -6,6 +6,7 @@
 package JUnitTest;
 
 import Control.DAO;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -15,8 +16,8 @@ import org.junit.Test;
 public class TestDAO extends DAO{
     @Test
     public void testGetInstance(){
-        DAO d=new DAO();
-        
-        System.out.println(DAO.con);
+        //Standard test case 1
+        DAO.getInstance();
+        Assert.assertNotNull(DAO.con);
     }
 }
