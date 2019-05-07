@@ -97,7 +97,7 @@ public class DiemDAO {
         }  
     }
     
-    private boolean checkTonTaiDiem (int isSinhVien, int idMonHoc){
+    public boolean checkTonTaiDiem (int isSinhVien, int idMonHoc){
         String sql = "SELECT * FROM tbldiem"
                     + " WHERE tblSinhVientblNguoiDungId = ?"
                     + " AND tblMonHocId = ?";
@@ -118,4 +118,23 @@ public class DiemDAO {
         }
         return false;
     }
+    
+    public int demSoBanGhiDiem(){
+        int soLuong = 0;
+        String sql = "SELECT COUNT(id) AS SL FROM tbldiem";                
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                soLuong =  rs.getInt("SL");
+            }
+            
+            //con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return soLuong;
+    }
 }
+
+

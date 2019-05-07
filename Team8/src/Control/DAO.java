@@ -13,6 +13,7 @@ import java.sql.DriverManager;
  * @author ntnhu
  */
 public class DAO {
+    //public de test
     public static Connection con;
 
     public DAO() {
@@ -20,7 +21,7 @@ public class DAO {
     
     protected static void getInstance(){
         if(con==null){
-            String dbUrl="jdbc:mysql://localhost:3306/check";
+            String dbUrl="jdbc:mysql://localhost:3306/qltc";
             String dbClass = "com.mysql.cj.jdbc.Driver";
             try{
                 Class.forName(dbClass);

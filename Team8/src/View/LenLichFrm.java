@@ -322,6 +322,7 @@ public class LenLichFrm extends javax.swing.JFrame implements ActionListener {
     private void btnTaoLich() {
         if(Integer.parseInt(txttuanbd.getText())>Integer.parseInt(txttuankt.getText())||Integer.parseInt(txttuanbd.getText())<1||Integer.parseInt(txttuankt.getText())<1){
             JOptionPane.showMessageDialog(this, "Tuần bắt đầu hoặc tuần kết thúc nhập sai!");
+            return;
         }
         lgd=new LichGiangDay();
         lgd.setTuanBatDau(Integer.parseInt(txttuanbd.getText()));
